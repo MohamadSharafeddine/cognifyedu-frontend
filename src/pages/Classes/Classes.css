@@ -5,3 +5,10 @@
   width: 100%;
   min-height: 720px;
 }
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
