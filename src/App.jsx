@@ -1,10 +1,15 @@
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Sidebar from './components/Sidebar/Sidebar';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      App
-    </div>
+    <Router>
+      <div className="App">
+        <Sidebar />
+      </div>
+    </Router>
   );
 }
 
