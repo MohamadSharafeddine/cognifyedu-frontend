@@ -42,3 +42,8 @@
 .sidebar ul li button .icon {
   margin: 10px 10px 10px 20px;
 }
+
+.sidebar ul li button.active {
+  background-color: white;
+  color: #25738b;
+}
