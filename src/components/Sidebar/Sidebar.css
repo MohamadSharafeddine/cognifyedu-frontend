@@ -47,3 +47,16 @@
   background-color: white;
   color: #25738b;
 }
+
+/* .sidebar ul li button.active i {
+  color: #25738b;
+} */
+
+.sidebar ul li button:hover {
+  background-color: #f0f0f0;
+  color: #25738b;
+}
+
+/* .sidebar ul li button:hover i {
+  color: #25738b;
+} */
