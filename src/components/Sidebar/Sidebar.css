@@ -19,3 +19,7 @@
   list-style: none;
   padding: 50px 0px 0px 20px;
 }
+
+.sidebar ul li {
+  margin-left: 20px;
+}
