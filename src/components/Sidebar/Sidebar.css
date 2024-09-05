@@ -38,3 +38,7 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
+
+.sidebar ul li button .icon {
+  margin: 10px 10px 10px 20px;
+}
