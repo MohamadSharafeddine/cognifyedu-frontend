@@ -32,3 +32,10 @@ body {
     gap: 10px;
     margin-top: 10px;
   }
+  
+  .footer .social-icon {
+    font-size: 24px;
+    color: #000;
+    transition: color 0.3s ease;
+  }
+  
