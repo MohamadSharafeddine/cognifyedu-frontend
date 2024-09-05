@@ -47,3 +47,8 @@ body {
     margin-top: 10px;
     color: #666;
   }
+  
+  .footer .center,
+  .footer .right {
+    text-align: center;
+  }
