@@ -64,3 +64,9 @@ body {
   .footer .right a:hover {
     text-decoration: underline;
   }
+  
+  .footer .center .copyright {
+    margin-top: 20px;
+    color: #666;
+  }
+  
