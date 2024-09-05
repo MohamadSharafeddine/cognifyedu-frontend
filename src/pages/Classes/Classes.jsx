@@ -10,10 +10,37 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 const Classes = () => {
-  const selectedClass = useSelector((state) => state.classState.selectedClass); // Get selected class from Redux
+  const selectedClass = useSelector((state) => state.classState.selectedClass);
 
   return (
     <div className="main-content">
+      <Sidebar menuItems={['Classes', 'Class1', 'Class2']} />
+      <div className='right-content'>
+      <TopBar />
+      <div className="classes-content">
+        
+        <div className="add-button-container">
+          <button className="add-btn">
+            <FontAwesomeIcon icon={faPlus} /> Add
+          </button>
+        </div>
+
+        {selectedClass === 'Classes' ? (
+        <div className="cards-container">
+          {classesData.map((classItem, index) => (
+            <ClassCard
+              key={index}
+              className={classItem.className}
+              teacherName={classItem.teacherName}
+              description={classItem.description}
+            />
+          ))}
+        </div>
+        ) : (
+          <ClassPage className={selectedClass} />
+        )}
+      </div>
+      </div>
     </div>
   );
 };
