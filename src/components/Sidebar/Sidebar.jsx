@@ -2,10 +2,15 @@ import React from 'react';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThList } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectClass } from '../../redux/actions/classActions';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/Logos/Logo_bar.png';
+import Logo from '../../assets/logo-bar.png';
 
 const Sidebar = ({ menuItems = ['Classes', 'Class1', 'Class2'] }) => {
+  const dispatch = useDispatch();
+  const selectedClass = useSelector((state) => state.classState.selectedClass);
+
   return (
     <div className="sidebar">
       <Link to="/classes">
@@ -14,9 +19,12 @@ const Sidebar = ({ menuItems = ['Classes', 'Class1', 'Class2'] }) => {
       <ul>
         {menuItems.map((item, index) => (
           <li key={index}>
-            <button className={index === 0 ? 'active' : ''}>
-              <div class="icon"><FontAwesomeIcon icon={faThList} /></div>
-              <div class="title">{item}</div>
+            <button
+              className={selectedClass === item ? 'active' : ''}
+              onClick={() => dispatch(selectClass(item))}
+            >
+              <div className="icon"><FontAwesomeIcon icon={faThList} /></div>
+              <div className="title">{item}</div>
             </button>
           </li>
         ))}
