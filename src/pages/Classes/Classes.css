@@ -12,3 +12,9 @@
   width: 100%;
   margin-bottom: 20px;
 }
+
+.classes-content {
+  padding: 20px 80px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
