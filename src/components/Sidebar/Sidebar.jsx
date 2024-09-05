@@ -11,6 +11,16 @@ const Sidebar = ({ menuItems = ['Classes', 'Class1', 'Class2'] }) => {
       <Link to="/classes">
         <img src={Logo} alt="CognifyEdu Logo" />
       </Link>
+      <ul>
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <button className={index === 0 ? 'active' : ''}>
+              <div class="icon"><FontAwesomeIcon icon={faThList} /></div>
+              <div class="title">{item}</div>
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
