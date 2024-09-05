@@ -47,3 +47,7 @@
 .add-btn:hover {
   background-color: #1c5a66;
 }
+
+.add-btn svg {
+  margin-right: 8px;
+}
