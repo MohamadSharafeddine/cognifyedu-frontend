@@ -25,3 +25,8 @@
   border-top-right-radius: 10px;
 }
 
+.class-card-header .classname {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
