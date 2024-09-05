@@ -52,3 +52,10 @@ body {
   .footer .right {
     text-align: center;
   }
+  
+  .footer .center a,
+  .footer .right a {
+    color: #666;
+    text-decoration: none;
+    margin-top: 5px;
+  }
