@@ -8,6 +8,44 @@ import TopBar from '../../components/TopBar/TopBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
+const classesData = [
+  {
+    className: 'Class1',
+    teacherName: 'Max Fischer',
+    description: 'This is a brief description of Class1',
+  },
+  {
+    className: 'Class2',
+    teacherName: 'Jane Doe',
+    description: 'This is a brief description of Class2',
+  },
+  {
+    className: 'Class3',
+    teacherName: 'John Smith',
+    description: 'This is a brief description of Class3',
+  },
+  // {
+  //   className: 'Class4',
+  //   teacherName: 'Emily Johnson',
+  //   description: 'This is a brief description of Class4',
+  // },
+  // {
+  //   className: 'Class5',
+  //   teacherName: 'Michael Brown',
+  //   description: 'This is a brief description of Class5',
+  // },
+  // {
+  //   className: 'Class6',
+  //   teacherName: 'Sarah Davis',
+  //   description: 'This is a brief description of Class6',
+  // },
+  // {
+  //   className: 'Class7',
+  //   teacherName: 'David Wilson',
+  //   description: 'This is a brief description of Class7',
+  // },
+
+];
 
 const Classes = () => {
   const selectedClass = useSelector((state) => state.classState.selectedClass);
