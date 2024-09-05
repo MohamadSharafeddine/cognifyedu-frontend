@@ -42,3 +42,8 @@ body {
   .footer .social-icon:hover {
     color: #25738B;
   }
+  
+  .footer .left .location {
+    margin-top: 10px;
+    color: #666;
+  }
