@@ -1,7 +1,7 @@
-import { SELECT_CLASS } from './actions';
+import { SELECT_CLASS } from '../actions/classActions';
 
 const initialState = {
-  selectedClass: null,
+  selectedClass: 'Classes',
 };
 
 const classReducer = (state = initialState, action) => {
