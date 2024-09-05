@@ -34,3 +34,7 @@
   font-size: 0.9em;
   margin-top: 5px;
 }
+
+.class-card-body {
+  padding: 15px;
+}
