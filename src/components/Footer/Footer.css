@@ -11,7 +11,7 @@ body {
     align-items: center;
     padding: 20px 50px;
     background-color: #f9f9f9;
-    border-top: 2px solid #ccc;
+    border-top: rgb(221, 221, 221) 0.5px solid;
   }
   
   .footer .left,
@@ -69,4 +69,5 @@ body {
     margin-top: 20px;
     color: #666;
   }
+  
   
