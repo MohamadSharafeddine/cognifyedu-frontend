@@ -42,3 +42,9 @@
 .students-list tr:last-child {
     border-bottom: none;
 }
+
+.students-list tbody tr {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.1s ease;
+}
+
