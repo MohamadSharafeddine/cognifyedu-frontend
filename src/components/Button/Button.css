@@ -7,3 +7,7 @@
     transition: background-color 0.3s ease;
     margin: 0px 4px;
   }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
