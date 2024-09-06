@@ -70,3 +70,7 @@
     border-bottom: none;
 }
 
+.clickable-row {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.1s ease;
+}
