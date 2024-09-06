@@ -38,3 +38,7 @@
 .assignments-list tr {
     border-bottom: 1px solid #ddd;
 }
+
+.assignments-list tr:last-child {
+    border-bottom: none;
+}
