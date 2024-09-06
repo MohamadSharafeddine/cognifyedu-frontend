@@ -66,3 +66,7 @@
     border: none;
     transition: background-color 0.3s ease;
 }
+
+.assignments-list td button:active {
+    transform: scale(0.99);
+}
