@@ -36,6 +36,9 @@ const studentsData = [
 ];
 
 const Marks = ({ searchTerm }) => {
+  const filteredStudents = studentsData.filter((student) => {
+    return student.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
     <div className="Marks-list">
