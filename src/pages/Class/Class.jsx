@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./ClassPage.css";
+import "./Class.css";
 import Assignments from "../../components/Assignments/Assignments";
 import Students from "../../components/Students/Students";
 import Marks from "../../components/Marks/Marks";
-import Button from "../Button/Button";
-import TabBar from "../TabBar/TabBar";
+import Button from "../../components/Button/Button";
+import TabBar from "../../components/TabBar/TabBar";
 
 const ClassPage = () => {
   const [activeTab, setActiveTab] = useState("Classwork");
