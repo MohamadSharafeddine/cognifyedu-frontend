@@ -44,3 +44,10 @@
     border-collapse: collapse;
 }
 
+.list-container thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
