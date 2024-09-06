@@ -80,14 +80,19 @@ const Classes = () => {
   return (
     <div className="main-content">
       <Sidebar menuItems={['Classes', 'Class1', 'Class2']} />
-      <div className='right-content'>
+      <div className="right-content">
       <TopBar />
+
       <div className="classes-content">
-        
+          {selectedClass === 'Classes' ? (
+            <>
         <div className="add-button-container">
-          <button className="add-btn">
-            <FontAwesomeIcon icon={faPlus} /> Add
-          </button>
+                <Button
+                  color="#25738b"
+                  text="Add"
+                  size="medium"
+                  onClick={handleAddClick}
+                />
         </div>
 
         {selectedClass === 'Classes' ? (
