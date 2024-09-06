@@ -29,3 +29,8 @@
     border-right: none;
 }
 
+.assignments-list th {
+    text-align: left;
+    background-color: #f9f9f9;
+    font-weight: 600;
+}
