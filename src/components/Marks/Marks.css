@@ -8,3 +8,8 @@
   padding: 0px 40px;
   margin: 20px 0px;
 }
+
+.Marks-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
