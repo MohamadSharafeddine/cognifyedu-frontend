@@ -20,6 +20,10 @@ const assignmentsData = [
 const Assignments = ({ searchTerm }) => {
   const navigate = useNavigate();
 
+  const filteredAssignments = assignmentsData.filter((assignment) =>
+    (assignment.title ? assignment.title.toLowerCase() : '').includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="assignments-list">
 
