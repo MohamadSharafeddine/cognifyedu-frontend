@@ -31,6 +31,37 @@ const Students = ({ searchTerm }) => {
 
   return (
     <div className="students-list">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredStudents.map((student, index) => (
+            <tr key={index} onClick={() => handleRowClick(student.id)} className="clickable-row">
+              <td>
+                <img
+                  src={student.avatar || defaultAvatar}
+                  onError={(e) => { e.target.src = defaultAvatar; }}
+                  alt="avatar"
+                  className="avatar"
+                />
+                {student.name}
+              </td>
+              <td>
+                <Button
+                  color="#e74c3c"
+                  text="Remove"
+                  size="small"
+                  onClick={(e) => handleRemoveClick(e, student.id)}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
