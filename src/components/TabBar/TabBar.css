@@ -12,3 +12,10 @@
     cursor: pointer;
     transition: color 0.3s ease;
   }
+  
+  .tab-bar button.active {
+    font-weight: bold;
+    border-bottom: 3px solid #25738b;
+    color: #25738b;
+  }
+  
