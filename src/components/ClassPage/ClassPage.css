@@ -90,3 +90,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
 }
+
+.list-container:hover::-webkit-scrollbar {
+    opacity: 1;
+}
