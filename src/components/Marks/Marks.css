@@ -27,3 +27,9 @@
   border-left: none;
   border-right: none;
 }
+
+.Marks-list th {
+  text-align: left;
+  background-color: #f9f9f9;
+}
+
