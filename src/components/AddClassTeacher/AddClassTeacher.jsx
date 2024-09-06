@@ -3,6 +3,10 @@ import './AddClassTeacher.css';
 import Button from '../Button/Button';
 
 const AddClassTeacher = ({ onClose, onAddClass }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+
   return (
     <div className="modal">
     </div>
