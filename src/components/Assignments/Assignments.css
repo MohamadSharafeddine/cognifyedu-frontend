@@ -70,3 +70,8 @@
 .assignments-list td button:active {
     transform: scale(0.99);
 }
+
+.assignments-list {
+    scrollbar-width: thin;
+    scrollbar-color: #25738b transparent;
+}
