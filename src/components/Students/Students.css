@@ -23,3 +23,9 @@
     z-index: 1;
 }
 
+.students-list th, .students-list td {
+    padding: 15px;
+    border-left: none;
+    border-right: none;
+}
+
