@@ -38,3 +38,7 @@
 .students-list tr {
     border-bottom: 1px solid #ddd;
 }
+
+.students-list tr:last-child {
+    border-bottom: none;
+}
