@@ -44,6 +44,26 @@ const ClassCard = ({
           <p className="description">{description}</p>
         </div>
       </div>
+
+      {showDeletePopup && (
+        <div className="delete-popup">
+          <p>Are you sure you want to delete this class?</p>
+          <div className="button-group">
+            <Button
+              color="#e74c3c"
+              text="Yes, Delete"
+              size="small"
+              onClick={confirmDelete}
+            />
+            <Button
+              color="#ddd"
+              text="Cancel"
+              size="small"
+              onClick={cancelDelete}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
