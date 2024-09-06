@@ -18,13 +18,23 @@
 }
 
 .class-card-header {
-  display: flex;
-  flex-direction: column;
   background-color: #25738b;
   color: white;
   padding: 15px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-bottom {
+  margin-top: 5px;
 }
 
 .classname {
