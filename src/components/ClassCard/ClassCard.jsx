@@ -8,7 +8,23 @@ const ClassCard = ({
   className = 'Class Name',
   teacherName = 'Teacher Name',
   description = 'This is a default description for the class. It provides some basic information about the class.',
+  onDelete
 }) => {
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+
+  const handleDeleteClick = () => {
+    setShowDeletePopup(true);
+  };
+
+  const confirmDelete = () => {
+    onDelete(className);
+    setShowDeletePopup(false);
+  };
+
+  const cancelDelete = () => {
+    setShowDeletePopup(false);
+  };
+
   return (
     <div className="class-card">
       <div className="class-card-header">
