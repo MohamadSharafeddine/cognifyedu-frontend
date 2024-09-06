@@ -53,3 +53,7 @@
     transform: scale(1.01);
 }
 
+.assignments-list tbody tr:active {
+    color: #25738b;
+    transform: scale(1.01);
+}
