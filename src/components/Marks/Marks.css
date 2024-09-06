@@ -13,3 +13,10 @@
   width: 100%;
   border-collapse: collapse;
 }
+
+.Marks-list thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
