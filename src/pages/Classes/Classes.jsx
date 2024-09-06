@@ -23,27 +23,51 @@ const classesData = [
     teacherName: 'John Smith',
     description: 'This is a brief description of Class3',
   },
-  // {
-  //   className: 'Class4',
-  //   teacherName: 'Emily Johnson',
-  //   description: 'This is a brief description of Class4',
-  // },
-  // {
-  //   className: 'Class5',
-  //   teacherName: 'Michael Brown',
-  //   description: 'This is a brief description of Class5',
-  // },
-  // {
-  //   className: 'Class6',
-  //   teacherName: 'Sarah Davis',
-  //   description: 'This is a brief description of Class6',
-  // },
-  // {
-  //   className: 'Class7',
-  //   teacherName: 'David Wilson',
-  //   description: 'This is a brief description of Class7',
-  // },
-
+  {
+    className: 'Class4',
+    teacherName: 'Emily Johnson',
+    description: 'This is a brief description of Class4',
+  },
+  {
+    className: 'Class5',
+    teacherName: 'Michael Brown',
+    description: 'This is a brief description of Class5',
+  },
+  {
+    className: 'Class6',
+    teacherName: 'Sarah Davis',
+    description: 'This is a brief description of Class6',
+  },
+  {
+    className: 'Class7',
+    teacherName: 'David Wilson',
+    description: 'This is a brief description of Class7',
+  },
+  {
+    className: 'Class8',
+    teacherName: 'Olivia Taylor',
+    description: 'This is a brief description of Class8',
+  },
+  {
+    className: 'Class9',
+    teacherName: 'James Anderson',
+    description: 'This is a brief description of Class9',
+  },
+  {
+    className: 'Class10',
+    teacherName: 'Emma Thomas',
+    description: 'This is a brief description of Class10',
+  },
+  {
+    className: 'Class11',
+    teacherName: 'Alexander Clark',
+    description: 'This is a brief description of Class11',
+  },
+  {
+    className: 'Class12',
+    teacherName: 'Grace Wilson',
+    description: 'This is a brief description of Class12',
+  },
 ];
 
 const Classes = () => {
