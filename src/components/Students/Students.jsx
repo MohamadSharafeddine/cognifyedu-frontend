@@ -20,6 +20,11 @@ const Students = ({ searchTerm }) => {
     navigate(`/student/${id}`);
   };
 
+  const handleRemoveClick = (e, studentId) => {
+    e.stopPropagation();
+    console.log(`Remove student with ID: ${studentId}`);
+  };
+
   return (
     <div className="students-list">
     </div>
