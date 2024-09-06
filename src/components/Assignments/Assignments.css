@@ -75,3 +75,13 @@
     scrollbar-width: thin;
     scrollbar-color: #25738b transparent;
 }
+
+.assignments-list::-webkit-scrollbar {
+    width: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.assignments-list:hover::-webkit-scrollbar {
+    opacity: 1;
+}
