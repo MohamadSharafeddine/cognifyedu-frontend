@@ -44,7 +44,17 @@
 
 .teacher {
   font-size: 0.9em;
-  margin-top: 5px;
+}
+
+.delete-icon {
+  font-size: 1.2em;
+  color: #e74c3c;
+  cursor: pointer;
+  display: none;
+}
+
+.class-card:hover .delete-icon {
+  display: inline-block;
 }
 
 .class-card-body {
