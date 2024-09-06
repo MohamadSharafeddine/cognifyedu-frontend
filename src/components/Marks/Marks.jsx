@@ -42,6 +42,38 @@ const Marks = ({ searchTerm }) => {
 
   return (
     <div className="Marks-list">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Grade 1</th>
+            <th>Grade 2</th>
+            <th>Grade 3</th>
+            <th>Grade 4</th>
+            <th>Grade 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredStudents.map((student, index) => (
+            <tr key={index}>
+              <td>
+                <img
+                  src={student.avatar || defaultAvatar}
+                  onError={(e) => {
+                    e.target.src = defaultAvatar;
+                  }}
+                  alt="avatar"
+                  className="avatar"
+                />
+                {student.name}
+              </td>
+              {student.Marks.map((grade, i) => (
+                <td key={i}>{grade}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
