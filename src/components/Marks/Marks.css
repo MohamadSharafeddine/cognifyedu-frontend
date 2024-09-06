@@ -37,3 +37,6 @@
   border-bottom: 1px solid #ddd;
 }
 
+.Marks-list tr:last-child {
+  border-bottom: none;
+}
