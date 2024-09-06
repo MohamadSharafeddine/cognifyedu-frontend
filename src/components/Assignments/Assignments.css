@@ -94,3 +94,7 @@
 .assignments-list::-webkit-scrollbar-button {
     display: none;
 }
+
+.assignments-list td:nth-child(3) {
+    width: 200px;
+}
