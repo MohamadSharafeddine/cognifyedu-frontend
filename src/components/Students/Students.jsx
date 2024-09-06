@@ -25,6 +25,10 @@ const Students = ({ searchTerm }) => {
     console.log(`Remove student with ID: ${studentId}`);
   };
 
+  const filteredStudents = studentsData.filter((student) =>
+    (student.name ? student.name.toLowerCase() : '').includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="students-list">
     </div>
