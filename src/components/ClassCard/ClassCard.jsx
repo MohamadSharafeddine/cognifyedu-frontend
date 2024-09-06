@@ -15,9 +15,9 @@ const ClassCard = ({
       <div className="class-card-body">
         <h3>Description</h3>
         <div className="description-container">
-        <p className="description">{description}</p>
+          <p className="description">{description}</p>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

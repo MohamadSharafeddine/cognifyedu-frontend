@@ -26,12 +26,12 @@
   border-top-right-radius: 20px;
 }
 
-.class-card-header .classname {
+.classname {
   font-size: 1.2em;
   font-weight: bold;
 }
 
-.class-card-header .teacher {
+.teacher {
   font-size: 0.9em;
   margin-top: 5px;
 }
@@ -40,7 +40,7 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1
+  flex-grow: 1;
 }
 
 .class-card-body h3 {
