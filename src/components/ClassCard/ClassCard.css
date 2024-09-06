@@ -48,6 +48,13 @@
   font-size: 1.1em;
 }
 
+.description-container {
+  flex-grow: 1;
+  max-height: 100px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
 .description {
   margin: 0;
   font-size: 0.9em;
