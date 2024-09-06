@@ -28,8 +28,15 @@ const ClassCard = ({
   return (
     <div className="class-card">
       <div className="class-card-header">
+        <div className="header-top">
         <span className="classname">{className}</span>
+          <span className="delete-icon" onClick={handleDeleteClick}>
+            <FontAwesomeIcon icon={faTrash} />
+          </span>
+        </div>
+        <div className="header-bottom">
         <span className="teacher">{teacherName}</span>
+        </div>
       </div>
       <div className="class-card-body">
         <h3>Description</h3>
