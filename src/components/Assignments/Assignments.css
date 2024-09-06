@@ -15,3 +15,10 @@
     width: 100%;
     border-collapse: collapse;
 }
+
+.assignments-list thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
