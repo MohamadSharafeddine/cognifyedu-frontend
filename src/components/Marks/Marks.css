@@ -20,3 +20,10 @@
   background-color: white;
   z-index: 1;
 }
+
+.Marks-list th,
+.Marks-list td {
+  padding: 15px;
+  border-left: none;
+  border-right: none;
+}
