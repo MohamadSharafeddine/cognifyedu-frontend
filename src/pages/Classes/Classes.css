@@ -14,7 +14,7 @@
 }
 
 .classes-content {
-  padding: 20px 80px;
+  padding: 0px 80px;
   flex-grow: 1;
   overflow-y: auto;
 }
