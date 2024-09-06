@@ -10,3 +10,8 @@
     scrollbar-color: #25738b transparent;
     position: relative;
 }
+
+.students-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
