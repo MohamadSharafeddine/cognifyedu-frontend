@@ -90,3 +90,7 @@
     background-color: #25738b;
     border-radius: 10px;
 }
+
+.assignments-list::-webkit-scrollbar-button {
+    display: none;
+}
