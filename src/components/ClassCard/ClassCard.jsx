@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ClassCard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Button from '../Button/Button';
 
 const ClassCard = ({
   className = 'Class Name',
