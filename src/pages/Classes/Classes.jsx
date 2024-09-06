@@ -81,35 +81,35 @@ const Classes = () => {
     <div className="main-content">
       <Sidebar menuItems={['Classes', 'Class1', 'Class2']} />
       <div className="right-content">
-      <TopBar />
+        <TopBar />
 
-      <div className="classes-content">
+        <div className="classes-content">
           {selectedClass === 'Classes' ? (
             <>
-        <div className="add-button-container">
+              <div className="add-button-container">
                 <Button
                   color="#25738b"
                   text="Add"
                   size="medium"
                   onClick={handleAddClick}
                 />
-        </div>
+              </div>
 
-        {selectedClass === 'Classes' ? (
-        <div className="cards-container">
-          {classesData.map((classItem, index) => (
-            <ClassCard
-              key={index}
-              className={classItem.className}
-              teacherName={classItem.teacherName}
-              description={classItem.description}
-            />
-          ))}
+              <div className="cards-container">
+                {classesData.map((classItem, index) => (
+                  <ClassCard
+                    key={index}
+                    className={classItem.className}
+                    teacherName={classItem.teacherName}
+                    description={classItem.description}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <ClassPage />
+          )}
         </div>
-        ) : (
-          <ClassPage className={selectedClass} />
-        )}
-      </div>
       </div>
     </div>
   );
