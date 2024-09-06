@@ -18,8 +18,11 @@ const assignmentsData = [
 ];
 
 const Assignments = ({ searchTerm }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="assignments-list">
+
     </div>
   );
 };
