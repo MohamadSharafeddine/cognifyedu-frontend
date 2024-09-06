@@ -38,3 +38,9 @@
     margin: 20px 0;
     position: relative;
 }
+
+.list-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
