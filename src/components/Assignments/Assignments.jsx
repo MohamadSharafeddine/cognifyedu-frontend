@@ -24,6 +24,10 @@ const Assignments = ({ searchTerm }) => {
     (assignment.title ? assignment.title.toLowerCase() : '').includes(searchTerm.toLowerCase())
   );
 
+  const handleEdit = (assignment) => {
+    console.log('Editing', assignment);
+  };
+
   return (
     <div className="assignments-list">
 
