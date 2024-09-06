@@ -94,3 +94,8 @@
 .list-container:hover::-webkit-scrollbar {
     opacity: 1;
 }
+
+.list-container::-webkit-scrollbar-thumb {
+    background-color: #25738b;
+    border-radius: 10px;
+}
