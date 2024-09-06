@@ -38,7 +38,41 @@ const Assignments = ({ searchTerm }) => {
 
   return (
     <div className="assignments-list">
-
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredAssignments.map((assignment, index) => (
+            <tr key={index} onClick={() => handleRowClick(assignment)}>
+              <td>{assignment.title}</td>
+              <td>{assignment.dueDate}</td>
+              <td
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <Button
+                  color="#25738b"
+                  text="Edit"
+                  size="small"
+                  onClick={() => handleEdit(assignment)}
+                />
+                <Button
+                  color="#e74c3c"
+                  text="Delete"
+                  size="small"
+                  onClick={() => handleDelete(assignment)}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
