@@ -85,3 +85,8 @@
 .assignments-list:hover::-webkit-scrollbar {
     opacity: 1;
 }
+
+.assignments-list::-webkit-scrollbar-thumb {
+    background-color: #25738b;
+    border-radius: 10px;
+}
