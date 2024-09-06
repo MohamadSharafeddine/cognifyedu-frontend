@@ -15,6 +15,11 @@ const studentsData = [
 
 const Students = ({ searchTerm }) => {
   const navigate = useNavigate();
+
+  const handleRowClick = (id) => {
+    navigate(`/student/${id}`);
+  };
+
   return (
     <div className="students-list">
     </div>
