@@ -55,6 +55,24 @@
   padding-right: 5px;
 }
 
+.description-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.description-container::-webkit-scrollbar-thumb {
+  background-color: #25738b;
+  border-radius: 10px;
+}
+
+.description-container::-webkit-scrollbar-button {
+  display: none;
+}
+
+.description-container {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b transparent;
+}
+
 .description {
   margin: 0;
   font-size: 0.9em;
