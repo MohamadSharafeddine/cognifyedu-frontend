@@ -11,3 +11,12 @@
     align-items: center;
     gap: 10px;
 }
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 16px;
+    height: 36px;
+}
