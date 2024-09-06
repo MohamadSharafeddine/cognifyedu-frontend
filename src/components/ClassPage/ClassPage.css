@@ -51,3 +51,8 @@
     z-index: 1;
 }
 
+.list-container th, .list-container td {
+    padding: 15px;
+    border-left: none;
+    border-right: none;
+}
