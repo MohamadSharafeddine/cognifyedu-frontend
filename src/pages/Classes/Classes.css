@@ -1,7 +1,6 @@
 .main-content {
   display: flex;
   flex-grow: 1;
-  margin: 0;
   width: 100%;
   min-height: 720px;
 }
@@ -14,7 +13,7 @@
 }
 
 .classes-content {
-  padding: 0px 80px;
+  padding: 0 80px;
   flex-grow: 1;
   overflow-y: auto;
 }
@@ -22,32 +21,14 @@
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-  justify-content: space-between;
+  gap: 40px 82px;
+  justify-content: left;
   max-width: 100%;
+  margin-bottom: 20px;
 }
 
 .add-button-container {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
-}
-
-.add-btn {
-  background-color: #25738b;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.add-btn:hover {
-  background-color: #1c5a66;
-}
-
-.add-btn svg {
-  margin-right: 8px;
 }
