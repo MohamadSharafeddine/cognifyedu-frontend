@@ -22,3 +22,10 @@
     background-color: white;
     z-index: 1;
 }
+
+.assignments-list th, .assignments-list td {
+    padding: 15px;
+    border-left: none;
+    border-right: none;
+}
+
