@@ -73,6 +73,10 @@ const classesData = [
 const Classes = () => {
   const selectedClass = useSelector((state) => state.classState.selectedClass);
 
+  const handleAddClick = () => {
+    console.log('Add button clicked!');
+  };
+
   return (
     <div className="main-content">
       <Sidebar menuItems={['Classes', 'Class1', 'Class2']} />
