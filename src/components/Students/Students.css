@@ -52,3 +52,11 @@
     color: #25738b;
     transform: scale(1.01);
 }
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
