@@ -45,3 +45,7 @@
     resize: none;
   }
   
+  .form-group textarea {
+    min-height: 100px;
+  }
+  
