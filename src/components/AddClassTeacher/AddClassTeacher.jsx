@@ -6,6 +6,21 @@ const AddClassTeacher = ({ onClose, onAddClass }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  const handleAddClass = () => {
+    const newClass = {
+      className: title,
+      teacherName: "New Teacher",
+      description,
+    };
+
+    if (onAddClass) {
+      onAddClass(newClass);
+    }
+
+    if (onClose) {
+      onClose();
+    }
+  };
 
   return (
     <div className="modal">
