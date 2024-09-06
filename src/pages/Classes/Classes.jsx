@@ -5,8 +5,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import ClassCard from '../../components/ClassCard/ClassCard';
 import ClassPage from '../../components/ClassPage/ClassPage';
 import TopBar from '../../components/TopBar/TopBar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../components/Button/Button';
 
 const classesData = [
   {
