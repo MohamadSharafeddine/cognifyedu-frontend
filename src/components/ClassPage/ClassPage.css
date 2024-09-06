@@ -99,3 +99,7 @@
     background-color: #25738b;
     border-radius: 10px;
 }
+
+.list-container::-webkit-scrollbar-button {
+    display: none;
+}
