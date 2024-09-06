@@ -80,3 +80,8 @@
     transform: scale(1.01);
 }
 
+.list-container {
+    scrollbar-width: thin;
+    scrollbar-color: #25738b transparent;
+}
+
