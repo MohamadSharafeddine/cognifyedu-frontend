@@ -57,3 +57,12 @@
     color: #25738b;
     transform: scale(1.01);
 }
+
+.assignments-list td button {
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
