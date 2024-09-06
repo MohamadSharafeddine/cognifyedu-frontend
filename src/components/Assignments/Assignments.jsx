@@ -28,6 +28,10 @@ const Assignments = ({ searchTerm }) => {
     console.log('Editing', assignment);
   };
 
+  const handleDelete = (assignment) => {
+    console.log('Deleting', assignment);
+  };
+  
   return (
     <div className="assignments-list">
 
