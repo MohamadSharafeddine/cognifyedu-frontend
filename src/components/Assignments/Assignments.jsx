@@ -31,7 +31,11 @@ const Assignments = ({ searchTerm }) => {
   const handleDelete = (assignment) => {
     console.log('Deleting', assignment);
   };
-  
+
+  const handleRowClick = (assignment) => {
+    navigate(`/assignments/${assignment.title}`);
+  };
+
   return (
     <div className="assignments-list">
 
