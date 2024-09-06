@@ -64,3 +64,8 @@
 .students-list td:nth-child(2) {
     width: 100px;
 }
+
+.students-list {
+    scrollbar-width: thin;
+    scrollbar-color: #25738b transparent;
+}
