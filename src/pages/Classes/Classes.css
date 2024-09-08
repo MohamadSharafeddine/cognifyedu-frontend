@@ -1,19 +1,5 @@
-.main-content {
-  display: flex;
-  flex-grow: 1;
-  width: 100%;
-  min-height: 720px;
-}
-
-.right-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
 .classes-content {
-  padding: 0 80px;
+  /* padding: 0 80px; */
   flex-grow: 1;
   overflow-y: auto;
 }

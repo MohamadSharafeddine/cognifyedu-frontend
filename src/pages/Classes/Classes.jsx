@@ -31,34 +31,34 @@ const Classes = () => {
   };
 
   return (
-        <div className="classes-content">
-          {selectedClass === "Classes" ? (
-            <>
-              <div className="add-button-container">
-                <Button
-                  color="#25738b"
-                  text="Add"
-                  size="medium"
-                  onClick={handleAddClick}
-                />
-              </div>
+    <div className="classes-content">
+      {selectedClass === "Classes" ? (
+        <>
+          <div className="add-button-container">
+            <Button
+              color="#25738b"
+              text="Add"
+              size="medium"
+              onClick={handleAddClick}
+            />
+          </div>
 
-              <div className="cards-container">
-                {classesData.map((classItem, index) => (
-                  <ClassCard
-                    key={index}
-                    className={classItem.className}
-                    teacherName={classItem.teacherName}
-                    description={classItem.description}
-                    onDelete={handleDeleteClass}
+          <div className="cards-container">
+            {classesData.map((classItem, index) => (
+              <ClassCard
+                key={index}
+                className={classItem.className}
+                teacherName={classItem.teacherName}
+                description={classItem.description}
+                onDelete={handleDeleteClass}
                 onEdit={handleEditClass}
-                  />
-                ))}
-              </div>
-            </>
-          ) : (
-            <ClassPage />
-          )}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <ClassPage />
+      )}
 
       {isAddClassOpen && (
         <AddClassPopupTeacher
