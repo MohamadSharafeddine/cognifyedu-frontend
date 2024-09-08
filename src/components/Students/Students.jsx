@@ -66,6 +66,13 @@ const Students = () => {
           ))}
         </tbody>
       </table>
+
+      {showDeletePopup && (
+        <DeleteConfirmationPopup
+          onClose={() => setShowDeletePopup(false)}
+          onDelete={confirmDelete}
+        />
+      )}
     </div>
   );
 };

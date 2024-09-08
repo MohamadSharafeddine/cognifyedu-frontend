@@ -1,5 +1,5 @@
 import React from 'react';
-import { useOutletContext } from 'react-router-dom'; // Use Outlet context to get searchTerm
+import { useOutletContext } from 'react-router-dom';
 import './Marks.css';
 import defaultAvatar from '../../assets/profile.png';
 
@@ -37,7 +37,7 @@ const studentsData = [
 ];
 
 const Marks = () => {
-  const { searchTerm } = useOutletContext(); // Get searchTerm from context
+  const { searchTerm } = useOutletContext();
 
   const filteredStudents = studentsData.filter((student) =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase())
