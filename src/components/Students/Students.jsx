@@ -3,15 +3,12 @@ import { useOutletContext } from 'react-router-dom';
 import './Students.css';
 import defaultAvatar from '../../assets/profile.png';
 import Button from '../Button/Button';
+import DeleteConfirmationPopup from '../DeleteConfirmationPopup/DeleteConfirmationPopup'; 
 
-const studentsData = [
-  { id: 1, name: 'Miriam Wilderman', avatar: 'path_to_avatar1.png' },
-  { id: 2, name: 'Betsy Zboncak', avatar: 'path_to_avatar2.png' },
-  { id: 3, name: 'Dean Senger', avatar: 'path_to_avatar3.png' },
-  { id: 4, name: 'Katie Hackett', avatar: 'path_to_avatar4.png' },
-  { id: 5, name: 'Seth Erdman', avatar: 'path_to_avatar5.png' },
-  { id: 6, name: 'Priscilla Bradtke', avatar: 'path_to_avatar6.png' },
-];
+const Students = () => {
+  const { searchTerm, studentsData, setStudentsData } = useOutletContext(); 
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
 
 const Students = ({ searchTerm }) => {
   const navigate = useNavigate();
