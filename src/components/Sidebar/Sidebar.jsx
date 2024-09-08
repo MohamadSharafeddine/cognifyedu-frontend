@@ -25,10 +25,19 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <Link to="/classes">
-        <img src={Logo} alt="CognifyEdu Logo" />
+        <img src={Logo} alt="CognifyEdu Logo" className="sidebar-logo" />
       </Link>
       <ul>
-        {menuItems.map((item, index) => (
+        <li>
+          <button
+            className={selectedClass === 'Classes' ? 'active' : ''}
+            onClick={() => handleClassSelect('Classes')}
+          >
+            <div className="icon"><FontAwesomeIcon icon={faThList} /></div>
+            <div className="title">Classes</div>
+          </button>
+        </li>
+        {classesData.map((classItem, index) => (
           <li key={index}>
             <button
               className={selectedClass === item ? 'active' : ''}
