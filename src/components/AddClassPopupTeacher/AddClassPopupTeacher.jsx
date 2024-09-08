@@ -1,0 +1,66 @@
+import React, { useState } from 'react';
+import './AddClassPopupTeacher.css';
+import Button from '../Button/Button';
+
+const AddClassPopupTeacher = ({ onClose, onAddClass }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [error, setError] = useState('');
+
+  const handleAddClass = () => {
+    if (!title.trim()) {
+      setError('Title is required');
+      return;
+    }
+
+    const newClass = {
+      className: title,
+      teacherName: "New Teacher",
+      description,
+    };
+
+    if (onAddClass) {
+      onAddClass(newClass);
+    }
+    
+    if (onClose) {
+      onClose();
+    }
+  };
+
+  return (
+    <div className="modal">
+      <div className="modal-content">
+        <h2>Add Class</h2>
+        <div className="form-group">
+          <label>Title <span style={{ color: 'red' }}>*</span></label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setError('');
+            }}
+            placeholder="Enter Title"
+            required
+          />
+          {error && <p className="error-message">{error}</p>}
+        </div>
+        <div className="form-group">
+          <label>Description</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter Description"
+          />
+        </div>
+        <div className="button-group">
+          <Button color="#25738b" text="Add" size="medium" onClick={handleAddClass} />
+          <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AddClassPopupTeacher;

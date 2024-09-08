@@ -43,8 +43,8 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
           <span className="classname">{className}</span>
           <div className="icon-group">
             <span className="icon delete-icon" onClick={handleDeleteClick}>
-            <FontAwesomeIcon icon={faTrash} />
-          </span>
+              <FontAwesomeIcon icon={faTrash} />
+            </span>
             <span className="icon edit-icon" onClick={handleEditClick}>
               <FontAwesomeIcon icon={faEdit} />
             </span>
@@ -66,8 +66,8 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
           <DeleteConfirmationPopup
             onClose={() => setShowDeletePopup(false)}
             onDelete={handleDeleteConfirmation}
-            />
-          </div>
+          />
+        </div>
       )}
 
       {showEditPopup && (
