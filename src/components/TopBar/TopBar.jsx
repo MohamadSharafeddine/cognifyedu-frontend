@@ -3,11 +3,13 @@ import './TopBar.css';
 import userProfile from '../../assets/profile.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isDropdownLocked, setDropdownLocked] = useState(false);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -39,6 +41,15 @@ const TopBar = () => {
     setDropdownOpen(true);
   };
 
+  const handleProfileClick = () => {
+    navigate('/profile');
+    setDropdownOpen(false);
+  };
+
+  const handleLogoutClick = () => {
+    setDropdownOpen(false);
+  };
+
   return (
     <div className="topbar">
       <div
@@ -54,11 +65,11 @@ const TopBar = () => {
 
         {isDropdownOpen && (
           <div className="dropdown-menu">
-            <button className="dropdown-item">
+            <button className="dropdown-item" onClick={handleProfileClick}>
               <FontAwesomeIcon icon={faUser} className="dropdown-item-icon" />
               Profile
             </button>
-            <button className="dropdown-item">
+            <button className="dropdown-item" onClick={handleLogoutClick}>
               <FontAwesomeIcon icon={faSignOutAlt} className="dropdown-item-icon" />
               Logout
             </button>
