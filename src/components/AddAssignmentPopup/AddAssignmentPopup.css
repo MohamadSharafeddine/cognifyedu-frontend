@@ -43,3 +43,25 @@ h2 {
   justify-content: center;
 }
 
+.add-assignment-form-group {
+  margin-bottom: 20px;
+}
+
+.add-assignment-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.add-assignment-form-group input,
+.add-assignment-form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.add-assignment-form-group textarea {
+  min-height: 100px;
+}
+
