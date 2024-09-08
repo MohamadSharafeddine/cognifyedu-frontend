@@ -65,3 +65,15 @@ h2 {
   min-height: 100px;
 }
 
+.add-assignment-dropzone {
+  border: 2px dashed #25738b;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.add-assignment-dropzone p {
+  margin: 0;
+}
+
