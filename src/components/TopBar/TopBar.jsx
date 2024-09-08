@@ -50,6 +50,20 @@ const TopBar = () => {
       >
         <span className="username">John Doe</span>
         <img src={userProfile} alt="User Profile" className="profile-img" />
+        <FontAwesomeIcon icon={faCaretDown} className="dropdown-icon" />
+
+        {isDropdownOpen && (
+          <div className="dropdown-menu">
+            <button className="dropdown-item">
+              <FontAwesomeIcon icon={faUser} className="dropdown-item-icon" />
+              Profile
+            </button>
+            <button className="dropdown-item">
+              <FontAwesomeIcon icon={faSignOutAlt} className="dropdown-item-icon" />
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
