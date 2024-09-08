@@ -40,11 +40,11 @@ const Sidebar = () => {
         {classesData.map((classItem, index) => (
           <li key={index}>
             <button
-              className={selectedClass === item ? 'active' : ''}
-              onClick={() => dispatch(selectClass(item))}
+              className={selectedClass === classItem.className ? 'active' : ''}
+              onClick={() => handleClassSelect(classItem.className)}
             >
               <div className="icon"><FontAwesomeIcon icon={faThList} /></div>
-              <div className="title">{item}</div>
+              <div className="title">{classItem.className}</div>
             </button>
           </li>
         ))}
