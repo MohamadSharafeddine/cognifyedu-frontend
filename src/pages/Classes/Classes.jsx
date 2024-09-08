@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addClass, deleteClass, editClass } from "../../redux/slices/classesSlice"; // Import the editClass action
+import { addClass, deleteClass, selectClass } from "../../redux/slices/classesSlice";
 import "./Classes.css";
 import ClassCard from "../../components/ClassCard/ClassCard";
-import ClassPage from "../ClassPage/ClassPage";
 import Button from "../../components/Button/Button";
 import AddClassPopupTeacher from "../../components/AddClassPopupTeacher/AddClassPopupTeacher";
 
 const Classes = () => {
   const dispatch = useDispatch();
-  const selectedClass = useSelector((state) => state.classes.selectedClass); // Fetch selected class from Redux
-  const classesData = useSelector((state) => state.classes.classes); // Fetch classes data from Redux
+  const selectedClass = useSelector((state) => state.classes.selectedClass);
+  const classesData = useSelector((state) => state.classes.classes);
   const [isAddClassOpen, setIsAddClassOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(selectClass('Classes'));
+  }, [dispatch]);
 
   const handleAddClass = (newClass) => {
     dispatch(addClass(newClass));
@@ -20,10 +23,6 @@ const Classes = () => {
 
   const handleDeleteClass = (className) => {
     dispatch(deleteClass(className));
-  };
-
-  const handleEditClass = (oldClassName, newClassName, newDescription) => {
-    dispatch(editClass({ oldClassName, newClassName, newDescription }));
   };
 
   const handleAddClick = () => {
@@ -42,7 +41,6 @@ const Classes = () => {
               onClick={handleAddClick}
             />
           </div>
-
           <div className="cards-container">
             {classesData.map((classItem, index) => (
               <ClassCard
@@ -51,13 +49,12 @@ const Classes = () => {
                 teacherName={classItem.teacherName}
                 description={classItem.description}
                 onDelete={handleDeleteClass}
-                onEdit={handleEditClass}
               />
             ))}
           </div>
         </>
       ) : (
-        <ClassPage />
+        <p>No classes selected.</p>
       )}
 
       {isAddClassOpen && (
