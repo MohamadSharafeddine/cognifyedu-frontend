@@ -32,3 +32,25 @@
     border-radius: 5px;
   }
   
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .add-btn, .cancel-btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .add-btn {
+    background-color: #25738b;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
