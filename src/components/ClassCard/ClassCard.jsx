@@ -37,13 +37,18 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
   };
 
   return (
-    <div className="class-card">
+    <div className="class-card" onClick={handleCardClick}>
       <div className="class-card-header">
         <div className="header-top">
           <span className="classname">{className}</span>
-          <span className="delete-icon" onClick={handleDeleteClick}>
+          <div className="icon-group">
+            <span className="icon delete-icon" onClick={handleDeleteClick}>
             <FontAwesomeIcon icon={faTrash} />
           </span>
+            <span className="icon edit-icon" onClick={handleEditClick}>
+              <FontAwesomeIcon icon={faEdit} />
+            </span>
+          </div>
         </div>
         <div className="header-bottom">
           <span className="teacher">{teacherName}</span>
@@ -57,22 +62,22 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
       </div>
 
       {showDeletePopup && (
-        <div className="delete-popup">
-          <p>Are you sure you want to delete this class?</p>
-          <div className="button-group">
-            <Button
-              color="#e74c3c"
-              text="Yes, Delete"
-              size="small"
-              onClick={confirmDelete}
-            />
-            <Button
-              color="#ddd"
-              text="Cancel"
-              size="small"
-              onClick={cancelDelete}
+        <div onClick={(e) => e.stopPropagation()}>
+          <DeleteConfirmationPopup
+            onClose={() => setShowDeletePopup(false)}
+            onDelete={handleDeleteConfirmation}
             />
           </div>
+      )}
+
+      {showEditPopup && (
+        <div onClick={(e) => e.stopPropagation()}>
+          <EditClassPopup
+            className={className}
+            description={description}
+            onClose={() => setShowEditPopup(false)}
+            onSave={handleEditConfirmation}
+          />
         </div>
       )}
     </div>
