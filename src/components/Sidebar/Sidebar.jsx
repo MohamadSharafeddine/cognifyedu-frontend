@@ -7,9 +7,20 @@ import { selectClass } from '../../redux/slices/classesSlice';
 import { useNavigate, Link } from 'react-router-dom';
 import Logo from '../../assets/logo-bar.png';
 
-const Sidebar = ({ menuItems = ['Classes', 'Class1', 'Class2'] }) => {
+const Sidebar = () => {
   const dispatch = useDispatch();
-  const selectedClass = useSelector((state) => state.classState.selectedClass);
+  const navigate = useNavigate();
+  const selectedClass = useSelector((state) => state.classes.selectedClass);
+  const classesData = useSelector((state) => state.classes.classes);
+
+  const handleClassSelect = (className) => {
+    dispatch(selectClass(className));
+    if (className === 'Classes') {
+      navigate('/classes');
+    } else {
+      navigate(`/class/${className}`);
+    }
+  };
 
   return (
     <div className="sidebar">
