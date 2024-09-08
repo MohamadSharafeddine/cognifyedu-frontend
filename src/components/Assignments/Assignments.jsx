@@ -25,8 +25,9 @@ const Assignments = () => {
     setShowDeletePopup(true);
   };
 
-  const handleRowClick = (assignment) => {
-    navigate(`/assignments/${assignment.title}`);
+  const confirmDelete = () => {
+    setAssignmentsData(assignmentsData.filter(item => item.title !== selectedAssignment.title));
+    setShowDeletePopup(false);
   };
 
   return (
