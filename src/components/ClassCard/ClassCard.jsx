@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import './ClassCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import Button from '../Button/Button';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import DeleteConfirmationPopup from '../DeleteConfirmationPopup/DeleteConfirmationPopup';
+import EditClassPopup from '../EditClassPopup/EditClassPopup';
+import { useNavigate } from 'react-router-dom';
 
-const ClassCard = ({
-  className = 'Class Name',
-  teacherName = 'Teacher Name',
-  description = 'This is a default description for the class. It provides some basic information about the class.',
-  onDelete
-}) => {
+const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const handleDeleteClick = () => {
