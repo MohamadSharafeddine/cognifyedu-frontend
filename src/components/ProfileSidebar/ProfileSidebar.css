@@ -1,0 +1,15 @@
+.profile-sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .profile-sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .profile-sidebar li {
+    margin-bottom: 20px;
+  }
