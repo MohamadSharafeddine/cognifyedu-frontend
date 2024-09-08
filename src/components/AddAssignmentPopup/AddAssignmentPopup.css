@@ -95,3 +95,7 @@ h2 {
   margin-bottom: 10px;
 }
 
+.due-date {
+  width: 100%;
+  text-align: center;
+}
