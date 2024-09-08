@@ -1,19 +1,18 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import ClassesSidebar from '../../components/ClassesSidebar/ClassesSidebar';
+import ProfileSidebar from '../../components/ProfileSidebar/ProfileSidebar';
 import TopBar from '../../components/TopBar/TopBar';
 import './MainLayout.css';
 
 const MainLayout = () => {
   const location = useLocation();
 
-  const menuItems = location.pathname.includes("/profile")
-    ? ["Profile", "Settings", "Logout"]
-    : ["Classes", "Class1", "Class2"];
+  const isProfilePage = location.pathname.startsWith("/profile");
 
   return (
     <div className="main-layout">
-      <Sidebar menuItems={menuItems} />
+      {isProfilePage ? <ProfileSidebar /> : <ClassesSidebar />}
       <div className="right-content">
         <TopBar />
         <div className="main-content">
