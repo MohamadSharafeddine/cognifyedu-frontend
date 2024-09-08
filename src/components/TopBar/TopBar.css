@@ -4,11 +4,11 @@
     align-items: center;
     padding: 20px 80px;
     background-color: white;
-    border-bottom: rgb(221, 221, 221) 0.5px solid;
+  border-bottom: 0.5px solid rgb(221, 221, 221);
     margin-bottom: 20px;
   }
   
-  .user-info {
+.user-info-container {
     display: flex;
     align-items: center;
   }
