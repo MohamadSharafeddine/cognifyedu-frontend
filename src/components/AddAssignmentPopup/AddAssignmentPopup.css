@@ -25,3 +25,9 @@ h2 {
   text-align: center;
 }
 
+.add-assignment-popup-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
