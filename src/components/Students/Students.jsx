@@ -10,12 +10,10 @@ const Students = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
-const Students = ({ searchTerm }) => {
-  const navigate = useNavigate();
-
-  const handleRowClick = (id) => {
-    navigate(`/student/${id}`);
-  };
+  const filteredStudents = studentsData.filter((student) => {
+    const studentName = student.name ? student.name.toLowerCase() : ''; 
+    return studentName.includes(searchTerm.toLowerCase());
+  });
 
   const handleRemoveClick = (e, studentId) => {
     e.stopPropagation();
