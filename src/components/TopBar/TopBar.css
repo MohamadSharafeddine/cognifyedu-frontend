@@ -30,5 +30,66 @@
   .username {
     font-size: 1.1em;
     font-weight: bold;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.dropdown-icon {
+  font-size: 1.2em;
+  margin-left: 5px;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 10px 0;
+  min-width: 150px;
+  border: 1px solid #ddd;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item-icon {
+  font-size: 1.2em;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(37, 115, 139, 0.1);
+  color: #25738b;
+}
+
+.dropdown-menu {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
   }
   
