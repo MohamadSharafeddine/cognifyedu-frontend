@@ -5,37 +5,29 @@ import "./Classes.css";
 import ClassCard from "../../components/ClassCard/ClassCard";
 import ClassPage from "../ClassPage/ClassPage";
 import Button from "../../components/Button/Button";
-import AddClassTeacher from "../../components/AddClassTeacher/AddClassTeacher";
-
-const initialClassesData = [
-  {
-    className: "Class1",
-    teacherName: "Max Fischer",
-    description: "This is a brief description of Class1",
-  },
-  {
-    className: "Class2",
-    teacherName: "Jane Doe",
-    description: "This is a brief description of Class2",
-  },
-];
+import AddClassPopupTeacher from "../../components/AddClassPopupTeacher/AddClassPopupTeacher";
 
 const Classes = () => {
-  const selectedClass = useSelector((state) => state.classState.selectedClass);
-  const [classesData, setClassesData] = useState(initialClassesData);
+  const dispatch = useDispatch();
+  const selectedClass = useSelector((state) => state.classes.selectedClass); // Fetch selected class from Redux
+  const classesData = useSelector((state) => state.classes.classes); // Fetch classes data from Redux
   const [isAddClassOpen, setIsAddClassOpen] = useState(false);
 
   const handleAddClass = (newClass) => {
-    setClassesData([...classesData, newClass]);
+    dispatch(addClass(newClass));
     setIsAddClassOpen(false);
+  };
+
+  const handleDeleteClass = (className) => {
+    dispatch(deleteClass(className));
+  };
+
+  const handleEditClass = (oldClassName, newClassName, newDescription) => {
+    dispatch(editClass({ oldClassName, newClassName, newDescription }));
   };
 
   const handleAddClick = () => {
     setIsAddClassOpen(true);
-  };
-
-  const handleDeleteClass = (className) => {
-    setClassesData(classesData.filter(classItem => classItem.className !== className));
   };
 
   return (
