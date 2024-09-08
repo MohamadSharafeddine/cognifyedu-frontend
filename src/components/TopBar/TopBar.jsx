@@ -41,7 +41,13 @@ const TopBar = () => {
 
   return (
     <div className="topbar">
-      <div className="user-info">
+      <div
+        className="user-info-container"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+        ref={containerRef}
+      >
         <span className="username">John Doe</span>
         <img src={userProfile} alt="User Profile" className="profile-img" />
       </div>
