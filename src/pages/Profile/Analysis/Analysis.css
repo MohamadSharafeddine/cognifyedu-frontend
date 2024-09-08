@@ -7,3 +7,12 @@
     border-bottom: 1px solid #ddd;
   }
   
+  .analysis-tabbar a {
+    padding: 10px 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
