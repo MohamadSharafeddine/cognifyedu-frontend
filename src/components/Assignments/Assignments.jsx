@@ -42,25 +42,21 @@ const Assignments = () => {
         </thead>
         <tbody>
           {filteredAssignments.map((assignment, index) => (
-            <tr key={index} onClick={() => handleRowClick(assignment)}>
+            <tr key={index}>
               <td>{assignment.title}</td>
               <td>{assignment.dueDate}</td>
-              <td
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
+              <td>
                 <Button
                   color="#25738b"
                   text="Edit"
                   size="small"
-                  onClick={() => handleEdit(assignment)}
+                  onClick={() => handleEditClick(assignment)}
                 />
                 <Button
                   color="#e74c3c"
-                  text="Delete"
+                  text="Remove"
                   size="small"
-                  onClick={() => handleDelete(assignment)}
+                  onClick={() => handleDeleteClick(assignment)}
                 />
               </td>
             </tr>
