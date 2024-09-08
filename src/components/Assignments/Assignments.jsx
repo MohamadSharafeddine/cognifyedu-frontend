@@ -20,8 +20,9 @@ const Assignments = () => {
     setShowEditPopup(true);
   };
 
-  const handleDelete = (assignment) => {
-    console.log('Deleting', assignment);
+  const handleDeleteClick = (assignment) => {
+    setSelectedAssignment(assignment);
+    setShowDeletePopup(true);
   };
 
   const handleRowClick = (assignment) => {
