@@ -63,6 +63,27 @@ const Assignments = () => {
           ))}
         </tbody>
       </table>
+
+      {showEditPopup && (
+        <EditAssignmentPopup
+          assignment={selectedAssignment}
+          onClose={() => setShowEditPopup(false)}
+          onSave={(updatedAssignment) => {
+            const updatedAssignments = assignmentsData.map(item =>
+              item.title === selectedAssignment.title ? updatedAssignment : item
+            );
+            setAssignmentsData(updatedAssignments);
+            setShowEditPopup(false);
+          }}
+        />
+      )}
+
+      {showDeletePopup && (
+        <DeleteConfirmationPopup
+          onClose={() => setShowDeletePopup(false)}
+          onDelete={confirmDelete}
+        />
+      )}
     </div>
   );
 };
