@@ -46,15 +46,26 @@
   font-size: 0.9em;
 }
 
+.icon-group {
+  display: flex;
+  gap: 10px;
+  display: none;
+}
+
+.class-card:hover .icon-group {
+  display: flex;
+}
+
 .delete-icon {
   font-size: 1.2em;
   color: #e74c3c;
   cursor: pointer;
-  display: none;
 }
 
-.class-card:hover .delete-icon {
-  display: inline-block;
+.edit-icon {
+  font-size: 1.2em;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .class-card-body {
@@ -98,24 +109,4 @@
   margin: 0;
   font-size: 0.9em;
   color: #666;
-}
-
-.delete-popup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-  text-align: center;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 20px;
 }
