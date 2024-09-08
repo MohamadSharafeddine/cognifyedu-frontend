@@ -13,3 +13,22 @@
   .profile-sidebar li {
     margin-bottom: 20px;
   }
+  
+  .profile-sidebar button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #25738b;
+    font-size: 1.1em;
+    cursor: pointer;
+  }
+  
+  .profile-sidebar button .icon {
+    margin-right: 10px;
+  }
+  
+  .profile-sidebar button:hover {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+  }
