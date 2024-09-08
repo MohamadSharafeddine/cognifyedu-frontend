@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addClass, deleteClass, editClass } from "../../redux/slices/classesSlice"; // Import the editClass action
 import "./Classes.css";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import ClassCard from "../../components/ClassCard/ClassCard";
-import ClassPage from "../Class/Class";
-import TopBar from "../../components/TopBar/TopBar";
+import ClassPage from "../ClassPage/ClassPage";
 import Button from "../../components/Button/Button";
 import AddClassTeacher from "../../components/AddClassTeacher/AddClassTeacher";
 
