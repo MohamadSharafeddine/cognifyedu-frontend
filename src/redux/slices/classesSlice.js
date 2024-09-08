@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  selectedClass: "Classes", // Default selection
+  selectedClass: "Classes",
   classes: [
     { className: "Class1", teacherName: "Max Fischer", description: "This is a brief description of Class1" },
     { className: "Class2", teacherName: "Jane Doe", description: "This is a brief description of Class2" },
@@ -33,5 +33,4 @@ const classesSlice = createSlice({
 });
 
 export const { addClass, deleteClass, editClass, selectClass } = classesSlice.actions;
-
 export default classesSlice.reducer;

@@ -5,14 +5,20 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import DeleteConfirmationPopup from '../DeleteConfirmationPopup/DeleteConfirmationPopup';
 import EditClassPopup from '../EditClassPopup/EditClassPopup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { selectClass } from '../../redux/slices/classesSlice';
 
 const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showEditPopup, setShowEditPopup] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleCardClick = (e) => {
     if (e.target.closest('.icon')) return;
+
+    dispatch(selectClass(className));
+    
     navigate(`/class/${className}`);
   };
 
