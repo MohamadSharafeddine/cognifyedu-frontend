@@ -13,14 +13,19 @@ import Marks from "./components/Marks/Marks";
 function App() {
   return (
     <Router>
-      <div className="App">
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Classes />} />
-          </Routes>
-        </div>
-        <Footer />
-      </div>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/classes" element={<Classes />} />
+          <Route path="/class/:className/*" element={<ClassPage />}>
+            <Route index element={<Navigate to="assignments" />} />
+            <Route path="assignments" element={<Assignments />} />
+            <Route path="students" element={<Students />} />
+            <Route path="marks" element={<Marks />} />
+          </Route>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+      </Routes>
+      <Footer />
     </Router>
   );
 }
