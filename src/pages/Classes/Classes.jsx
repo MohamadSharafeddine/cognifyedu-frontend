@@ -31,11 +31,6 @@ const Classes = () => {
   };
 
   return (
-    <div className="main-content">
-      <Sidebar menuItems={["Classes", ...classesData.map(classItem => classItem.className)]} />
-      <div className="right-content">
-        <TopBar />
-
         <div className="classes-content">
           {selectedClass === "Classes" ? (
             <>
@@ -56,6 +51,7 @@ const Classes = () => {
                     teacherName={classItem.teacherName}
                     description={classItem.description}
                     onDelete={handleDeleteClass}
+                onEdit={handleEditClass}
                   />
                 ))}
               </div>
@@ -63,11 +59,9 @@ const Classes = () => {
           ) : (
             <ClassPage />
           )}
-        </div>
-      </div>
 
       {isAddClassOpen && (
-        <AddClassTeacher
+        <AddClassPopupTeacher
           onClose={() => setIsAddClassOpen(false)}
           onAddClass={handleAddClass}
         />
