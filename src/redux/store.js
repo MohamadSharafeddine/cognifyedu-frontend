@@ -1,9 +1,9 @@
-import { createStore } from 'redux';
-import rootReducer from './reducers/rootReducer';
+// redux/store.js
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './rootReducer'; // This already includes studentsReducer
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = configureStore({
+  reducer: rootReducer, // rootReducer should now include both classes and students
+});
 
 export default store;

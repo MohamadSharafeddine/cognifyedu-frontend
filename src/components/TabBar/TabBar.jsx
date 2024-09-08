@@ -1,5 +1,6 @@
 import React from "react";
 import "./TabBar.css";
+
 const TabBar = ({ tabs, activeTab, setActiveTab }) => {
   return (
     <div className="tab-bar">

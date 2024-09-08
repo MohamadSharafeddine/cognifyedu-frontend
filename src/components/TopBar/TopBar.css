@@ -1,16 +1,16 @@
 .topbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px 80px;
-    background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 80px;
+  background-color: white;
   border-bottom: 0.5px solid rgb(221, 221, 221);
-    margin-bottom: 20px;
-  }
-  
+  margin-bottom: 20px;
+}
+
 .user-info-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
 }
@@ -18,18 +18,18 @@
 .user-info-container:hover .username,
 .user-info-container:hover .dropdown-icon {
   color: #25738b;
-  }
-  
-  .profile-img {
+}
+
+.profile-img {
   width: 30px;
   height: 30px;
-    border-radius: 50%;
-    margin-left: 10px;
-  }
-  
-  .username {
-    font-size: 1.1em;
-    font-weight: bold;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.username {
+  font-size: 1.1em;
+  font-weight: bold;
   color: #333;
   transition: color 0.3s ease;
 }
@@ -91,5 +91,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-  }
-  
+}
