@@ -1,10 +1,14 @@
-import React from 'react';
-import { Routes, BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css';
-import Sidebar from './components/Sidebar/Sidebar';
-import Footer from './components/Footer/Footer';
-import Classes from './pages/Classes/Classes';
-import ClassesCard from './components/ClassCard/ClassCard';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
+import MainLayout from "./layouts/MainLayout/MainLayout";
+import Footer from "./components/Footer/Footer";
+import Classes from "./pages/Classes/Classes";
+import ClassPage from "./pages/ClassPage/ClassPage";
+import Profile from "./pages/Profile/Profile";
+import Assignments from "./components/Assignments/Assignments";
+import Students from "./components/Students/Students";
+import Marks from "./components/Marks/Marks";
 
 function App() {
   return (
