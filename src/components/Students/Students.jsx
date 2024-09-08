@@ -15,14 +15,21 @@ const Students = () => {
     return studentName.includes(searchTerm.toLowerCase());
   });
 
-  const handleRemoveClick = (e, studentId) => {
-    e.stopPropagation();
-    console.log(`Remove student with ID: ${studentId}`);
+  const handleDeleteClick = (student) => {
+    setSelectedStudent(student);
+    setShowDeletePopup(true);
   };
 
-  const filteredStudents = studentsData.filter((student) =>
-    (student.name ? student.name.toLowerCase() : '').includes(searchTerm.toLowerCase())
-  );
+  const confirmDelete = () => {
+    setStudentsData((prevStudents) => {
+      const updatedStudents = prevStudents.filter(
+        (student) => student.id !== selectedStudent.id
+      );
+      console.log("Updated students after delete:", updatedStudents);
+      return updatedStudents;
+    });
+    setShowDeletePopup(false);
+  };
 
   return (
     <div className="students-list">
