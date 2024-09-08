@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import './Students.css';
 import defaultAvatar from '../../assets/profile.png';
-import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const studentsData = [
