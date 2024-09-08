@@ -8,18 +8,32 @@ import { useNavigate } from 'react-router-dom';
 
 const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const navigate = useNavigate();
 
-  const handleDeleteClick = () => {
+  const handleCardClick = (e) => {
+    if (e.target.closest('.icon')) return;
+    navigate(`/class/${className}`);
+  };
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
     setShowDeletePopup(true);
   };
 
-  const confirmDelete = () => {
+  const handleEditClick = (e) => {
+    e.stopPropagation(); 
+    setShowEditPopup(true);
+  };
+
+  const handleDeleteConfirmation = () => {
     onDelete(className);
     setShowDeletePopup(false);
   };
 
-  const cancelDelete = () => {
-    setShowDeletePopup(false);
+  const handleEditConfirmation = (newClassName, newDescription) => {
+    onEdit(className, newClassName, newDescription);
+    setShowEditPopup(false);
   };
 
   return (
