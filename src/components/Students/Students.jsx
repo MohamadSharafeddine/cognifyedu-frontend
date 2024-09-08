@@ -42,11 +42,13 @@ const Students = () => {
         </thead>
         <tbody>
           {filteredStudents.map((student, index) => (
-            <tr key={index} onClick={() => handleRowClick(student.id)} className="clickable-row">
+            <tr key={index} className="clickable-row">
               <td>
                 <img
                   src={student.avatar || defaultAvatar}
-                  onError={(e) => { e.target.src = defaultAvatar; }}
+                  onError={(e) => {
+                    e.target.src = defaultAvatar;
+                  }}
                   alt="avatar"
                   className="avatar"
                 />
@@ -57,7 +59,7 @@ const Students = () => {
                   color="#e74c3c"
                   text="Remove"
                   size="small"
-                  onClick={(e) => handleRemoveClick(e, student.id)}
+                  onClick={() => handleDeleteClick(student)}
                 />
               </td>
             </tr>
