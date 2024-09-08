@@ -89,3 +89,9 @@ h2 {
   margin-top: 20px;
 }
 
+.add-assignment-error-message {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
