@@ -1,37 +1,45 @@
 import React from 'react';
-import './Sidebar.css';
+import './ClassesSidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThList } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectClass } from '../../redux/slices/classesSlice';
-import { useNavigate, Link } from 'react-router-dom';
 import Logo from '../../assets/logo-bar.png';
 
-const Sidebar = () => {
+const ClassesSidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selectedClass = useSelector((state) => state.classes.selectedClass);
   const classesData = useSelector((state) => state.classes.classes);
 
+  const handleClassesSelect = () => {
+    dispatch(selectClass('Classes'));
+    navigate('/classes');
+  };
+
   const handleClassSelect = (className) => {
     dispatch(selectClass(className));
-    if (className === 'Classes') {
-      navigate('/classes');
-    } else {
-      navigate(`/class/${className}`);
-    }
+    navigate(`/class/${className}`);
+  };
+
+  const handleLogoClick = () => {
+    handleClassesSelect();
   };
 
   return (
     <div className="sidebar">
-      <Link to="/classes">
-        <img src={Logo} alt="CognifyEdu Logo" className="sidebar-logo" />
-      </Link>
+      <img
+        src={Logo}
+        alt="CognifyEdu Logo"
+        className="sidebar-logo"
+        onClick={handleLogoClick}
+      />
       <ul>
         <li>
           <button
             className={selectedClass === 'Classes' ? 'active' : ''}
-            onClick={() => handleClassSelect('Classes')}
+            onClick={handleClassesSelect}
           >
             <div className="icon"><FontAwesomeIcon icon={faThList} /></div>
             <div className="title">Classes</div>
@@ -53,4 +61,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default ClassesSidebar;
