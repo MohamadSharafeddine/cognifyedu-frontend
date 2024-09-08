@@ -1,4 +1,3 @@
-// Cognitive.jsx
 import React from 'react';
 
 const Cognitive = () => {

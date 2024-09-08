@@ -3,17 +3,17 @@ import { useParams, useNavigate, Outlet } from "react-router-dom";
 import "./ClassPage.css";
 import Button from "../../components/Button/Button";
 import AddAssignmentPopup from "../../components/AddAssignmentPopup/AddAssignmentPopup";
-import AddStudentPopup from "../../components/AddStudentPopup/AddStudentPopup"; // Import AddStudentPopup
-import TabBar from "../../components/TabBar/TabBar"; // Import TabBar
+import AddStudentPopup from "../../components/AddStudentPopup/AddStudentPopup";
+import TabBar from "../../components/TabBar/TabBar";
 
 const ClassPage = () => {
-  const { className } = useParams(); // Get className from URL
-  const [activeTab, setActiveTab] = useState("Assignments"); // Default tab
-  const [searchTerm, setSearchTerm] = useState(""); // Search term for filtering
+  const { className } = useParams();
+  const [activeTab, setActiveTab] = useState("Assignments");
+  const [searchTerm, setSearchTerm] = useState("");
   const [showAddAssignmentPopup, setShowAddAssignmentPopup] = useState(false);
-  const [showAddStudentPopup, setShowAddStudentPopup] = useState(false); // For the student popup
-  const [assignmentsData, setAssignmentsData] = useState([]); // Assignments data
-  const [studentsData, setStudentsData] = useState([]); // Students data
+  const [showAddStudentPopup, setShowAddStudentPopup] = useState(false);
+  const [assignmentsData, setAssignmentsData] = useState([]);
+  const [studentsData, setStudentsData] = useState([]);
 
   const navigate = useNavigate();
 
@@ -21,23 +21,21 @@ const ClassPage = () => {
     if (activeTab === "Assignments") {
       setShowAddAssignmentPopup(true);
     } else if (activeTab === "Students") {
-      setShowAddStudentPopup(true); // Show AddStudentPopup
+      setShowAddStudentPopup(true);
     }
   };
 
-  // Handle tab switching with navigation
   const handleTabSwitch = (tab) => {
     setActiveTab(tab);
     navigate(`/class/${className}/${tab.toLowerCase()}`);
   };
 
-  const tabs = ["Assignments", "Students", "Marks"]; // Tab labels
+  const tabs = ["Assignments", "Students", "Marks"];
 
   return (
     <div className="class-page">
       <div className="class-header">
-        <h2 className="class-title">{className}</h2> {/* Display class name */}
-        {/* Use TabBar to switch between tabs */}
+        <h2 className="class-title">{className}</h2>
         <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={handleTabSwitch} />
 
         <div className="class-search-and-add">
@@ -46,7 +44,7 @@ const ClassPage = () => {
               type="text"
               placeholder="Search"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)} // Update search term
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           {(activeTab === "Assignments" || activeTab === "Students") && (
@@ -56,11 +54,9 @@ const ClassPage = () => {
       </div>
 
       <div className="class-content">
-        {/* Pass searchTerm as a prop to be used in the child components */}
         <Outlet context={{ searchTerm, assignmentsData, setAssignmentsData, studentsData, setStudentsData }} />
       </div>
 
-      {/* Show the respective popup */}
       {showAddAssignmentPopup && (
         <AddAssignmentPopup
           onClose={() => setShowAddAssignmentPopup(false)}
@@ -75,7 +71,7 @@ const ClassPage = () => {
         <AddStudentPopup
           onClose={() => setShowAddStudentPopup(false)}
           onAddStudent={(newStudent) => {
-            setStudentsData([...studentsData, newStudent]); // Add the new student
+            setStudentsData([...studentsData, newStudent]);
             setShowAddStudentPopup(false);
           }}
         />

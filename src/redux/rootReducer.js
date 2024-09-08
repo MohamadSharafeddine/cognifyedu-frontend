@@ -1,11 +1,10 @@
-// redux/rootReducer.js
 import { combineReducers } from 'redux';
 import classesReducer from './slices/classesSlice';
-import studentsReducer from './slices/studentsSlice'; // Import the students slice
+import studentsReducer from './slices/studentsSlice';
 
 const rootReducer = combineReducers({
   classes: classesReducer,
-  students: studentsReducer, // Combine the students reducer
+  students: studentsReducer,
 });
 
 export default rootReducer;
