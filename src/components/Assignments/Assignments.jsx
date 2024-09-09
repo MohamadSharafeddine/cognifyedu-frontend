@@ -4,12 +4,14 @@ import './Assignments.css';
 import Button from '../Button/Button';
 import EditAssignmentPopup from '../EditAssignmentPopup/EditAssignmentPopup';
 import DeleteConfirmationPopup from '../DeleteConfirmationPopup/DeleteConfirmationPopup';
+import ViewSubmissionsPopup from '../ViewSubmissionsPopup/ViewSubmissionsPopup';
 
 const Assignments = () => {
   const { searchTerm, assignmentsData, setAssignmentsData } = useOutletContext();
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [showSubmissionsPopup, setShowSubmissionsPopup] = useState(false);
 
   const filteredAssignments = assignmentsData.filter((assignment) =>
     (assignment.title ? assignment.title.toLowerCase() : '').includes(searchTerm.toLowerCase())
@@ -30,6 +32,11 @@ const Assignments = () => {
     setShowDeletePopup(false);
   };
 
+  const handleRowClick = (assignment) => {
+    setSelectedAssignment(assignment);
+    setShowSubmissionsPopup(true);
+  };
+
   return (
     <div className="assignments-list">
       <table>
@@ -42,10 +49,14 @@ const Assignments = () => {
         </thead>
         <tbody>
           {filteredAssignments.map((assignment, index) => (
-            <tr key={index}>
+            <tr key={index} onClick={() => handleRowClick(assignment)} className="assignment-row">
               <td>{assignment.title}</td>
               <td>{assignment.dueDate}</td>
-              <td>
+              <td
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
                 <Button
                   color="#25738b"
                   text="Edit"
@@ -82,6 +93,13 @@ const Assignments = () => {
         <DeleteConfirmationPopup
           onClose={() => setShowDeletePopup(false)}
           onDelete={confirmDelete}
+        />
+      )}
+
+      {showSubmissionsPopup && (
+        <ViewSubmissionsPopup
+          assignmentTitle={selectedAssignment.title}
+          onClose={() => setShowSubmissionsPopup(false)}
         />
       )}
     </div>
