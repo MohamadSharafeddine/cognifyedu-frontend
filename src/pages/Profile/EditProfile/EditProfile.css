@@ -97,3 +97,8 @@
   color: #25738b;
 }
 
+.save-button-container {
+  display: flex;
+  justify-content: center;
+}
+
