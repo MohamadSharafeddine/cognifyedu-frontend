@@ -2,6 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import MainLayout from './layouts/MainLayout/MainLayout';
+import AuthLayout from './layouts/AuthLayout/AuthLayout';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Landing from './pages/Landing/Landing';
 import Classes from './pages/Classes/Classes';
 import ClassPage from './pages/ClassPage/ClassPage';
 import Profile from './pages/Profile/Profile';
@@ -13,11 +17,19 @@ import EditProfile from './pages/Profile/EditProfile/EditProfile';
 import Assignments from './components/Assignments/Assignments';
 import Students from './components/Students/Students';
 import Marks from './components/Marks/Marks';
+import ViewSubmissionsPopup from './components/ViewSubmissionsPopup/ViewSubmissionsPopup';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route element={<AuthLayout />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+
         <Route element={<MainLayout />}>
           <Route path="/classes" element={<Classes />} />
           <Route path="/class/:className/*" element={<ClassPage />}>
@@ -25,6 +37,7 @@ function App() {
             <Route path="assignments" element={<Assignments />} />
             <Route path="students" element={<Students />} />
             <Route path="marks" element={<Marks />} />
+            <Route path="assignments/:assignmentTitle" element={<ViewSubmissionsPopup />} />
           </Route>
 
           <Route path="/profile" element={<Profile />}>
@@ -38,8 +51,9 @@ function App() {
           </Route>
         </Route>
 
-        <Route path="*" element={<Navigate to="/classes" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
