@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import './Students.css';
-import defaultAvatar from '../../assets/profile.png';
-import Button from '../Button/Button';
-import DeleteConfirmationPopup from '../DeleteConfirmationPopup/DeleteConfirmationPopup'; 
+import React, { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import "./Students.css";
+import defaultAvatar from "../../assets/profile.png";
+import Button from "../Button/Button";
+import DeleteConfirmationPopup from "../DeleteConfirmationPopup/DeleteConfirmationPopup";
 
 const Students = () => {
-  const { searchTerm, studentsData, setStudentsData } = useOutletContext(); 
+  const { searchTerm, studentsData, setStudentsData } = useOutletContext();
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const filteredStudents = studentsData.filter((student) => {
-    const studentName = student.name ? student.name.toLowerCase() : ''; 
+    const studentName = student.name ? student.name.toLowerCase() : "";
     return studentName.includes(searchTerm.toLowerCase());
   });
 
@@ -21,13 +21,9 @@ const Students = () => {
   };
 
   const confirmDelete = () => {
-    setStudentsData((prevStudents) => {
-      const updatedStudents = prevStudents.filter(
-        (student) => student.id !== selectedStudent.id
-      );
-      console.log("Updated students after delete:", updatedStudents);
-      return updatedStudents;
-    });
+    setStudentsData((prevStudents) =>
+      prevStudents.filter((student) => student.id !== selectedStudent.id)
+    );
     setShowDeletePopup(false);
   };
 
