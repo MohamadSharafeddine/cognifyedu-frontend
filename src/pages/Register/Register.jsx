@@ -14,15 +14,10 @@ const Register = () => {
     password: '',
   });
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleRegister = () => {
@@ -71,7 +66,6 @@ const Register = () => {
               icon={showPassword ? faEyeSlash : faEye}
               className="password-icon"
               onClick={togglePasswordVisibility}
-              style={{ color: '#25738b' }}
             />
           </div>
         </div>
