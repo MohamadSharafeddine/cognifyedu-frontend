@@ -1,10 +1,8 @@
-.login-container,
-.register-container {
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  /* padding: 20px 40px; */
 }
 
 .hero-section {
@@ -27,8 +25,7 @@
   color: #25738b;
 }
 
-.login-form-container,
-.register-form-container {
+.login-form-container {
   flex: 1;
   background-color: white;
   padding: 40px;
@@ -76,20 +73,17 @@ h2 {
   text-align: center;
 }
 
-.register-link,
-.login-link {
+.register-link {
   text-align: center;
   margin-top: 20px;
 }
 
-.register-link a,
-.login-link a {
+.register-link a {
   color: #25738b;
   font-weight: bold;
   text-decoration: none;
 }
 
-.register-link a:hover,
-.login-link a:hover {
+.register-link a:hover {
   text-decoration: underline;
 }
