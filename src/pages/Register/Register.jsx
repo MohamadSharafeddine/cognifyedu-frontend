@@ -30,8 +30,60 @@ const Register = () => {
   };
 
   return (
-    <div>Register</div>
-  )
-}
+    <div className="register-container">
+      <div className="hero-section">
+        <img src={logoTitle} alt="CognifyEdu Logo" />
+        <p>Unlocking Potential, One Insight at a Time.</p>
+      </div>
+      <div className="register-form-container">
+        <h2>Register</h2>
+        <div className="form-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Enter your Full Name"
+            value={formData.fullName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group password-group">
+          <label>Password</label>
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Enter your Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <FontAwesomeIcon
+              icon={showPassword ? faEyeSlash : faEye}
+              className="password-icon"
+              onClick={togglePasswordVisibility}
+              style={{ color: '#25738b' }}
+            />
+          </div>
+        </div>
+        <div className="form-actions">
+          <Button text="Register" onClick={handleRegister} color="#25738b" size="medium" />
+        </div>
+        <p className="login-link">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
+    </div>
+  );
+};
 
-export default Register
+export default Register;
