@@ -22,14 +22,7 @@ const EditProfile = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSave = () => {
-    console.log('Profile Data Saved:', formData);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleImageChange = (event) => {
@@ -38,6 +31,10 @@ const EditProfile = () => {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
     }
+  };
+
+  const handleSave = () => {
+    console.log('Profile Data Saved:', formData);
   };
 
   return (
