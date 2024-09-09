@@ -1,27 +1,19 @@
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-}
-
-.main-layout {
+.mainlayout-container {
   display: flex;
-  flex-grow: 1;
   width: 100%;
-  min-height: 720px;
+  min-height: 100vh;
 }
 
-.right-content {
+.mainlayout-rightcontent {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
-.main-content {
-  /* padding: 0 80px; */
+.mainlayout-maincontent {
   flex-grow: 1;
-  overflow-y: auto;
   margin: 20px 80px;
+  overflow-y: auto;
 }
+
