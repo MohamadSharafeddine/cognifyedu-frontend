@@ -26,3 +26,10 @@
   width: 150px;
 }
 
+.navbar-menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  align-items: center;
+}
+
