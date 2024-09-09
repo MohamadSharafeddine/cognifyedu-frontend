@@ -102,3 +102,14 @@
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .edit-profile-page {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+  }
+}
