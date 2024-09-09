@@ -2,3 +2,16 @@
   padding: 20px;
 }
 
+.insights-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.insights-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
