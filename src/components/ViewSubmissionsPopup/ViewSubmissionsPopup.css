@@ -30,3 +30,10 @@
     gap: 20px;
 }
 
+.assignment-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
