@@ -1,3 +1,38 @@
 .landing-page {
     padding: 20px;
 }
+
+.landing-hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #f9f9f9;
+    margin-bottom: 40px;
+}
+
+.landing-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.landing-hero-logo {
+    width: 300px;
+    height: auto;
+}
+
+.landing-hero-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-hero-text h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #25738b;
+    max-width: 600px;
+    text-align: center;
+}
+
