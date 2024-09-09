@@ -1,10 +1,10 @@
 import React from 'react';
-import './Button.css'; // The CSS for styling
+import './Button.css';
 
 const Button = ({ color = '#25738b', text = 'Click Me', size = 'medium', onClick }) => {
   return (
     <button
-      className={`btn btn-${size}`}
+      className={`button-component button-component-${size}`}
       style={{ backgroundColor: color }}
       onClick={onClick}
     >
