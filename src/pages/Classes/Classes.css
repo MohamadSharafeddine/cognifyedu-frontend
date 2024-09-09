@@ -1,20 +1,30 @@
-.classes-content {
-  /* padding: 0 80px; */
+.classes-container {
+  padding: 0 20px;
   flex-grow: 1;
   overflow-y: auto;
 }
 
-.cards-container {
+.classes-cardscontainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px 74px;
-  justify-content: left;
-  max-width: 100%;
+  gap: 54px;
+  justify-content: flex-start;
   margin-bottom: 20px;
 }
 
-.add-button-container {
+.classes-addbutton {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .classes-cardscontainer {
+    gap: 20px 30px;
+    justify-content: center;
+  }
+
+  .classes-addbutton {
+    justify-content: center;
+  }
 }
