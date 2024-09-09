@@ -17,3 +17,13 @@
   margin-right: 50px;
 }
 
+.hero-section img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 20px;
+  color: #25738b;
+}
+
