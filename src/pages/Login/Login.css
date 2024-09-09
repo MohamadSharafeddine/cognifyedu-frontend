@@ -76,3 +76,20 @@ h2 {
   text-align: center;
 }
 
+.register-link,
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-link a,
+.login-link a {
+  color: #25738b;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.register-link a:hover,
+.login-link a:hover {
+  text-decoration: underline;
+}
