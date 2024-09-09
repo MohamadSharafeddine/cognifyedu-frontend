@@ -88,3 +88,19 @@
     text-decoration: underline;
   }
   
+  @media (max-width: 768px) {
+    .register-container {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .hero-section {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  
+    .register-form-container {
+      padding: 20px;
+    }
+  }
+  
