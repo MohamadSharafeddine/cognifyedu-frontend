@@ -1,16 +1,15 @@
 import React from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
+import { Outlet } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 import './AuthLayout.css';
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = () => {
   return (
-    <div className="auth-layout">
+    <div className="authlayout-container">
       <Navbar />
-      <main className="auth-content">
-        {children}
-      </main>
-      <Footer />
+      <div className="authlayout-content">
+        <Outlet />
+      </div>
     </div>
   );
 };
