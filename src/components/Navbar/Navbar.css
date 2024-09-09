@@ -18,3 +18,7 @@
   margin: 0 auto;
 }
 
+.navbar-logo :hover{
+  cursor: pointer;
+}
+
