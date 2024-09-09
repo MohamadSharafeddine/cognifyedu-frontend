@@ -55,3 +55,13 @@
     cursor: pointer;
 }
 
+.submissions-table tr:hover td {
+    color: #25738b;
+    font-size: 16px;
+}
+
+.submissions-table .active td {
+    color: #25738b;
+    font-size: 16px;
+}
+
