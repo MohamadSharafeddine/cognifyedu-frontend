@@ -72,3 +72,74 @@
     padding-left: 20px;
 }
 
+.landing-services-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.landing-services-section h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #25738b;
+}
+
+.landing-services-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.landing-service-card {
+    position: relative;
+    text-align: center;
+    width: 30%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.landing-service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.landing-service-card h3 {
+    color: #333;
+    font-size: 20px;
+}
+
+.landing-service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.landing-service-description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.36);
+    color: white;
+    text-shadow: 2px 2px rgb(105, 105, 105);
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.landing-service-card:hover .landing-service-description {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
