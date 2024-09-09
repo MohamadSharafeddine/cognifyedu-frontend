@@ -49,6 +49,51 @@ const Landing = () => {
           </p>
         </div>
       </section>
+
+      <section id="services" className="landing-services-section">
+        <h2 data-aos="fade-up">Our Services</h2>
+        <div className="landing-services-grid">
+          <div className="landing-service-card" data-aos="zoom-in">
+            <img src={servicesImage1} alt="Assignments" />
+            <h3>Assignments</h3>
+            <div className="landing-service-description">
+              <p>
+                Manage assignments with personalized feedback and AI-powered
+                analysis to track student progress.
+              </p>
+            </div>
+          </div>
+          <div
+            className="landing-service-card"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img src={servicesImage2} alt="Analysis" />
+            <h3>Analysis</h3>
+            <div className="landing-service-description">
+              <p>
+                In-depth analysis of student performance, helping educators and
+                parents understand strengths and areas for improvement.
+              </p>
+            </div>
+          </div>
+          <div
+            className="landing-service-card"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <img src={servicesImage3} alt="Insights" />
+            <h3>Insights</h3>
+            <div className="landing-service-description">
+              <p>
+                Gain actionable insights into student cognitive and behavioral
+                data, driving better learning outcomes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="contact" className="landing-contact-section"></section>
     </div>
   );
 };
