@@ -48,7 +48,21 @@ const Insights = () => {
 
   return (
     <div className="insights-page">
+      <div className="insights-header">
+        <h2>John Doe</h2>
+        <Button
+          text="Add Insight"
+          color="#25738b"
+          size="small"
+          onClick={togglePopup}
+        />
+      </div>
 
+      <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      <div className="insights-content">{renderContent()}</div>
+
+      {showPopup && <AddInsightPopup onClose={togglePopup} />}
     </div>
   );
 };
