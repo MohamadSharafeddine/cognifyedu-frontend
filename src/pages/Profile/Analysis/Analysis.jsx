@@ -1,18 +1,22 @@
-import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
 import './Analysis.css';
+import TabBar from '../../../components/TabBar/TabBar';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const Analysis = () => {
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('Cognitive');
+
+  const tabs = ['Cognitive', 'Behavioral'];
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    navigate(tab.toLowerCase());
+  };
+
   return (
     <div className="analysis-page">
-      <div className="analysis-tabbar">
-        <NavLink to="cognitive" className={({ isActive }) => isActive ? 'active-tab' : ''}>
-          Cognitive
-        </NavLink>
-        <NavLink to="behavioral" className={({ isActive }) => isActive ? 'active-tab' : ''}>
-          Behavioral
-        </NavLink>
-      </div>
+      <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={handleTabChange} />
       <div className="analysis-content">
         <Outlet />
       </div>
