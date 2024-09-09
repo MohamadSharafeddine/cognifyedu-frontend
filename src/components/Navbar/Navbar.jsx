@@ -44,6 +44,45 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      <div className="navbar-container">
+        <div onClick={handleLogoClick} className="navbar-logo">
+          <img src={logo} alt="CognifyEdu Logo" />
+        </div>
+        <ul className="navbar-menu">
+          <li>
+            <Link
+              smooth
+              to="/#about"
+              className={`navbar-item ${activeSection === "about" ? "active-link" : ""}`}
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              smooth
+              to="/#services"
+              className={`navbar-item ${activeSection === "services" ? "active-link" : ""}`}
+            >
+              Our Services
+            </Link>
+          </li>
+          <li>
+            <Link
+              smooth
+              to="/#contact"
+              className={`navbar-item ${activeSection === "contact" ? "active-link" : ""}`}
+            >
+              Contact Us
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" className="navbar-item get-started">
+              Get Started
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
