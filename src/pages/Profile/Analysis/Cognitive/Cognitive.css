@@ -29,3 +29,18 @@
     margin-bottom: 10px;
   }
   
+  .progress-controls {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  .progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .progress-section {
+    margin-bottom: 10px;
+  }
+  
