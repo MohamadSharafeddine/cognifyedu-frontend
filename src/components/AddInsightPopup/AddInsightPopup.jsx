@@ -3,6 +3,13 @@ import './AddInsightPopup.css';
 import Button from '../Button/Button';
 
 const AddInsightPopup = ({ onClose }) => {
+  const [comment, setComment] = useState('');
+  const [showHelp, setShowHelp] = useState(false);
+
+  const handleSubmit = () => {
+    console.log('Comment Submitted:', comment);
+    onClose();
+  };
 
   return (
     <div className="add-insight-popup-overlay" onClick={onClose}>
