@@ -98,3 +98,44 @@
     color: #666;
 }
 
+.feedback-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.comment {
+    width: 80%;
+}
+
+.comment textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+}
+
+.mark {
+    width: 20%;
+}
+
+.mark-input {
+    display: flex;
+    align-items: center;
+}
+
+.mark-input input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    width: 60px;
+    height: 100%;
+}
+
+.mark-input span {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
