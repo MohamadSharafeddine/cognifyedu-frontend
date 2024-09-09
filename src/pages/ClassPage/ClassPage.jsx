@@ -1,26 +1,25 @@
-import React, { useState } from "react";
-import { useParams, useNavigate, Outlet } from "react-router-dom";
-import "./ClassPage.css";
-import Button from "../../components/Button/Button";
-import AddAssignmentPopup from "../../components/AddAssignmentPopup/AddAssignmentPopup";
-import AddStudentPopup from "../../components/AddStudentPopup/AddStudentPopup";
-import TabBar from "../../components/TabBar/TabBar";
+import React, { useState } from 'react';
+import { useParams, useNavigate, Outlet } from 'react-router-dom';
+import './ClassPage.css';
+import Button from '../../components/Button/Button';
+import AddAssignmentPopup from '../../components/AddAssignmentPopup/AddAssignmentPopup';
+import AddStudentPopup from '../../components/AddStudentPopup/AddStudentPopup';
+import TabBar from '../../components/TabBar/TabBar';
 
 const ClassPage = () => {
   const { className } = useParams();
-  const [activeTab, setActiveTab] = useState("Assignments");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [activeTab, setActiveTab] = useState('Assignments');
+  const [searchTerm, setSearchTerm] = useState('');
   const [showAddAssignmentPopup, setShowAddAssignmentPopup] = useState(false);
   const [showAddStudentPopup, setShowAddStudentPopup] = useState(false);
   const [assignmentsData, setAssignmentsData] = useState([]);
   const [studentsData, setStudentsData] = useState([]);
-
   const navigate = useNavigate();
 
   const handleAddClick = () => {
-    if (activeTab === "Assignments") {
+    if (activeTab === 'Assignments') {
       setShowAddAssignmentPopup(true);
-    } else if (activeTab === "Students") {
+    } else if (activeTab === 'Students') {
       setShowAddStudentPopup(true);
     }
   };
@@ -30,16 +29,15 @@ const ClassPage = () => {
     navigate(`/class/${className}/${tab.toLowerCase()}`);
   };
 
-  const tabs = ["Assignments", "Students", "Marks"];
+  const tabs = ['Assignments', 'Students', 'Marks'];
 
   return (
-    <div className="class-page">
-      <div className="class-header">
-        <h2 className="class-title">{className}</h2>
+    <div className="classpage-container">
+      <div className="classpage-header">
+        <h2 className="classpage-title">{className}</h2>
         <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={handleTabSwitch} />
-
-        <div className="class-search-and-add">
-          <div className="class-search-bar">
+        <div className="classpage-search-and-add">
+          <div className="classpage-search-bar">
             <input
               type="text"
               placeholder="Search"
@@ -47,13 +45,13 @@ const ClassPage = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          {(activeTab === "Assignments" || activeTab === "Students") && (
+          {(activeTab === 'Assignments' || activeTab === 'Students') && (
             <Button color="#25738b" text="Add" size="medium" onClick={handleAddClick} />
           )}
         </div>
       </div>
 
-      <div className="class-content">
+      <div className="classpage-content">
         <Outlet context={{ searchTerm, assignmentsData, setAssignmentsData, studentsData, setStudentsData }} />
       </div>
 
