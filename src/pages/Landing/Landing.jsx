@@ -15,6 +15,15 @@ const Landing = () => {
 
   return (
     <div className="landing-page">
+      <section className="landing-hero-section">
+        <div className="landing-hero-content" data-aos="fade-up">
+          <img src={logo} alt="CognifyEdu Logo" className="landing-hero-logo" />
+          <div className="landing-hero-text">
+            <h2>Unlocking Potential,</h2>
+            <h2>One Insight at a Time.</h2>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
