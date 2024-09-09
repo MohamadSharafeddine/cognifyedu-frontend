@@ -27,7 +27,7 @@ const AddInsightPopup = ({ onClose }) => {
         </div>
         <p className="add-insight-popup-subtitle">Help the AI formulate its assessment!</p>
         <div className="add-insight-popup-form-group">
-          <label htmlFor="teacher-comment">Teacher’s comment</label>
+          <label htmlFor="teacher-comment">Teacher's comment</label>
           <textarea
             id="teacher-comment"
             placeholder="Enter comment"
