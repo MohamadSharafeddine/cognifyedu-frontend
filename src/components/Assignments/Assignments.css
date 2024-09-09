@@ -65,3 +65,13 @@
     transform: scale(0.99);
   }
   
+  @media (max-width: 768px) {
+    .assignments-list {
+      padding: 10px;
+    }
+  
+    .assignments-list th, .assignments-list td {
+      padding: 10px;
+    }
+  }
+  
