@@ -44,3 +44,14 @@
   border-radius: 8px;
   padding: 5px;
 }
+
+@media (max-width: 768px) {
+  .charts-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chart-section {
+    width: 100%;
+  }
+}
