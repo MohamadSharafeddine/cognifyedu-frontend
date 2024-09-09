@@ -80,3 +80,20 @@
   outline: none;
 }
 
+.password-group .password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.password-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #25738b;
+}
+
