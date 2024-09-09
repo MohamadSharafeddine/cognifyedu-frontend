@@ -62,3 +62,28 @@
     margin-bottom: 20px;
   }
   
+  .add-insight-popup-form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .add-insight-popup-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .add-insight-popup-form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    resize: none;
+  }
+  
+  .add-insight-popup-form-group textarea::placeholder {
+    color: #aaa;
+  }
+  
