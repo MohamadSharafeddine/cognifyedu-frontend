@@ -1,0 +1,9 @@
+.login-container,
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  /* padding: 20px 40px; */
+}
+
