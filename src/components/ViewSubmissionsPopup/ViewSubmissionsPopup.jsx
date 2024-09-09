@@ -81,6 +81,82 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
 
   return (
     <div className="modal-backdrop">
+      <div className="view-submissions-popup">
+        <div className="left-section">
+          <h2 className="assignment-title">{assignmentTitle}</h2>
+          <div className="submissions-table-wrapper">
+            <table className="submissions-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sampleSubmissions.map((submission, index) => (
+                  <tr
+                    key={index}
+                    onClick={() => handleSubmissionClick(submission)}
+                    className={selectedSubmission && selectedSubmission.studentName === submission.studentName ? 'active' : ''}
+                  >
+                    <td>{submission.studentName}</td>
+                    <td>{submission.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="right-section">
+          <div className="header-right">
+            <h4>{selectedSubmission ? selectedSubmission.studentName : 'Select a submission'}</h4>
+            <Button
+              color="#25738b"
+              text="Return"
+              size="medium"
+              onClick={handleReturnClick}
+            />
+          </div>
+
+          <div className="feedback-messages">
+            {validationError && <p className="error">{validationError}</p>}
+            {feedbackMessage && <p className="feedback">{feedbackMessage}</p>}
+          </div>
+
+          <div className="file-display" onClick={handleFileClick}>
+            <span role="img" aria-label="file">
+              📄
+            </span>
+            <p>Click to view the submitted file</p>
+          </div>
+
+          <div className="feedback-section">
+            <div className="comment">
+              <label>Comment</label>
+              <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Enter comment"
+                rows="3"
+              />
+            </div>
+            <div className="mark">
+              <label>Mark</label>
+              <div className="mark-input">
+                <input
+                  type="number"
+                  value={mark || ''}
+                  onChange={handleMarkChange}
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                />
+                <span>/100</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
