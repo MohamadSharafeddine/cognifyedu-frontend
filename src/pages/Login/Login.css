@@ -71,3 +71,8 @@ h2 {
   cursor: pointer;
 }
 
+.form-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
