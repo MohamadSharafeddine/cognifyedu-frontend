@@ -17,3 +17,20 @@
   overflow-y: auto;
 }
 
+@media (max-width: 1024px) {
+  .mainlayout-maincontent {
+    margin: 10px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainlayout-maincontent {
+    margin: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainlayout-maincontent {
+    margin: 10px;
+  }
+}
