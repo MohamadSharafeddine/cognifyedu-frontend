@@ -41,3 +41,11 @@
   transition: color 0.3s ease;
 }
 
+.navbar-item:hover {
+  color: #25738b;
+}
+
+.active-link {
+  color: #25738b;
+}
+
