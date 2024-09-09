@@ -11,3 +11,12 @@
     z-index: 1000;
 }
 
+.view-submissions-popup {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    padding: 30px;
+    width: 900px;
+    height: 600px;
+}
+
