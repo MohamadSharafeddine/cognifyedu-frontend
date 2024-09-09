@@ -1,27 +1,7 @@
-.analysis-page {
-    padding: 20px;
-  }
-  
-  .analysis-tabbar {
-    display: flex;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .analysis-tabbar a {
-    padding: 10px 20px;
-    margin-right: 20px;
-    text-decoration: none;
-    color: #666;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .analysis-tabbar a.active-tab {
-    border-bottom: 2px solid #25738b;
-    color: #25738b;
-  }
-  
-  .analysis-content {
-    padding-top: 20px;
-  }
-  
+/* .analysis-page {
+  padding: 20px;
+}
+
+.analysis-content {
+  padding-top: 20px;
+} */
