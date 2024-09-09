@@ -14,11 +14,8 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleCardClick = (e) => {
-    if (e.target.closest('.icon')) return;
-
+  const handleCardClick = () => {
     dispatch(selectClass(className));
-    
     navigate(`/class/${className}`);
   };
 
@@ -28,7 +25,7 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
   };
 
   const handleEditClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     setShowEditPopup(true);
   };
 
@@ -43,32 +40,32 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
   };
 
   return (
-    <div className="class-card" onClick={handleCardClick}>
-      <div className="class-card-header">
-        <div className="header-top">
-          <span className="classname">{className}</span>
-          <div className="icon-group">
-            <span className="icon delete-icon" onClick={handleDeleteClick}>
+    <div className="classcard-container" onClick={handleCardClick}>
+      <div className="classcard-header">
+        <div className="classcard-header-top">
+          <span className="classcard-classname">{className}</span>
+          <div className="classcard-icon-group">
+            <span className="classcard-delete-icon" onClick={handleDeleteClick}>
               <FontAwesomeIcon icon={faTrash} />
             </span>
-            <span className="icon edit-icon" onClick={handleEditClick}>
+            <span className="classcard-edit-icon" onClick={handleEditClick}>
               <FontAwesomeIcon icon={faEdit} />
             </span>
           </div>
         </div>
-        <div className="header-bottom">
-          <span className="teacher">{teacherName}</span>
+        <div className="classcard-header-bottom">
+          <span className="classcard-teacher">{teacherName}</span>
         </div>
       </div>
-      <div className="class-card-body">
+      <div className="classcard-body">
         <h3>Description</h3>
-        <div className="description-container">
-          <p className="description">{description}</p>
+        <div className="classcard-description-container">
+          <p className="classcard-description">{description}</p>
         </div>
       </div>
 
       {showDeletePopup && (
-        <div onClick={(e) => e.stopPropagation()}>
+        <div>
           <DeleteConfirmationPopup
             onClose={() => setShowDeletePopup(false)}
             onDelete={handleDeleteConfirmation}
@@ -77,7 +74,7 @@ const ClassCard = ({ className, teacherName, description, onDelete, onEdit }) =>
       )}
 
       {showEditPopup && (
-        <div onClick={(e) => e.stopPropagation()}>
+        <div>
           <EditClassPopup
             className={className}
             description={description}
