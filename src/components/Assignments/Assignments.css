@@ -2,130 +2,66 @@
     background-color: white;
     border: 0.5px solid rgb(237, 237, 237);
     border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-height: 530px;
     overflow-y: auto;
     padding: 0 40px;
     margin: 20px 0;
-    scrollbar-color: #25738b transparent;
-    position: relative;
-}
-
-.assignments-list table {
+  }
+  
+  .assignments-list table {
     width: 100%;
     border-collapse: collapse;
-}
-
-.assignments-list thead {
+  }
+  
+  .assignments-list thead {
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 1;
-}
-
-.assignments-list th, .assignments-list td {
+  }
+  
+  .assignments-list th, .assignments-list td {
     padding: 15px;
     border-left: none;
     border-right: none;
-}
-
-.assignments-list th {
+  }
+  
+  .assignments-list th {
     text-align: left;
     background-color: #f9f9f9;
     font-weight: 600;
-}
-
-.assignments-list tr {
+  }
+  
+  .assignments-list tr {
     border-bottom: 1px solid #ddd;
-}
-
-.assignments-list tr:last-child {
-    border-bottom: none;
-}
-
-.assignments-list tbody tr {
+  }
+  
+  .assignments-list tbody tr {
     cursor: pointer;
     transition: color 0.3s ease, transform 0.1s ease;
-}
-
-.assignments-list tbody tr:hover {
+  }
+  
+  .assignments-list tbody tr:hover {
     color: #25738b;
     transform: scale(1.01);
-}
-
-.assignments-list tbody tr:active {
+  }
+  
+  .assignments-list tbody tr:active {
     color: #25738b;
     transform: scale(1.01);
-}
-
-.assignments-list td button {
+  }
+  
+  .assignments-list td button {
     color: white;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 8px;
     border: none;
     transition: background-color 0.3s ease;
-}
-
-.assignments-list td button:active {
+  }
+  
+  .assignments-list td button:active {
     transform: scale(0.99);
-}
-
-.assignments-list {
-    scrollbar-width: thin;
-    scrollbar-color: #25738b transparent;
-}
-
-.assignments-list::-webkit-scrollbar {
-    width: 8px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.assignments-list:hover::-webkit-scrollbar {
-    opacity: 1;
-}
-
-.assignments-list::-webkit-scrollbar-thumb {
-    background-color: #25738b;
-    border-radius: 10px;
-}
-
-.assignments-list::-webkit-scrollbar-button {
-    display: none;
-}
-
-.assignments-list td:nth-child(3) {
-    width: 200px;
-}
-.delete-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-}
-
-.delete-popup-content {
-    text-align: center;
-}
-
-.button-group {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 99;
-}
+  }
+  
