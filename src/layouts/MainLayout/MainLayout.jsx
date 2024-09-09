@@ -7,15 +7,14 @@ import './MainLayout.css';
 
 const MainLayout = () => {
   const location = useLocation();
-
   const isProfilePage = location.pathname.startsWith("/profile");
 
   return (
-    <div className="main-layout">
+    <div className="mainlayout-container">
       {isProfilePage ? <ProfileSidebar /> : <ClassesSidebar />}
-      <div className="right-content">
+      <div className="mainlayout-rightcontent">
         <TopBar />
-        <div className="main-content">
+        <div className="mainlayout-maincontent">
           <Outlet />
         </div>
       </div>
