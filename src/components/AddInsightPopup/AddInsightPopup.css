@@ -34,3 +34,25 @@
     color: #333;
   }
   
+  .add-insight-popup-help-icon {
+    position: relative;
+    font-size: 20px;
+    color: #25738b;
+    cursor: pointer;
+  }
+  
+  .add-insight-popup-help-popup {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    z-index: 1010;
+    font-size: 14px;
+    color: #666;
+  }
+  
