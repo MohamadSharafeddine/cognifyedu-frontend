@@ -87,3 +87,19 @@ h2 {
 .register-link a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .hero-section {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .login-form-container {
+    padding: 20px;
+  }
+}
