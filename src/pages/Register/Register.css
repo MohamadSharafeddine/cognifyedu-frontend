@@ -1,0 +1,90 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+  }
+  
+  .hero-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-right: 50px;
+  }
+  
+  .hero-section img {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-section p {
+    font-size: 20px;
+    color: #25738b;
+  }
+  
+  .register-form-container {
+    flex: 1;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .password-group .password-wrapper {
+    position: relative;
+  }
+  
+  .password-icon {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+  }
+  
+  .form-actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-link a {
+    color: #25738b;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
