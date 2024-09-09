@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addClass, deleteClass, selectClass } from "../../redux/slices/classesSlice";
+import { addClass, deleteClass, selectClass, editClass } from "../../redux/slices/classesSlice";
 import "./Classes.css";
 import ClassCard from "../../components/ClassCard/ClassCard";
 import Button from "../../components/Button/Button";
@@ -25,15 +25,19 @@ const Classes = () => {
     dispatch(deleteClass(className));
   };
 
+  const handleEditClass = (oldClassName, newClassName, newDescription) => {
+    dispatch(editClass({ oldClassName, newClassName, newDescription }));
+  };
+
   const handleAddClick = () => {
     setIsAddClassOpen(true);
   };
 
   return (
-    <div className="classes-content">
+    <div className="classes-container">
       {selectedClass === "Classes" ? (
         <>
-          <div className="add-button-container">
+          <div className="classes-addbutton">
             <Button
               color="#25738b"
               text="Add"
@@ -41,7 +45,7 @@ const Classes = () => {
               onClick={handleAddClick}
             />
           </div>
-          <div className="cards-container">
+          <div className="classes-cardscontainer">
             {classesData.map((classItem, index) => (
               <ClassCard
                 key={index}
@@ -49,6 +53,7 @@ const Classes = () => {
                 teacherName={classItem.teacherName}
                 description={classItem.description}
                 onDelete={handleDeleteClass}
+                onEdit={handleEditClass}
               />
             ))}
           </div>
