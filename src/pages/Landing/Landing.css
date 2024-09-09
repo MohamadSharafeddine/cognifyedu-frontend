@@ -36,3 +36,39 @@
     text-align: center;
 }
 
+.landing-about-section {
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.landing-about-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #25738b;
+}
+
+.landing-about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.landing-about-image {
+    width: 50%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.landing-about-content p {
+    width: 50%;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    padding-left: 20px;
+}
+
