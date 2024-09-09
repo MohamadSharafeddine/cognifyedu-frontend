@@ -24,3 +24,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
+  .chart-section h3, .progress-section h3 {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
