@@ -37,3 +37,21 @@
     margin-bottom: 10px;
 }
 
+.submissions-table-wrapper {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.submissions-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.submissions-table th,
+.submissions-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
