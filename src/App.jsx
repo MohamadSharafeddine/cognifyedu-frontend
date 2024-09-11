@@ -23,7 +23,6 @@ import Assignments from "./components/Assignments/Assignments";
 import Students from "./components/Students/Students";
 import Marks from "./components/Marks/Marks";
 import ViewSubmissionsPopup from "./components/ViewSubmissionsPopup/ViewSubmissionsPopup";
-import Footer from "./components/Footer/Footer";
 import DashboardTeacher from "./pages/Dashboard/DashboardTeacher";
 import DashboardStudent from "./pages/Dashboard/DashboardStudent";
 import DashboardParent from "./pages/Dashboard/DashboardParent";
@@ -42,7 +41,7 @@ function App() {
 
         <Route element={<MainLayout />}>
           <Route path="/courses" element={<Courses />} />
-          <Route path="/course/:courseName/*" element={<CoursePage />}>
+          <Route path="/course/:courseId/*" element={<CoursePage />}>
             <Route index element={<Navigate to="assignments" />} />
             <Route path="assignments" element={<Assignments />} />
             <Route path="students" element={<Students />} />
@@ -99,7 +98,6 @@ function App() {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      {/* <Footer /> */}
     </Router>
   );
 }
