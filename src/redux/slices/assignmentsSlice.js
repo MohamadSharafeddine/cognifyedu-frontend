@@ -61,3 +61,17 @@ export const updateAssignment = createAsyncThunk(
   }
 );
 
+export const deleteAssignment = createAsyncThunk(
+  "assignments/delete",
+  async (assignmentId, { rejectWithValue }) => {
+    try {
+      await api.delete(`/assignments/${assignmentId}`);
+      console.log("Deleted Assignment ID:", assignmentId);
+      return assignmentId;
+    } catch (error) {
+      console.error("Error deleting assignment:", error);
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
