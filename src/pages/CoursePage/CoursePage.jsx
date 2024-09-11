@@ -70,15 +70,16 @@ const CoursePage = () => {
       </div>
 
       <div className="coursepage-content">
+        {loading && <p>Loading assignments...</p>}
+        {error && <p>Error fetching assignments: {JSON.stringify(error)}</p>}
+        {!loading && !error && (
         <Outlet
           context={{
             searchTerm,
-            assignmentsData,
-            setAssignmentsData,
-            studentsData,
-            setStudentsData,
+              assignments,
           }}
         />
+        )}
       </div>
 
       {showAddAssignmentPopup && (
