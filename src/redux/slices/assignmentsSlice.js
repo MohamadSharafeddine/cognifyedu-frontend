@@ -38,3 +38,26 @@ export const addAssignment = createAsyncThunk(
   }
 );
 
+export const updateAssignment = createAsyncThunk(
+  "assignments/update",
+  async (assignmentData, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+      formData.append("title", assignmentData.title);
+      formData.append("description", assignmentData.description);
+      formData.append("due_date", assignmentData.due_date);
+      formData.append("course_id", assignmentData.course_id);
+      if (assignmentData.attachment) {
+        formData.append("attachment", assignmentData.attachment);
+      }
+
+      const response = await api.post(`/assignments/${assignmentData.id}`, formData);
+      console.log("Updated Assignment:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error updating assignment:", error.response.data);
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
