@@ -85,20 +85,13 @@ const CoursePage = () => {
       {showAddAssignmentPopup && (
         <AddAssignmentPopup
           onClose={() => setShowAddAssignmentPopup(false)}
-          onSave={(newAssignment) => {
-            setAssignmentsData([...assignmentsData, newAssignment]);
-            setShowAddAssignmentPopup(false);
-          }}
         />
       )}
 
       {showAddStudentPopup && (
         <AddStudentPopup
           onClose={() => setShowAddStudentPopup(false)}
-          onAddStudent={(newStudent) => {
-            setStudentsData([...studentsData, newStudent]);
-            setShowAddStudentPopup(false);
-          }}
+          courseId={courseId}
         />
       )}
     </div>
