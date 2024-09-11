@@ -20,19 +20,33 @@ export const fetchStudents = createAsyncThunk(
 );
 
 const studentsSlice = createSlice({
-  name: 'students',
+  name: "students",
   initialState,
   reducers: {
+    addStudent: (state, action) => {
+      state.students.push(action.payload);
+    },
     deleteStudent: (state, action) => {
       state.students = state.students.filter(
         (student) => student.id !== action.payload
       );
     },
-    addStudent: (state, action) => {
-      state.students.push(action.payload);
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchStudents.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchStudents.fulfilled, (state, action) => {
+        state.students = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchStudents.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      });
   },
 });
 
-export const { deleteStudent, addStudent } = studentsSlice.actions;
+export const { addStudent, deleteStudent } = studentsSlice.actions;
 export default studentsSlice.reducer;
