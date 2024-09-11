@@ -14,9 +14,20 @@ const CoursePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddAssignmentPopup, setShowAddAssignmentPopup] = useState(false);
   const [showAddStudentPopup, setShowAddStudentPopup] = useState(false);
-  const [assignmentsData, setAssignmentsData] = useState([]);
-  const [studentsData, setStudentsData] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { assignments = [], loading, error } = useSelector((state) => state.assignments || {});
+
+  useEffect(() => {
+    if (courseId) {
+      console.log("useEffect triggered, dispatching fetchAssignmentsByCourse for courseId:", courseId);
+      dispatch(fetchAssignmentsByCourse(courseId));
+    } else {
+      console.log("No courseId provided");
+    }
+  }, [courseId, dispatch]);
+  
 
   const handleAddClick = () => {
     if (activeTab === "Assignments") {
