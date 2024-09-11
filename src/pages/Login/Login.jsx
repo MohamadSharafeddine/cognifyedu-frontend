@@ -9,20 +9,33 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import logoTitle from '../../assets/logo-title.png';
 
 const Login = () => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const dispatch = useDispatch();
 
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const { token, user, error, loading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(token, user);
+    if (token && user?.type) {
+      navigate(`/dashboard/${user.type}`);
+    }
+  }, [token, user, navigate]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleLogin = () => {
-    console.log('Login Data:', formData);
+    dispatch(loginUser(formData));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
