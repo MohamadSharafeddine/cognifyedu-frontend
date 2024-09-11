@@ -37,3 +37,48 @@ const logoutUser = (state) => {
   window.location.href = "/login";
 };
 
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    user: JSON.parse(localStorage.getItem("user")) || null,
+    token: localStorage.getItem("token") || null,
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    logout: logoutUser,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Failed to register";
+      })
+
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Failed to login";
+      });
+  },
+});
+
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;
