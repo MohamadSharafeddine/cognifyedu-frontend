@@ -39,7 +39,7 @@ const CoursePage = () => {
 
   const handleTabSwitch = (tab) => {
     setActiveTab(tab);
-    navigate(`/course/${courseName}/${tab.toLowerCase()}`);
+    navigate(`/course/${courseId}/${tab.toLowerCase()}`);
   };
 
   const tabs = ["Assignments", "Students", "Marks"];
@@ -47,7 +47,7 @@ const CoursePage = () => {
   return (
     <div className="coursepage-container">
       <div className="coursepage-header">
-        <h2 className="coursepage-title">{courseName}</h2>
+        <h2 className="coursepage-title">Course ID: {courseId}</h2>
         <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={handleTabSwitch} />
         <div className="coursepage-search-and-add">
           <div className="coursepage-search-bar">
