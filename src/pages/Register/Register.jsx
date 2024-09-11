@@ -26,7 +26,22 @@ const Register = () => {
   }, [token, navigate]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const determineUserTypeByEmail = (email) => {
+    if (email.endsWith('@school.com')) {
+      return 'teacher';
+    } else if (email.endsWith('@student.com')) {
+      return 'student';
+    } else if (email.endsWith('@parent.com')) {
+      return 'parent';
+    } else {
+      return 'student';
+    }
   };
 
   const handleRegister = () => {
