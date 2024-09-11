@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAssignmentsByCourse } from "../../redux/slices/assignmentsSlice";
 
 const CoursePage = () => {
-  const { courseName } = useParams();
+  const { courseId } = useParams();
   const [activeTab, setActiveTab] = useState("Assignments");
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddAssignmentPopup, setShowAddAssignmentPopup] = useState(false);
