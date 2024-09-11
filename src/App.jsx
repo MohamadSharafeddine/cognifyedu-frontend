@@ -41,8 +41,8 @@ function App() {
         </Route>
 
         <Route element={<MainLayout />}>
-          <Route path="/classes" element={<Classes />} />
-          <Route path="/class/:className/*" element={<ClassPage />}>
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/course/:courseName/*" element={<CoursePage />}>
             <Route index element={<Navigate to="assignments" />} />
             <Route path="assignments" element={<Assignments />} />
             <Route path="students" element={<Students />} />
