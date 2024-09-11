@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import './Assignments.css';
-import Button from '../Button/Button';
-import EditAssignmentPopup from '../EditAssignmentPopup/EditAssignmentPopup';
-import DeleteConfirmationPopup from '../DeleteConfirmationPopup/DeleteConfirmationPopup';
-import ViewSubmissionsPopup from '../ViewSubmissionsPopup/ViewSubmissionsPopup';
+import React, { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import "./Assignments.css";
+import Button from "../Button/Button";
+import EditAssignmentPopup from "../EditAssignmentPopup/EditAssignmentPopup";
+import DeleteConfirmationPopup from "../DeleteConfirmationPopup/DeleteConfirmationPopup";
+import ViewSubmissionsPopup from "../ViewSubmissionsPopup/ViewSubmissionsPopup";
+import { useDispatch } from "react-redux";
+import { deleteAssignment } from "../../redux/slices/assignmentsSlice";
+import moment from "moment";
 
 const Assignments = () => {
-  const { searchTerm, assignmentsData, setAssignmentsData } = useOutletContext();
+  const { searchTerm, assignments } = useOutletContext();
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showSubmissionsPopup, setShowSubmissionsPopup] = useState(false);
+  const dispatch = useDispatch();
 
-  const filteredAssignments = assignmentsData.filter((assignment) =>
-    (assignment.title ? assignment.title.toLowerCase() : '').includes(searchTerm.toLowerCase())
+  const filteredAssignments = assignments.filter((assignment) =>
+    assignment.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleEditClick = (assignment) => {
@@ -28,7 +32,7 @@ const Assignments = () => {
   };
 
   const confirmDelete = () => {
-    setAssignmentsData(assignmentsData.filter(item => item.title !== selectedAssignment.title));
+    dispatch(deleteAssignment(selectedAssignment.id));
     setShowDeletePopup(false);
   };
 
@@ -51,7 +55,7 @@ const Assignments = () => {
           {filteredAssignments.map((assignment, index) => (
             <tr key={index} onClick={() => handleRowClick(assignment)} className="assignment-row">
               <td>{assignment.title}</td>
-              <td>{assignment.dueDate}</td>
+              <td>{moment(assignment.due_date).format('MMMM Do YYYY')}</td>
               <td
                 onClick={(e) => {
                   e.stopPropagation();
@@ -80,10 +84,6 @@ const Assignments = () => {
           assignment={selectedAssignment}
           onClose={() => setShowEditPopup(false)}
           onSave={(updatedAssignment) => {
-            const updatedAssignments = assignmentsData.map(item =>
-              item.title === selectedAssignment.title ? updatedAssignment : item
-            );
-            setAssignmentsData(updatedAssignments);
             setShowEditPopup(false);
           }}
         />
