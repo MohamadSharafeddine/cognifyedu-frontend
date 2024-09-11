@@ -28,3 +28,12 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+const logoutUser = (state) => {
+  state.user = null;
+  state.token = null;
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  window.location.href = "/login";
+};
+
