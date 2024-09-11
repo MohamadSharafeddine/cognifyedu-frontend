@@ -47,7 +47,10 @@ function App() {
             <Route path="assignments" element={<Assignments />} />
             <Route path="students" element={<Students />} />
             <Route path="marks" element={<Marks />} />
-            <Route path="assignments/:assignmentTitle" element={<ViewSubmissionsPopup />} />
+            <Route
+              path="assignments/:assignmentTitle"
+              element={<ViewSubmissionsPopup />}
+            />
           </Route>
 
           <Route path="/profile" element={<Profile />}>
@@ -59,6 +62,39 @@ function App() {
             <Route path="insights" element={<Insights />} />
             <Route path="edit" element={<EditProfile />} />
           </Route>
+
+          <Route
+            path="/dashboard/teacher"
+            element={
+              <ProtectedRoute role="teacher">
+                <DashboardTeacher />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/student"
+            element={
+              <ProtectedRoute role="student">
+                <DashboardStudent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/parent"
+            element={
+              <ProtectedRoute role="parent">
+                <DashboardParent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/admin"
+            element={
+              <ProtectedRoute role="admin">
+                <DashboardAdmin />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
