@@ -63,7 +63,7 @@ const TopBar = () => {
         onClick={handleClick}
         ref={containerRef}
       >
-        <span className="username">John Doe</span>
+        <span className="user-email">johndoe@school.com</span>
         <img src={userProfile} alt="User Profile" className="profile-img" />
         <FontAwesomeIcon icon={faCaretDown} className="dropdown-icon" />
 
