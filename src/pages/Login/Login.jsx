@@ -46,6 +46,7 @@ const Login = () => {
       </div>
       <div className="login-form-container">
         <h2>Login</h2>
+        {error && <p className="error-message">{error}</p>}
         <div className="form-group">
           <label>Email</label>
           <input
@@ -70,11 +71,12 @@ const Login = () => {
               icon={showPassword ? faEyeSlash : faEye}
               className="password-icon"
               onClick={togglePasswordVisibility}
+              style={{ color: '#25738b' }}
             />
           </div>
         </div>
         <div className="form-actions">
-          <Button text="Login" onClick={handleLogin} color="#25738b" size="medium" />
+          <Button text={loading ? 'Logging in...' : 'Login'} onClick={handleLogin} color="#25738b" size="medium" />
         </div>
         <p className="register-link">
           Don't have an account? <Link to="/register">Register</Link>
