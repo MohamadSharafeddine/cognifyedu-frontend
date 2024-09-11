@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Outlet } from "react-router-dom";
 import "./CoursePage.css";
 import Button from "../../components/Button/Button";
 import AddAssignmentPopup from "../../components/AddAssignmentPopup/AddAssignmentPopup";
 import AddStudentPopup from "../../components/AddStudentPopup/AddStudentPopup";
 import TabBar from "../../components/TabBar/TabBar";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAssignmentsByCourse } from "../../redux/slices/assignmentsSlice";
 
 const CoursePage = () => {
   const { courseName } = useParams();
