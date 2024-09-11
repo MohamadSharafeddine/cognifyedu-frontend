@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import './EditClassPopup.css';
-import Button from '../Button/Button';
+import React, { useState } from "react";
+import "./EditCoursePopup.css";
+import Button from "../Button/Button";
 
-const EditClassPopup = ({ className, description, onClose, onSave }) => {
-  const [title, setTitle] = useState(className);
+const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
+  const [title, setTitle] = useState(courseName);
   const [desc, setDesc] = useState(description);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
-  const handleSaveClass = () => {
+  const handleSaveCourse = () => {
     if (!title.trim()) {
-      setError('Title is required');
+      setError("Title is required");
       return;
     }
     if (onSave) {
@@ -23,15 +23,17 @@ const EditClassPopup = ({ className, description, onClose, onSave }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <h2>Edit Class</h2>
+        <h2>Edit Course</h2>
         <div className="form-group">
-          <label>Title <span style={{ color: 'red' }}>*</span></label>
+          <label>
+            Title <span style={{ color: "red" }}>*</span>
+          </label>
           <input
             type="text"
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
-              setError('');
+              setError("");
             }}
             placeholder="Enter Title"
             required
@@ -47,12 +49,22 @@ const EditClassPopup = ({ className, description, onClose, onSave }) => {
           />
         </div>
         <div className="button-group">
-          <Button color="#25738b" text="Save" size="medium" onClick={handleSaveClass} />
-          <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
+          <Button
+            color="#25738b"
+            text="Save"
+            size="medium"
+            onClick={handleSaveCourse}
+          />
+          <Button
+            color="#e74c3c"
+            text="Cancel"
+            size="medium"
+            onClick={onClose}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default EditClassPopup;
+export default EditCoursePopup;

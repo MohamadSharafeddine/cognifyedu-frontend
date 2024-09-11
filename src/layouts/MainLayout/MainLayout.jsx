@@ -1,9 +1,9 @@
-import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import ClassesSidebar from '../../components/ClassesSidebar/ClassesSidebar';
-import ProfileSidebar from '../../components/ProfileSidebar/ProfileSidebar';
-import TopBar from '../../components/TopBar/TopBar';
-import './MainLayout.css';
+import React from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import CoursesSidebar from "../../components/CoursesSidebar/CoursesSidebar";
+import ProfileSidebar from "../../components/ProfileSidebar/ProfileSidebar";
+import TopBar from "../../components/TopBar/TopBar";
+import "./MainLayout.css";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -11,7 +11,7 @@ const MainLayout = () => {
 
   return (
     <div className="mainlayout-container">
-      {isProfilePage ? <ProfileSidebar /> : <ClassesSidebar />}
+      {isProfilePage ? <ProfileSidebar /> : <CoursesSidebar />}
       <div className="mainlayout-rightcontent">
         <TopBar />
         <div className="mainlayout-maincontent">

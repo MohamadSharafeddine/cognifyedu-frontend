@@ -19,7 +19,7 @@ const ProfileSidebar = () => {
         src={Logo}
         alt="CognifyEdu Logo"
         className="sidebar-logo"
-        onClick={() => navigate("/classes")}
+        onClick={() => navigate("/courses")}
       />
       <ul>
         <li>

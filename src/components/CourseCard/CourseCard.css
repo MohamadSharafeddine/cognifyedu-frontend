@@ -1,4 +1,4 @@
-.classcard-container {
+.coursecard-container {
   background-color: white;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -6,17 +6,16 @@
   height: 240px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   position: relative;
   transition: box-shadow 0.3s ease;
 }
 
-.classcard-container:hover {
+.coursecard-container:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
-.classcard-header {
+.coursecard-header {
   background-color: #25738b;
   color: white;
   padding: 15px;
@@ -24,77 +23,77 @@
   border-top-right-radius: 20px;
 }
 
-.classcard-header-top {
+.coursecard-header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.classcard-header-bottom {
+.coursecard-header-bottom {
   margin-top: 5px;
 }
 
-.classcard-classname {
+.coursecard-coursename {
   font-size: 1.2em;
   font-weight: bold;
 }
 
-.classcard-teacher {
+.coursecard-teacher {
   font-size: 0.9em;
 }
 
-.classcard-icon-group {
+.coursecard-icon-group {
   display: flex;
   gap: 10px;
   display: none;
 }
 
-.classcard-container:hover .classcard-icon-group {
+.coursecard-container:hover .coursecard-icon-group {
   display: flex;
 }
 
-.classcard-delete-icon {
+.coursecard-delete-icon {
   font-size: 1.2em;
   color: #e74c3c;
   cursor: pointer;
 }
 
-.classcard-edit-icon {
+.coursecard-edit-icon {
   font-size: 1.2em;
   color: #ffffff;
   cursor: pointer;
 }
 
-.classcard-body {
+.coursecard-body {
   padding: 15px;
   display: flex;
   flex-direction: column;
 }
 
-.classcard-body h3 {
+.coursecard-body h3 {
   margin-bottom: 10px;
   font-size: 1.1em;
 }
 
-.classcard-description-container {
+.coursecard-description-container {
   flex-grow: 1;
   max-height: 100px;
   overflow-y: auto;
 }
 
-.classcard-description {
+.coursecard-description {
   margin: 0;
   font-size: 0.9em;
   color: #666;
 }
 
 @media (max-width: 768px) {
-  .classcard-container {
+  .coursecard-container {
     width: 100%;
     height: auto;
   }
 
-  .classcard-body {
+  .coursecard-body {
     padding: 10px;
   }
 }
