@@ -75,3 +75,45 @@ export const deleteAssignment = createAsyncThunk(
   }
 );
 
+const assignmentsSlice = createSlice({
+  name: "assignments",
+  initialState: {
+    assignments: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAssignmentsByCourse.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAssignmentsByCourse.fulfilled, (state, action) => {
+        state.assignments = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchAssignmentsByCourse.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(addAssignment.fulfilled, (state, action) => {
+        state.assignments.push(action.payload);
+      })
+      .addCase(updateAssignment.fulfilled, (state, action) => {
+        const updatedAssignmentIndex = state.assignments.findIndex(
+          (assignment) => assignment.id === action.payload.id
+        );
+        if (updatedAssignmentIndex !== -1) {
+          state.assignments[updatedAssignmentIndex] = action.payload;
+        }
+      })
+      .addCase(deleteAssignment.fulfilled, (state, action) => {
+        state.assignments = state.assignments.filter(
+          (assignment) => assignment.id !== action.payload
+        );
+      });
+  },
+});
+
+export default assignmentsSlice.reducer;
