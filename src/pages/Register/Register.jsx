@@ -9,14 +9,21 @@ import Button from '../../components/Button/Button';
 import logoTitle from '../../assets/logo-title.png';
 
 const Register = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: '',
     password: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const { token, error, loading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  useEffect(() => {
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, [token, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
