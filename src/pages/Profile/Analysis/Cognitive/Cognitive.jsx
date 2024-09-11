@@ -1,8 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Bar, Pie, Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, LineElement, PointElement } from 'chart.js';
-// import axios from 'axios';
-import './Cognitive.css';
+import React, { useState, useEffect } from "react";
+import { Bar, Pie, Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  LineElement,
+  PointElement,
+} from "chart.js";
+// import axios from '../utils/axios';
+import "./Cognitive.css";
 
 ChartJS.register(
   CategoryScale,
@@ -17,16 +28,23 @@ ChartJS.register(
 );
 
 const Cognitive = () => {
-  const parameters = ['Critical Thinking', 'Logical Thinking', 'Linguistic Ability', 'Memory', 'Attention to Detail'];
+  const parameters = [
+    "Critical Thinking",
+    "Logical Thinking",
+    "Linguistic Ability",
+    "Memory",
+    "Attention to Detail",
+  ];
 
-  const [selectedParameter, setSelectedParameter] = useState('Critical Thinking');
+  const [selectedParameter, setSelectedParameter] =
+    useState("Critical Thinking");
 
   const [cognitiveData, setCognitiveData] = useState({
     critical_thinking: 85,
     logical_thinking: 75,
     linguistic_ability: 60,
     memory: 90,
-    attention_to_detail: 70
+    attention_to_detail: 70,
   });
   const [loading, setLoading] = useState(false);
 
@@ -55,21 +73,21 @@ const Cognitive = () => {
     cognitiveData.logical_thinking,
     cognitiveData.linguistic_ability,
     cognitiveData.memory,
-    cognitiveData.attention_to_detail
+    cognitiveData.attention_to_detail,
   ];
 
   const scoresData = {
     labels: parameters,
     datasets: [
       {
-        label: 'Scores',
-        data: scores, 
+        label: "Scores",
+        data: scores,
         backgroundColor: [
-          '#e74c3c',
-          '#3498db',
-          '#1abc9c',
-          '#f1c40f',
-          '#9b59b6'
+          "#e74c3c",
+          "#3498db",
+          "#1abc9c",
+          "#f1c40f",
+          "#9b59b6",
         ],
       },
     ],
@@ -81,23 +99,23 @@ const Cognitive = () => {
       {
         data: scores,
         backgroundColor: [
-          '#e74c3c',
-          '#3498db',
-          '#1abc9c',
-          '#f1c40f',
-          '#9b59b6'
+          "#e74c3c",
+          "#3498db",
+          "#1abc9c",
+          "#f1c40f",
+          "#9b59b6",
         ],
       },
     ],
   };
 
   const progressData = {
-    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+    labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
     datasets: [
       {
         label: `${selectedParameter} Progress`,
         data: [20, 45, 50, 60, 75, 65, 85],
-        borderColor: '#3498db',
+        borderColor: "#3498db",
         fill: false,
       },
     ],
@@ -109,12 +127,12 @@ const Cognitive = () => {
     scales: {
       x: {
         ticks: {
-          color: '#000',
+          color: "#000",
         },
       },
       y: {
         ticks: {
-          color: '#000',
+          color: "#000",
         },
       },
     },
@@ -130,10 +148,10 @@ const Cognitive = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'right',
-        align: 'center',
+        position: "right",
+        align: "center",
         labels: {
-          color: '#000',
+          color: "#000",
         },
       },
     },
@@ -153,7 +171,7 @@ const Cognitive = () => {
     scales: {
       x: {
         ticks: {
-          color: '#000',
+          color: "#000",
         },
       },
       y: {
@@ -161,7 +179,7 @@ const Cognitive = () => {
         max: 100,
         ticks: {
           stepSize: 20,
-          color: '#000',
+          color: "#000",
         },
       },
     },
@@ -177,13 +195,13 @@ const Cognitive = () => {
       <div className="charts-container">
         <div className="chart-section chart-container">
           <h3>Scores</h3>
-          <div style={{ height: '200px' }}>
+          <div style={{ height: "200px" }}>
             <Bar data={scoresData} options={barChartOptions} />
           </div>
         </div>
         <div className="chart-section chart-container">
           <h3>Distribution</h3>
-          <div style={{ height: '200px' }}>
+          <div style={{ height: "200px" }}>
             <Pie data={distributionData} options={pieChartOptions} />
           </div>
         </div>
@@ -207,7 +225,7 @@ const Cognitive = () => {
             </select>
           </div>
         </div>
-        <div style={{ height: '200px' }}>
+        <div style={{ height: "200px" }}>
           <Line data={progressData} options={lineChartOptions} />
         </div>
       </div>
