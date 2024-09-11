@@ -2,15 +2,22 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../utils/axios";
 
 const initialState = {
-  students: [
-    { id: 1, name: 'Miriam Wilderman', avatar: 'path_to_avatar1.png' },
-    { id: 2, name: 'Betsy Zboncak', avatar: 'path_to_avatar2.png' },
-    { id: 3, name: 'Dean Senger', avatar: 'path_to_avatar3.png' },
-    { id: 4, name: 'Katie Hackett', avatar: 'path_to_avatar4.png' },
-    { id: 5, name: 'Seth Erdman', avatar: 'path_to_avatar5.png' },
-    { id: 6, name: 'Priscilla Bradtke', avatar: 'path_to_avatar6.png' },
-  ],
+  students: [],
+  loading: false,
+  error: null,
 };
+
+export const fetchStudents = createAsyncThunk(
+  "students/fetchStudents",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.get("/students");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
 
 const studentsSlice = createSlice({
   name: 'students',
