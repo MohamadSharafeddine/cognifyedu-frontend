@@ -45,7 +45,16 @@ const Register = () => {
   };
 
   const handleRegister = () => {
-    console.log('Register Data:', formData);
+    const userType = determineUserTypeByEmail(formData.email);
+    const newUser = {
+      ...formData,
+      type: userType,
+    };
+    dispatch(registerUser(newUser));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
