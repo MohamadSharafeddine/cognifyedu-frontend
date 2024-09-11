@@ -4,12 +4,15 @@ import userProfile from '../../assets/profile.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/slices/authSlice';
 
 const TopBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isDropdownLocked, setDropdownLocked] = useState(false);
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -47,7 +50,8 @@ const TopBar = () => {
   };
 
   const handleLogoutClick = () => {
-    setDropdownOpen(false);
+    dispatch(logout());
+    navigate('/login');
   };
 
   return (
