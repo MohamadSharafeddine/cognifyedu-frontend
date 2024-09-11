@@ -73,12 +73,12 @@ const CoursePage = () => {
         {loading && <p>Loading assignments...</p>}
         {error && <p>Error fetching assignments: {JSON.stringify(error)}</p>}
         {!loading && !error && (
-        <Outlet
-          context={{
-            searchTerm,
+          <Outlet
+            context={{
+              searchTerm,
               assignments,
-          }}
-        />
+            }}
+          />
         )}
       </div>
 
