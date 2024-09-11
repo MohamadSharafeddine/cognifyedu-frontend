@@ -65,13 +65,14 @@ const Register = () => {
       </div>
       <div className="register-form-container">
         <h2>Register</h2>
+        {error && <p className="error-message">{error}</p>}
         <div className="form-group">
           <label>Full Name</label>
           <input
             type="text"
-            name="fullName"
+            name="name"
             placeholder="Enter your Full Name"
-            value={formData.fullName}
+            value={formData.name}
             onChange={handleChange}
           />
         </div>
@@ -99,11 +100,17 @@ const Register = () => {
               icon={showPassword ? faEyeSlash : faEye}
               className="password-icon"
               onClick={togglePasswordVisibility}
+              style={{ color: '#25738b' }}
             />
           </div>
         </div>
         <div className="form-actions">
-          <Button text="Register" onClick={handleRegister} color="#25738b" size="medium" />
+          <Button
+            text={loading ? 'Registering...' : 'Register'}
+            onClick={handleRegister}
+            color="#25738b"
+            size="medium"
+          />
         </div>
         <p className="login-link">
           Already have an account? <Link to="/login">Login</Link>
