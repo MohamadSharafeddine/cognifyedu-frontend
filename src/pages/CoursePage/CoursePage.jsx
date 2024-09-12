@@ -17,17 +17,17 @@ const CoursePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { assignments = [], loading, error } = useSelector((state) => state.assignments || {});
+  const {
+    assignments = [],
+    loading,
+    error,
+  } = useSelector((state) => state.assignments || {});
 
   useEffect(() => {
     if (courseId) {
-      console.log("useEffect triggered, dispatching fetchAssignmentsByCourse for courseId:", courseId);
       dispatch(fetchAssignmentsByCourse(courseId));
-    } else {
-      console.log("No courseId provided");
     }
   }, [courseId, dispatch]);
-  
 
   const handleAddClick = () => {
     if (activeTab === "Assignments") {
@@ -48,7 +48,11 @@ const CoursePage = () => {
     <div className="coursepage-container">
       <div className="coursepage-header">
         <h2 className="coursepage-title">Course ID: {courseId}</h2>
-        <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={handleTabSwitch} />
+        <TabBar
+          tabs={tabs}
+          activeTab={activeTab}
+          setActiveTab={handleTabSwitch}
+        />
         <div className="coursepage-search-and-add">
           <div className="coursepage-search-bar">
             <input
@@ -83,9 +87,7 @@ const CoursePage = () => {
       </div>
 
       {showAddAssignmentPopup && (
-        <AddAssignmentPopup
-          onClose={() => setShowAddAssignmentPopup(false)}
-        />
+        <AddAssignmentPopup onClose={() => setShowAddAssignmentPopup(false)} />
       )}
 
       {showAddStudentPopup && (
