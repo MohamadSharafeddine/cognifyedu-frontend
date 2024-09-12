@@ -1,18 +1,29 @@
-import React, { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useOutletContext, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchStudentsByCourse, deleteStudentFromCourse } from "../../redux/slices/studentsSlice";
 import "./Students.css";
-import defaultAvatar from "../../assets/profile.png";
 import Button from "../Button/Button";
 import DeleteConfirmationPopup from "../DeleteConfirmationPopup/DeleteConfirmationPopup";
+import defaultAvatar from "../../assets/profile.png";
 
 const Students = () => {
-  const { searchTerm, studentsData, setStudentsData } = useOutletContext();
+  const { searchTerm } = useOutletContext();
+  const { courseId } = useParams();
+  const dispatch = useDispatch();
+  const { students, loading, error } = useSelector((state) => state.students);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
-  const filteredStudents = studentsData.filter((student) => {
-    const studentName = student.name ? student.name.toLowerCase() : "";
-    return studentName.includes(searchTerm.toLowerCase());
+  useEffect(() => {
+    if (courseId) {
+      dispatch(fetchStudentsByCourse(courseId));
+    }
+  }, [dispatch, courseId]);
+
+  const filteredStudents = students.filter((student) => {
+    const studentName = student?.name ? student.name.toLowerCase() : "";
+    return searchTerm ? studentName.includes(searchTerm.toLowerCase()) : true;
   });
 
   const handleDeleteClick = (student) => {
@@ -21,53 +32,54 @@ const Students = () => {
   };
 
   const confirmDelete = () => {
-    setStudentsData((prevStudents) =>
-      prevStudents.filter((student) => student.id !== selectedStudent.id)
-    );
+    dispatch(deleteStudentFromCourse({ courseId, studentId: selectedStudent.id }));
     setShowDeletePopup(false);
   };
 
   return (
     <div className="students-list">
-      <table>
-        <thead>
-          <tr>
-            <th>Student</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredStudents.map((student, index) => (
-            <tr key={index} className="clickable-row">
-              <td>
-                <img
-                  src={student.avatar || defaultAvatar}
-                  onError={(e) => {
-                    e.target.src = defaultAvatar;
-                  }}
-                  alt="avatar"
-                  className="avatar"
-                />
-                {student.name}
-              </td>
-              <td>
-                <Button
-                  color="#e74c3c"
-                  text="Remove"
-                  size="small"
-                  onClick={() => handleDeleteClick(student)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading && <p>Loading students...</p>}
+      {error && <p>Error fetching students: {error.message}</p>}
+      {!loading && !error && (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredStudents.map((student, index) => (
+                <tr key={index}>
+                  <td>
+                    <img
+                      src={student.profile_picture || defaultAvatar}
+                      alt="avatar"
+                      className="avatar"
+                    />
+                    {student.name}
+                  </td>
+                  <td>
+                    <Button
+                      color="#e74c3c"
+                      text="Remove"
+                      size="small"
+                      onClick={() => handleDeleteClick(student)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-      {showDeletePopup && (
-        <DeleteConfirmationPopup
-          onClose={() => setShowDeletePopup(false)}
-          onDelete={confirmDelete}
-        />
+          {showDeletePopup && (
+            <DeleteConfirmationPopup
+              onClose={() => setShowDeletePopup(false)}
+              onDelete={confirmDelete}
+            />
+          )}
+        </>
       )}
     </div>
   );
