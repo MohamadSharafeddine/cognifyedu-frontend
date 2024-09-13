@@ -14,6 +14,7 @@ const TopBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Get the user data from Redux state
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -58,7 +59,9 @@ const TopBar = () => {
 
   const userEmail = user?.email || 'User Email';
   const profileImage = user?.profile_picture
-    ? `${process.env.REACT_APP_API_URL}${user?.profile_picture}`
+    ? user.profile_picture.startsWith('http')
+      ? user.profile_picture
+      : `${process.env.REACT_APP_API_URL}${user.profile_picture}`
     : defaultProfileImage;
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddAssignmentPopup.css";
 import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
@@ -78,6 +78,12 @@ const AddAssignmentPopup = ({ onClose }) => {
 
     const formattedDueDate = moment(dueDate).format("YYYY-MM-DD");
 
+    const currentDate = moment().format("YYYY-MM-DD");
+    if (moment(formattedDueDate).isBefore(currentDate)) {
+      setError("Due date cannot be in the past.");
+      return;
+    }
+
     const assignmentData = {
       title,
       description,
@@ -99,6 +105,20 @@ const AddAssignmentPopup = ({ onClose }) => {
         setError(err?.message || "Failed to add assignment.");
       });
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.classList.contains("add-assignment-modal")) {
+        onClose();
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [onClose]);
 
   return (
     <div className="add-assignment-modal">

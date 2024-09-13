@@ -1,77 +1,80 @@
 .assignments-list {
-    background-color: white;
-    border: 0.5px solid rgb(237, 237, 237);
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 530px;
-    overflow-y: auto;
-    padding: 0 40px;
-    margin: 20px 0;
+  background-color: white;
+  border: 0.5px solid rgb(237, 237, 237);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 530px;
+  overflow-y: auto;
+  padding: 0 40px;
+  margin: 20px 0;
+}
+
+.assignments-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assignments-list thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.assignments-list th, .assignments-list td {
+  padding: 15px;
+  border-left: none;
+  border-right: none;
+}
+
+.assignments-list th {
+  text-align: left;
+  background-color: white;
+  font-weight: 600;
+}
+
+.assignments-list tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.assignments-list tbody tr {
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.1s ease;
+}
+
+.assignments-list tbody tr:hover {
+  color: #25738b;
+  transform: scale(1.01);
+}
+
+.grayed-out {
+  color: #999;
+}
+
+.grayed-out:hover {
+  color: #999;
+  transform: none;
+}
+
+.assignments-list td button {
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.assignments-list td button:active {
+  transform: scale(0.99);
+}
+
+@media (max-width: 768px) {
+  .assignments-list {
+    padding: 10px;
   }
-  
-  .assignments-list table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .assignments-list thead {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 1;
-  }
-  
+
   .assignments-list th, .assignments-list td {
-    padding: 15px;
-    border-left: none;
-    border-right: none;
+    padding: 10px;
   }
-  
-  .assignments-list th {
-    text-align: left;
-    background-color: white;
-    font-weight: 600;
-  }
-  
-  .assignments-list tr {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .assignments-list tbody tr {
-    cursor: pointer;
-    transition: color 0.3s ease, transform 0.1s ease;
-  }
-  
-  .assignments-list tbody tr:hover {
-    color: #25738b;
-    transform: scale(1.01);
-  }
-  
-  .assignments-list tbody tr:active {
-    color: #25738b;
-    transform: scale(1.01);
-  }
-  
-  .assignments-list td button {
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 8px;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .assignments-list td button:active {
-    transform: scale(0.99);
-  }
-  
-  @media (max-width: 768px) {
-    .assignments-list {
-      padding: 10px;
-    }
-  
-    .assignments-list th, .assignments-list td {
-      padding: 10px;
-    }
-  }
-  
+}

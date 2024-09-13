@@ -44,7 +44,16 @@ const Assignments = () => {
 
   const handleRowClick = (assignment) => {
     setSelectedAssignment(assignment);
+    const currentDate = moment().format("YYYY-MM-DD");
+    if (user?.type === "student" && moment(assignment.due_date).isBefore(currentDate)) {
+      alert("You cannot submit assignments past the due date.");
+      return;
+    }
     setShowPopup(true);
+  };
+
+  const isPastDue = (dueDate) => {
+    return moment(dueDate).isBefore(moment());
   };
 
   return (
@@ -63,6 +72,7 @@ const Assignments = () => {
               key={index}
               onClick={() => handleRowClick(assignment)}
               className="assignment-row"
+              style={{ color: isPastDue(assignment.due_date) ? "#aaa" : "#000" }}
             >
               <td>{assignment.title}</td>
               <td>{moment(assignment.due_date).format("MMMM Do YYYY")}</td>

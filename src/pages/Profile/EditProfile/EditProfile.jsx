@@ -24,14 +24,18 @@ const EditProfile = () => {
 
   useEffect(() => {
     if (user?.profile_picture) {
-      const fullImageUrl = `${process.env.REACT_APP_API_URL}${user?.profile_picture}`;
+      const fullImageUrl = user.profile_picture.startsWith('http')
+        ? user.profile_picture
+        : `${process.env.REACT_APP_API_URL}${user.profile_picture}`;
       setProfileImage(fullImageUrl || defaultProfileImage);
     }
   }, [user?.profile_picture]);
 
   useEffect(() => {
     if (updateSuccess && user?.profile_picture) {
-      const fullImageUrl = `${process.env.REACT_APP_API_URL}${user?.profile_picture}`;
+      const fullImageUrl = user.profile_picture.startsWith('http')
+        ? user.profile_picture
+        : `${process.env.REACT_APP_API_URL}${user.profile_picture}`;
       setProfileImage(fullImageUrl || defaultProfileImage);
       alert('Profile updated successfully!');
     }
@@ -56,16 +60,27 @@ const EditProfile = () => {
 
   const handleSave = () => {
     const data = new FormData();
-    data.append('name', formData.fullName);
-    data.append('email', formData.email);
+
+    if (formData.fullName) {
+      data.append('name', formData.fullName);
+    }
+    if (formData.email) {
+      data.append('email', formData.email);
+    }
     if (formData.password) {
       data.append('password', formData.password);
     }
-    data.append('date_of_birth', formData.dateOfBirth);
-    data.append('address', formData.address);
-    if (formData.profile_picture) {
+    if (formData.dateOfBirth) {
+      data.append('date_of_birth', formData.dateOfBirth);
+    }
+    if (formData.address) {
+      data.append('address', formData.address);
+    }
+    if (formData.profile_picture instanceof File) {
       data.append('profile_picture', formData.profile_picture);
     }
+
+    console.log('FormData being submitted:', [...data.entries()]);
     dispatch(updateUserProfile(data));
   };
 
