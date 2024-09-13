@@ -17,8 +17,8 @@ const AddStudentPopup = ({ onClose, courseId }) => {
 
     dispatch(addStudentToCourse({ courseId, email }))
       .unwrap()
-      .then(() => {
-        onClose(); 
+      .then((newStudent) => {
+        onClose(newStudent);
       })
       .catch((err) => {
         setError(err.message || 'Failed to add student');

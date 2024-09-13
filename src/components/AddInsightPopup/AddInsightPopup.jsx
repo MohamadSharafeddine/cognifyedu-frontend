@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import axios from '../../utils/axios';
 import './AddInsightPopup.css';
 import Button from '../Button/Button';
 
-const AddInsightPopup = ({ onClose }) => {
+const AddInsightPopup = ({ onClose, userId }) => {
   const [comment, setComment] = useState('');
   const [showHelp, setShowHelp] = useState(false);
 
-  const handleSubmit = () => {
-    console.log('Comment Submitted:', comment);
-    onClose();
+  const handleSubmit = async () => {
+    try {
+      await axios.post(`/profile-comments`, {
+        student_id: userId,
+        comment: comment,
+      });
+      console.log('Comment Submitted:', comment);
+      onClose();
+    } catch (error) {
+      console.error('Error submitting comment:', error);
+    }
   };
 
   return (
