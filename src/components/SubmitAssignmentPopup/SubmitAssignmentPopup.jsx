@@ -22,7 +22,7 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
         const mySubmission = submissions.find((sub) => sub.assignment_id === assignment.id);
         if (mySubmission) {
           setExistingSubmission(mySubmission);
-          setDeliverable(mySubmission.deliverable); // Pre-load the deliverable
+          setDeliverable(mySubmission.deliverable);
         }
       });
   }, [dispatch, assignment.id]);

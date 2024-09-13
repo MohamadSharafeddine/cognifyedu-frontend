@@ -2,15 +2,16 @@ import React from "react";
 import "./ProfileSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartLine, faUser, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import Logo from "../../assets/logo-bar.png";
 
 const ProfileSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { userId } = useParams();
 
   const handleMenuSelect = (path) => {
-    navigate(`/profile/${path}`);
+    navigate(`/profile/${userId}/${path}`);
   };
 
   return (
@@ -25,7 +26,7 @@ const ProfileSidebar = () => {
         <li>
           <button
             className={
-              location.pathname.includes("/profile/analysis") ? "active" : ""
+              location.pathname.includes("/analysis") ? "active" : ""
             }
             onClick={() => handleMenuSelect("analysis/cognitive")}
           >
@@ -38,7 +39,7 @@ const ProfileSidebar = () => {
         <li>
           <button
             className={
-              location.pathname.includes("/profile/insights") ? "active" : ""
+              location.pathname.includes("/insights") ? "active" : ""
             }
             onClick={() => handleMenuSelect("insights")}
           >
@@ -51,7 +52,7 @@ const ProfileSidebar = () => {
         <li>
           <button
             className={
-              location.pathname.includes("/profile/edit") ? "active" : ""
+              location.pathname.includes("/edit") ? "active" : ""
             }
             onClick={() => handleMenuSelect("edit")}
           >
