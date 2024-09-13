@@ -5,6 +5,7 @@ import uiReducer from "./slices/uiSlice";
 import authReducer from "./slices/authSlice";
 import assignmentsReducer from "./slices/assignmentsSlice";
 import submissionsReducer from "./slices/submissionsSlice";
+import profileReducer from "./slices/profileSlice";
 
 const rootReducer = combineReducers({
   courses: coursesReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   assignments: assignmentsReducer,
   submissions: submissionsReducer,
+  profile: profileReducer
 });
 
 export default rootReducer;
