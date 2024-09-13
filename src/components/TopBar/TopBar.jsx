@@ -14,7 +14,6 @@ const TopBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Get the user data from Redux state
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -48,7 +47,7 @@ const TopBar = () => {
   };
 
   const handleProfileClick = () => {
-    navigate('/profile');
+    navigate(`/profile/${user.id}/analysis/cognitive`);
     setDropdownOpen(false);
   };
 
