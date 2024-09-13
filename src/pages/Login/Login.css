@@ -28,15 +28,17 @@
 .login-form-container {
   flex: 1;
   background-color: white;
-  padding: 40px;
+  padding: 50px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
 }
 
 h2 {
   margin-bottom: 20px;
   font-size: 28px;
   font-weight: bold;
+  text-align: center;
 }
 
 .form-group {
@@ -68,9 +70,30 @@ h2 {
   cursor: pointer;
 }
 
+.remember-me-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.remember-me-container input {
+  margin: 0;
+  cursor: pointer;
+}
+
+.remember-me-container label {
+  color: #333;
+  cursor: pointer;
+}
+
 .form-actions {
-  margin-top: 20px;
   text-align: center;
+  margin-top: 30px;
+}
+
+.form-actions Button {
+  width: 100%;
 }
 
 .register-link {
@@ -88,6 +111,12 @@ h2 {
   text-decoration: underline;
 }
 
+.error-message {
+  color: red;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
@@ -101,5 +130,6 @@ h2 {
 
   .login-form-container {
     padding: 20px;
+    width: 100%;
   }
 }

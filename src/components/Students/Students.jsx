@@ -36,6 +36,12 @@ const Students = () => {
     setShowDeletePopup(false);
   };
 
+  const getProfileImageUrl = (student) => {
+    return student.profile_picture
+      ? `${process.env.REACT_APP_API_URL}${student.profile_picture}`
+      : defaultAvatar;
+  };
+
   return (
     <div className="students-list">
       {loading && <p>Loading students...</p>}
@@ -54,7 +60,7 @@ const Students = () => {
                 <tr key={index}>
                   <td>
                     <img
-                      src={student.profile_picture || defaultAvatar}
+                      src={getProfileImageUrl(student)}
                       alt="avatar"
                       className="avatar"
                     />

@@ -11,17 +11,34 @@ import logoTitle from '../../assets/logo-title.png';
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
   
   const { token, user, error, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(token, user);
+    const rememberedUser = localStorage.getItem('rememberedUser');
+    if (rememberedUser) {
+      const userData = JSON.parse(rememberedUser);
+      setFormData({
+        email: userData.email,
+        password: userData.password,
+      });
+      setRememberMe(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (token && user?.type) {
+      if (rememberMe) {
+        localStorage.setItem('rememberedUser', JSON.stringify(formData));
+      } else {
+        localStorage.removeItem('rememberedUser');
+      }
       navigate(`/dashboard/${user.type}`);
     }
-  }, [token, user, navigate]);
+  }, [token, user, rememberMe, navigate, formData]);
 
   const handleChange = (e) => {
     setFormData({
@@ -36,6 +53,10 @@ const Login = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleRememberMeChange = () => {
+    setRememberMe(!rememberMe);
   };
 
   return (
@@ -75,8 +96,22 @@ const Login = () => {
             />
           </div>
         </div>
+        <div className="remember-me-container">
+          <input
+            type="checkbox"
+            id="rememberMe"
+            checked={rememberMe}
+            onChange={handleRememberMeChange}
+          />
+          <label htmlFor="rememberMe">Remember Me</label>
+        </div>
         <div className="form-actions">
-          <Button text={loading ? 'Logging in...' : 'Login'} onClick={handleLogin} color="#25738b" size="medium" />
+          <Button
+            text={loading ? 'Logging in...' : 'Login'}
+            onClick={handleLogin}
+            color="#25738b"
+            size="medium"
+          />
         </div>
         <p className="register-link">
           Don't have an account? <Link to="/register">Register</Link>

@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './TopBar.css';
-import userProfile from '../../assets/profile.png';
+import defaultProfileImage from '../../assets/profile.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'; 
 import { logout } from '../../redux/slices/authSlice';
 
 const TopBar = () => {
@@ -13,6 +13,8 @@ const TopBar = () => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -54,6 +56,11 @@ const TopBar = () => {
     navigate('/login');
   };
 
+  const userEmail = user?.email || 'User Email';
+  const profileImage = user?.profile_picture
+    ? `${process.env.REACT_APP_API_URL}${user?.profile_picture}`
+    : defaultProfileImage;
+
   return (
     <div className="topbar">
       <div
@@ -63,8 +70,8 @@ const TopBar = () => {
         onClick={handleClick}
         ref={containerRef}
       >
-        <span className="user-email">johndoe@school.com</span>
-        <img src={userProfile} alt="User Profile" className="profile-img" />
+        <span className="user-email">{userEmail}</span>
+        <img src={profileImage} alt="User Profile" className="profile-img" />
         <FontAwesomeIcon icon={faCaretDown} className="dropdown-icon" />
 
         {isDropdownOpen && (

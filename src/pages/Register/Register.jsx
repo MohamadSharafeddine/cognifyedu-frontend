@@ -13,8 +13,10 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
+    confirmPassword: '',
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
   const dispatch = useDispatch();
   const { token, error, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -32,6 +34,26 @@ const Register = () => {
     });
   };
 
+  const handleRegister = () => {
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match'); 
+      return;
+    }
+    const newUser = {
+      ...formData,
+      type: determineUserTypeByEmail(formData.email),
+    };
+    dispatch(registerUser(newUser));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   const determineUserTypeByEmail = (email) => {
     if (email.endsWith('@school.com')) {
       return 'teacher';
@@ -42,19 +64,6 @@ const Register = () => {
     } else {
       return 'student';
     }
-  };
-
-  const handleRegister = () => {
-    const userType = determineUserTypeByEmail(formData.email);
-    const newUser = {
-      ...formData,
-      type: userType,
-    };
-    dispatch(registerUser(newUser));
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
   };
 
   return (
@@ -100,6 +109,24 @@ const Register = () => {
               icon={showPassword ? faEyeSlash : faEye}
               className="password-icon"
               onClick={togglePasswordVisibility}
+              style={{ color: '#25738b' }}
+            />
+          </div>
+        </div>
+        <div className="form-group password-group">
+          <label>Confirm Password</label>
+          <div className="password-wrapper">
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              name="confirmPassword"
+              placeholder="Confirm your Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            <FontAwesomeIcon
+              icon={showConfirmPassword ? faEyeSlash : faEye}
+              className="password-icon"
+              onClick={toggleConfirmPasswordVisibility}
               style={{ color: '#25738b' }}
             />
           </div>

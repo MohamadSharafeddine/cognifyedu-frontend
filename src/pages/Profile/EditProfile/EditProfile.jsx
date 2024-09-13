@@ -1,21 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './EditProfile.css';
 import Button from '../../../components/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import userProfile from '../../../assets/profile.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserProfile } from '../../../redux/slices/authSlice';
+import defaultProfileImage from '../../../assets/profile.png';
 
 const EditProfile = () => {
+  const dispatch = useDispatch();
+  const { user, updateSuccess } = useSelector((state) => state.auth);
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: 'John Doe',
-    email: 'johndoe@gmail.com',
-    password: '********',
-    dateOfBirth: '2000-01-01',
-    address: 'Beirut, Lebanon',
+    fullName: user?.name || '',
+    email: user?.email || '',
+    password: '',
+    dateOfBirth: user?.date_of_birth || '',
+    address: user?.address || '',
   });
 
-  const [profileImage, setProfileImage] = useState(userProfile);
+  const [profileImage, setProfileImage] = useState(defaultProfileImage);
+
+  useEffect(() => {
+    if (user?.profile_picture) {
+      const fullImageUrl = `${process.env.REACT_APP_API_URL}${user?.profile_picture}`;
+      setProfileImage(fullImageUrl || defaultProfileImage);
+    }
+  }, [user?.profile_picture]);
+
+  useEffect(() => {
+    if (updateSuccess && user?.profile_picture) {
+      const fullImageUrl = `${process.env.REACT_APP_API_URL}${user?.profile_picture}`;
+      setProfileImage(fullImageUrl || defaultProfileImage);
+      alert('Profile updated successfully!');
+    }
+  }, [updateSuccess, user?.profile_picture]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,11 +50,23 @@ const EditProfile = () => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
+      setFormData({ ...formData, profile_picture: file });
     }
   };
 
   const handleSave = () => {
-    console.log('Profile Data Saved:', formData);
+    const data = new FormData();
+    data.append('name', formData.fullName);
+    data.append('email', formData.email);
+    if (formData.password) {
+      data.append('password', formData.password);
+    }
+    data.append('date_of_birth', formData.dateOfBirth);
+    data.append('address', formData.address);
+    if (formData.profile_picture) {
+      data.append('profile_picture', formData.profile_picture);
+    }
+    dispatch(updateUserProfile(data));
   };
 
   return (
