@@ -52,7 +52,7 @@ const studentsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchStudentsByCourse.fulfilled, (state, action) => {
-        state.students = action.payload;
+        state.students = [...action.payload];
         state.loading = false;
       })
       .addCase(fetchStudentsByCourse.rejected, (state, action) => {
@@ -60,11 +60,12 @@ const studentsSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(addStudentToCourse.fulfilled, (state, action) => {
-        state.students.push(action.payload);
+        state.students = [...state.students, action.payload];
       })
       .addCase(deleteStudentFromCourse.fulfilled, (state, action) => {
+        const studentIdToRemove = action.payload;
         state.students = state.students.filter(
-          (student) => student.id !== action.payload
+          (student) => student.id !== studentIdToRemove
         );
       });
   },

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudentsByCourse, deleteStudentFromCourse } from "../../redux/slices/studentsSlice";
 import "./Students.css";
@@ -11,6 +11,7 @@ const Students = () => {
   const { searchTerm } = useOutletContext();
   const { courseId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { students, loading, error } = useSelector((state) => state.students);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -42,6 +43,10 @@ const Students = () => {
       : defaultAvatar;
   };
 
+  const handleStudentClick = (studentId) => {
+    navigate(`/profile/${studentId}/analysis/cognitive`);
+  };
+
   return (
     <div className="students-list">
       {loading && <p>Loading students...</p>}
@@ -58,7 +63,7 @@ const Students = () => {
             <tbody>
               {filteredStudents.map((student, index) => (
                 <tr key={index}>
-                  <td>
+                  <td onClick={() => handleStudentClick(student.id)}>
                     <img
                       src={getProfileImageUrl(student)}
                       alt="avatar"
