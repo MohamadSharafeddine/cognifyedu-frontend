@@ -24,15 +24,25 @@ export const addAssignment = createAsyncThunk(
       formData.append("description", assignmentData.description);
       formData.append("due_date", assignmentData.due_date);
       formData.append("course_id", assignmentData.course_id);
+
       if (assignmentData.attachment) {
+        console.log("Attachment being sent:", assignmentData.attachment.name);
         formData.append("attachment", assignmentData.attachment);
       }
 
-      const response = await api.post(`/assignments`, formData);
+      formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+      });
+
+      const response = await api.post(`/assignments`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       console.log("Added Assignment:", response.data);
       return response.data;
     } catch (error) {
-      console.error("Error adding assignment:", error.response.data);
+      console.error("Error adding assignment:", error.response?.data);
       return rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -47,15 +57,25 @@ export const updateAssignment = createAsyncThunk(
       formData.append("description", assignmentData.description);
       formData.append("due_date", assignmentData.due_date);
       formData.append("course_id", assignmentData.course_id);
+
       if (assignmentData.attachment) {
+        console.log("Attachment being updated:", assignmentData.attachment.name);
         formData.append("attachment", assignmentData.attachment);
       }
 
-      const response = await api.post(`/assignments/${assignmentData.id}`, formData);
+      formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
+      });
+
+      const response = await api.post(`/assignments/${assignmentData.id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       console.log("Updated Assignment:", response.data);
       return response.data;
     } catch (error) {
-      console.error("Error updating assignment:", error.response.data);
+      console.error("Error updating assignment:", error.response?.data);
       return rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -97,8 +117,21 @@ const assignmentsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(addAssignment.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(addAssignment.fulfilled, (state, action) => {
         state.assignments.push(action.payload);
+        state.loading = false;
+      })
+      .addCase(addAssignment.rejected, (state, action) => {
+        console.error("Failed to add assignment:", action.payload);
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateAssignment.pending, (state) => {
+        state.loading = true;
       })
       .addCase(updateAssignment.fulfilled, (state, action) => {
         const updatedAssignmentIndex = state.assignments.findIndex(
@@ -107,6 +140,12 @@ const assignmentsSlice = createSlice({
         if (updatedAssignmentIndex !== -1) {
           state.assignments[updatedAssignmentIndex] = action.payload;
         }
+        state.loading = false;
+      })
+      .addCase(updateAssignment.rejected, (state, action) => {
+        console.error("Failed to update assignment:", action.payload);
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(deleteAssignment.fulfilled, (state, action) => {
         state.assignments = state.assignments.filter(
