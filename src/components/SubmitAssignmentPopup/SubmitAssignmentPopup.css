@@ -1,0 +1,151 @@
+.submit-assignment-popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.submit-assignment-popup {
+  background-color: white;
+  border-radius: 8px;
+  padding: 40px;
+  width: 800px;
+  max-width: 100%;
+  position: relative;
+  z-index: 1001;
+}
+
+.submit-assignment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.submit-assignment-title {
+  flex: 1;
+}
+
+.submit-assignment-title h2 {
+  font-size: 28px;
+  text-align: left;
+}
+
+.submit-assignment-title h3 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.submit-assignment-title p {
+  margin: 10px 0;
+  font-size: 16px;
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+.submit-assignment-attachment.centered-attachment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  background-color: #f9f9f9;
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  text-align: center;
+  margin: auto;
+}
+
+.submit-assignment-attachment h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.submit-assignment-attachment img {
+  width: 50px;
+  height: 50px;
+}
+
+.no-attachment {
+  font-size: 14px;
+  color: #999;
+}
+
+.divider {
+  height: 2px;
+  background-color: #f1f1f1;
+  margin: 20px 0;
+}
+
+.my-work {
+  text-align: left;
+}
+
+.my-work h3 {
+  font-size: 18px;
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 20px 0;
+  border: 2px dashed #25738b;
+  padding: 40px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+
+}
+
+.file-upload.dragging {
+  background-color: #e0f7fa;
+}
+
+.upload-label {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid #25738b;
+}
+
+.upload-icon {
+  font-size: 48px;
+  color: #999;
+}
+
+.file-present .upload-label {
+  background-color: #e0f7fa;
+}
+
+.file-empty .upload-label {
+  background-color: #f1f1f1;
+}
+
+.file-name {
+  font-size: 14px;
+  color: #25738b;
+}
+
+.error-message {
+  color: red;
+  margin: 10px 0;
+}
+
+button {
+  float: right;
+}
