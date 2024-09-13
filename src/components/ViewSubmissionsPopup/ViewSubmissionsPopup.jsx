@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './ViewSubmissionsPopup.css';
 import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchSubmissionsByAssignment, gradeSubmission } from '../../redux/slices/submissionsSlice';
 
-// import { fetchSubmissions } from '../../actions/submissionsActions';
+const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
+  const dispatch = useDispatch();
 
-const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
-
-  // const dispatch = useDispatch();
+  const { submissions, loading, error } = useSelector((state) => state.submissions);
 
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [comment, setComment] = useState('');
@@ -15,21 +15,10 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
   const [validationError, setValidationError] = useState('');
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
-  const sampleSubmissions = [
-    { studentName: 'John Doe', status: 'Submitted', file: 'john-file.pdf' },
-    { studentName: 'Jane Doe', status: 'Submitted', file: 'jane-file.pdf' },
-    { studentName: 'Sam Smith', status: 'Not Submitted', file: '' },
-    { studentName: 'Alice Johnson', status: 'Submitted', file: 'alice-file.pdf' },
-    { studentName: 'Michael Brown', status: 'Submitted', file: 'michael-file.pdf' },
-  ];
-
   useEffect(() => {
-
-    // dispatch(fetchSubmissions(assignmentTitle));
-
-    setSelectedSubmission(sampleSubmissions[0]);
-    setComment('');
-    setMark('');
+    if (assignmentId) {
+      dispatch(fetchSubmissionsByAssignment(assignmentId));
+    }
 
     const handleClickOutside = (event) => {
       if (event.target.className === 'modal-backdrop') {
@@ -37,18 +26,16 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
       }
     };
     window.addEventListener('click', handleClickOutside);
+
     return () => {
       window.removeEventListener('click', handleClickOutside);
     };
-  }, [onClose]);
+  }, [dispatch, assignmentId, onClose]);
 
   const handleSubmissionClick = (submission) => {
     setSelectedSubmission(submission);
-    setComment('');
-    setMark('');
-
-    // dispatch(fetchSubmissionDetails(submission.studentName));
-
+    setComment(submission.teacher_comment || '');
+    setMark(submission.mark || '');
   };
 
   const handleReturnClick = () => {
@@ -61,7 +48,28 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
       return;
     } else {
       setValidationError('');
-      setFeedbackMessage(`Returned submission for ${selectedSubmission.studentName} with mark ${mark}/100`);
+
+      dispatch(gradeSubmission({
+        submissionId: selectedSubmission.id,
+        gradeData: {
+          mark: markValue,
+          teacher_comment: comment,
+        },
+      }))
+        .unwrap()
+        .then(() => {
+          setFeedbackMessage(`Returned submission for ${selectedSubmission.student.name} with mark ${mark}/100`);
+
+          const updatedSubmission = {
+            ...selectedSubmission,
+            mark: markValue,
+            teacher_comment: comment,
+          };
+          setSelectedSubmission(updatedSubmission);
+        })
+        .catch(() => {
+          setValidationError('Failed to return the submission.');
+        });
     }
   };
 
@@ -71,9 +79,15 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
     setFeedbackMessage('');
   };
 
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+    setValidationError('');
+    setFeedbackMessage('');
+  };
+
   const handleFileClick = () => {
-    if (selectedSubmission && selectedSubmission.file) {
-      alert(`Opening submission file: ${selectedSubmission.file}`);
+    if (selectedSubmission && selectedSubmission.deliverable) {
+      window.open(selectedSubmission.deliverable, '_blank');
     } else {
       alert('No file submitted');
     }
@@ -84,37 +98,44 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
       <div className="view-submissions-popup">
         <div className="left-section">
           <h2 className="assignment-title">{assignmentTitle}</h2>
+
           <div className="submissions-table-wrapper">
-            <table className="submissions-table">
-              <thead>
-                <tr>
-                  <th>Student</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sampleSubmissions.map((submission, index) => (
-                  <tr
-                    key={index}
-                    onClick={() => handleSubmissionClick(submission)}
-                    className={selectedSubmission && selectedSubmission.studentName === submission.studentName ? 'active' : ''}
-                  >
-                    <td>{submission.studentName}</td>
-                    <td>{submission.status}</td>
+            {loading && <p>Loading submissions...</p>}
+            {error && <p>Error fetching submissions: {error}</p>}
+            {!loading && !error && (
+              <table className="submissions-table">
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {submissions.map((submission, index) => (
+                    <tr
+                      key={index}
+                      onClick={() => handleSubmissionClick(submission)}
+                      className={selectedSubmission && selectedSubmission.id === submission.id ? 'active' : ''}
+                    >
+                      <td>{submission.student.name}</td>
+                      <td>{submission.mark ? 'Graded' : 'Submitted'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
+
         <div className="right-section">
           <div className="header-right">
-            <h4>{selectedSubmission ? selectedSubmission.studentName : 'Select a submission'}</h4>
+            <h4>{selectedSubmission ? selectedSubmission.student.name : 'Select a submission'}</h4>
             <Button
               color="#25738b"
               text="Return"
               size="medium"
               onClick={handleReturnClick}
+              disabled={!selectedSubmission}
             />
           </div>
 
@@ -135,7 +156,7 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
               <label>Comment</label>
               <textarea
                 value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                onChange={handleCommentChange}
                 placeholder="Enter comment"
                 rows="3"
               />
@@ -150,6 +171,7 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle }) => {
                   placeholder="0"
                   min="0"
                   max="100"
+                  disabled={!selectedSubmission}
                 />
                 <span>/100</span>
               </div>
