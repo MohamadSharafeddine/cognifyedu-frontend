@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
@@ -46,10 +41,7 @@ function App() {
             <Route path="assignments" element={<Assignments />} />
             <Route path="students" element={<Students />} />
             <Route path="marks" element={<Marks />} />
-            <Route
-              path="assignments/:assignmentTitle"
-              element={<ViewSubmissionsPopup />}
-            />
+            <Route path="assignments/:assignmentTitle" element={<ViewSubmissionsPopup />} />
           </Route>
 
           <Route path="/profile" element={<Profile />}>
@@ -65,7 +57,7 @@ function App() {
           <Route
             path="/dashboard/teacher"
             element={
-              <ProtectedRoute role="teacher">
+              <ProtectedRoute type="teacher">  
                 <DashboardTeacher />
               </ProtectedRoute>
             }
@@ -73,7 +65,7 @@ function App() {
           <Route
             path="/dashboard/student"
             element={
-              <ProtectedRoute role="student">
+              <ProtectedRoute type="student">  
                 <DashboardStudent />
               </ProtectedRoute>
             }
@@ -81,7 +73,7 @@ function App() {
           <Route
             path="/dashboard/parent"
             element={
-              <ProtectedRoute role="parent">
+              <ProtectedRoute type="parent">  
                 <DashboardParent />
               </ProtectedRoute>
             }
@@ -89,7 +81,7 @@ function App() {
           <Route
             path="/dashboard/admin"
             element={
-              <ProtectedRoute role="admin">
+              <ProtectedRoute type="admin">  
                 <DashboardAdmin />
               </ProtectedRoute>
             }
