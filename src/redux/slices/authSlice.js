@@ -30,14 +30,15 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-
 export const updateUserProfile = createAsyncThunk(
   "auth/updateUserProfile",
   async (formData, { rejectWithValue, getState }) => {
     try {
       const userId = getState().auth.user.id;
+      const token = localStorage.getItem("token");
       const response = await api.post(`/users/${userId}`, formData, {
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         },
       });
