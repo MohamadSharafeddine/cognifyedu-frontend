@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./AddAssignmentPopup.css";
 import Button from "../Button/Button";
-import { useDropzone } from "react-dropzone";
 import { useDispatch } from "react-redux";
 import { addAssignment } from "../../redux/slices/assignmentsSlice";
 import moment from "moment";
@@ -14,17 +13,62 @@ const AddAssignmentPopup = ({ onClose }) => {
   const [dueDate, setDueDate] = useState("");
   const [attachment, setAttachment] = useState(null);
   const [error, setError] = useState("");
+  const [dragging, setDragging] = useState(false);
   const dispatch = useDispatch();
 
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: {
-      "image/*": [".jpeg", ".png", ".jpg"],
-      "text/*": [".txt"],
-    },
-    onDrop: (acceptedFiles) => {
-      setAttachment(acceptedFiles[0]);
-    },
-  });
+  const logFormData = (formData) => {
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      console.log(`Selected file: ${file.name}`);
+      console.log(`File type: ${file.type}`);
+      console.log(`File size: ${file.size}`);
+
+      if (!['text/plain', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
+        setError('Invalid file type. Please upload a txt, pdf, doc, or docx file.');
+        setAttachment(null);
+        return;
+      }
+
+      setAttachment(file);
+      setError('');
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      console.log(`Dropped file: ${file.name}`);
+      console.log(`File type: ${file.type}`);
+      console.log(`File size: ${file.size}`);
+
+      if (!['text/plain', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
+        setError('Invalid file type. Please upload a txt, pdf, doc, or docx file.');
+        setAttachment(null);
+        return;
+      }
+
+      setAttachment(file);
+      setError('');
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setDragging(false);
+  };
 
   const handleAddAssignment = () => {
     if (!title.trim() || !description.trim() || !dueDate || !courseId) {
@@ -34,21 +78,26 @@ const AddAssignmentPopup = ({ onClose }) => {
 
     const formattedDueDate = moment(dueDate).format("YYYY-MM-DD");
 
-    const newAssignment = {
-      course_id: courseId,
+    const assignmentData = {
       title,
       description,
       due_date: formattedDueDate,
+      course_id: courseId,
       attachment,
     };
 
-    dispatch(addAssignment(newAssignment))
+    console.log("Data being sent to slice:", assignmentData);
+
+    dispatch(addAssignment(assignmentData))
       .unwrap()
+      .then(() => {
+        alert("Assignment added successfully!");
+        onClose();
+      })
       .catch((err) => {
         console.error("Error adding assignment:", err);
+        setError(err?.message || "Failed to add assignment.");
       });
-
-    onClose();
   };
 
   return (
@@ -88,14 +137,25 @@ const AddAssignmentPopup = ({ onClose }) => {
 
             <div className="add-assignment-form-group">
               <label>Attach</label>
-              <div {...getRootProps({ className: "add-assignment-dropzone" })}>
-                <input {...getInputProps()} />
-                <p>
-                  {attachment
-                    ? attachment.name
-                    : "Drag and drop a file here, or click to select a file"}
-                </p>
-                <div className="add-assignment-attach-icon">📁</div>
+              <div
+                className={`file-upload ${dragging ? "dragging" : ""} ${attachment ? "file-present" : "file-empty"}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                  id="attachment-upload"
+                  style={{ display: "none" }}
+                />
+                <label htmlFor="attachment-upload" className="upload-label">
+                  {attachment ? (
+                    <span className="file-name">{attachment.name}</span>
+                  ) : (
+                    <span className="upload-icon">+</span>
+                  )}
+                </label>
               </div>
             </div>
           </div>
