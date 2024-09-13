@@ -18,14 +18,30 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
   const dispatch = useDispatch();
-  const { token, error, loading } = useSelector((state) => state.auth);
+  const { token, user, error, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) {
-      navigate('/dashboard');
+    if (token && user) {
+      const userType = user.type;
+      switch (userType) {
+        case 'teacher':
+          navigate('/dashboard/teacher');
+          break;
+        case 'student':
+          navigate('/dashboard/student');
+          break;
+        case 'parent':
+          navigate('/dashboard/parent');
+          break;
+        case 'admin':
+          navigate('/dashboard/admin');
+          break;
+        default:
+          navigate('/dashboard');
+      }
     }
-  }, [token, navigate]);
+  }, [token, user, navigate]);
 
   const handleChange = (e) => {
     setFormData({
