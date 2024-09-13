@@ -44,7 +44,7 @@ function App() {
             <Route path="assignments/:assignmentTitle" element={<ViewSubmissionsPopup />} />
           </Route>
 
-          <Route path="/profile" element={<Profile />}>
+          <Route path="/profile/:userId/*" element={<Profile />}>
             <Route index element={<Navigate to="analysis/cognitive" />} />
             <Route path="analysis" element={<Analysis />}>
               <Route path="cognitive" element={<Cognitive />} />
