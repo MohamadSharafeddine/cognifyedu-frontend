@@ -23,6 +23,8 @@ const CoursePage = () => {
     error,
   } = useSelector((state) => state.assignments || {});
 
+  const { user } = useSelector((state) => state.auth);
+
   useEffect(() => {
     if (courseId) {
       dispatch(fetchAssignmentsByCourse(courseId));
@@ -81,6 +83,7 @@ const CoursePage = () => {
             context={{
               searchTerm,
               assignments,
+              user,
             }}
           />
         )}
