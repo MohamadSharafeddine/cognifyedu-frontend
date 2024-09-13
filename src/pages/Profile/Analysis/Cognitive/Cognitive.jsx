@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -12,7 +13,7 @@ import {
   LineElement,
   PointElement,
 } from "chart.js";
-// import axios from '../utils/axios';
+import axios from "../../../../utils/axios";
 import "./Cognitive.css";
 
 ChartJS.register(
@@ -28,6 +29,20 @@ ChartJS.register(
 );
 
 const Cognitive = () => {
+  const outletContext = useOutletContext();
+  const userId = outletContext?.userId;
+
+  const [cognitiveData, setCognitiveData] = useState({
+    critical_thinking: 0,
+    logical_thinking: 0,
+    linguistic_ability: 0,
+    memory: 0,
+    attention_to_detail: 0,
+  });
+
+  const [progressDataArray, setProgressDataArray] = useState([]);
+  const [selectedParameter, setSelectedParameter] = useState("Critical Thinking");
+
   const parameters = [
     "Critical Thinking",
     "Logical Thinking",
@@ -36,37 +51,23 @@ const Cognitive = () => {
     "Attention to Detail",
   ];
 
-  const [selectedParameter, setSelectedParameter] =
-    useState("Critical Thinking");
-
-  const [cognitiveData, setCognitiveData] = useState({
-    critical_thinking: 85,
-    logical_thinking: 75,
-    linguistic_ability: 60,
-    memory: 90,
-    attention_to_detail: 70,
-  });
-  const [loading, setLoading] = useState(false);
-
-  /*
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCognitiveData = async () => {
       try {
-        const response = await axios.get('/api/cognitive-scores');
-        setCognitiveData(response.data);
-        setLoading(false);
+        if (userId) {
+          const response = await axios.get(`/cognitive-scores/${userId}/average`);
+          setCognitiveData(response.data);
+
+          const progressResponse = await axios.get(`/cognitive-scores/${userId}/progress`);
+          setProgressDataArray(progressResponse.data);
+        }
       } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
+        console.error("Error fetching cognitive data:", error);
       }
     };
-    fetchData();
-  }, []);
-  */
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+    fetchCognitiveData();
+  }, [userId]);
 
   const scores = [
     cognitiveData.critical_thinking,
@@ -75,6 +76,20 @@ const Cognitive = () => {
     cognitiveData.memory,
     cognitiveData.attention_to_detail,
   ];
+
+  const progressLabels = progressDataArray.map((_, index) => `Day ${index + 1}`);
+
+  const progressData = {
+    labels: progressLabels,
+    datasets: [
+      {
+        label: `${selectedParameter} Progress`,
+        data: progressDataArray.map((entry) => entry[selectedParameter.toLowerCase().replace(/\s/g, "_")]),
+        borderColor: "#3498db",
+        fill: false,
+      },
+    ],
+  };
 
   const scoresData = {
     labels: parameters,
@@ -105,18 +120,6 @@ const Cognitive = () => {
           "#f1c40f",
           "#9b59b6",
         ],
-      },
-    ],
-  };
-
-  const progressData = {
-    labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
-    datasets: [
-      {
-        label: `${selectedParameter} Progress`,
-        data: [20, 45, 50, 60, 75, 65, 85],
-        borderColor: "#3498db",
-        fill: false,
       },
     ],
   };
@@ -191,7 +194,7 @@ const Cognitive = () => {
   };
 
   return (
-    <div className="behavioral-analysis">
+    <div className="cognitive-analysis">
       <div className="charts-container">
         <div className="chart-section chart-container">
           <h3>Scores</h3>
