@@ -82,18 +82,20 @@ const Assignments = () => {
                     e.stopPropagation();
                   }}
                 >
-                  <Button
-                    color="#25738b"
-                    text="Edit"
-                    size="small"
-                    onClick={() => handleEditClick(assignment)}
-                  />
-                  <Button
-                    color="#e74c3c"
-                    text="Remove"
-                    size="small"
-                    onClick={() => handleDeleteClick(assignment)}
-                  />
+                  <div className="button-group">
+                    <Button
+                      color="#25738b"
+                      text="Edit"
+                      size="small"
+                      onClick={() => handleEditClick(assignment)}
+                    />
+                    <Button
+                      color="#e74c3c"
+                      text="Remove"
+                      size="small"
+                      onClick={() => handleDeleteClick(assignment)}
+                    />
+                  </div>
                 </td>
               )}
             </tr>
