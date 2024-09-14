@@ -25,20 +25,30 @@ const AddAssignmentPopup = ({ onClose }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      console.log(`Selected file: ${file.name}`);
-      console.log(`File type: ${file.type}`);
-      console.log(`File size: ${file.size}`);
+        console.log(`Selected file: ${file.name}`);
+        console.log(`File type: ${file.type}`);
+        console.log(`File size: ${file.size}`);
 
-      if (!['text/plain', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
-        setError('Invalid file type. Please upload a txt, pdf, doc, or docx file.');
-        setAttachment(null);
-        return;
-      }
+        if (![
+            'text/plain',
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'image/jpeg',
+            'image/png',
+            'image/jpg',
+            'image/gif'
+        ].includes(file.type)) {
+            setError('Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file.');
+            setAttachment(null);
+            return;
+        }
 
-      setAttachment(file);
-      setError('');
+        setAttachment(file);
+        setError('');
     }
-  };
+};
+
 
   const handleDrop = (e) => {
     e.preventDefault();

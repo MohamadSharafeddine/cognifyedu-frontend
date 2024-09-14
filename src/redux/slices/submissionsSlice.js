@@ -5,13 +5,17 @@ export const fetchSubmissionsByAssignment = createAsyncThunk(
   'submissions/fetchByAssignment',
   async (assignmentId, { rejectWithValue }) => {
     try {
+      console.log(`Fetching submissions for assignment ID: ${assignmentId}`);
       const response = await api.get(`/submissions/assignment/${assignmentId}`);
+      console.log('Fetched submissions:', response.data);
       return response.data;
     } catch (error) {
+      console.error('Error fetching submissions:', error);
       return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
+
 
 export const gradeSubmission = createAsyncThunk(
   'submissions/grade',

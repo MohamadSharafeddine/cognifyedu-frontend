@@ -3,6 +3,7 @@ import './ViewSubmissionsPopup.css';
 import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSubmissionsByAssignment, gradeSubmission } from '../../redux/slices/submissionsSlice';
+import axios from '../../utils/axios';
 
 const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
   const dispatch = useDispatch();
@@ -85,10 +86,41 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
     setFeedbackMessage('');
   };
 
-  const handleFileClick = () => {
-    if (selectedSubmission && selectedSubmission.deliverable) {
-      window.open(selectedSubmission.deliverable, '_blank');
+  const handleFileClick = async () => {
+    if (selectedSubmission && selectedSubmission.id) {
+      try {
+        const token = localStorage.getItem('token');
+        const submissionId = selectedSubmission.id;
+        console.log('Attempting to download submission file:', submissionId);
+  
+        const response = await axios.get(`http://127.0.0.1:8000/api/submissions/${submissionId}/download`, {
+          responseType: 'blob',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        console.log('Download response:', response);
+  
+        if (response.status === 200) {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          const fileName = selectedSubmission.deliverable.split('/').pop();
+          link.href = url;
+          link.setAttribute('download', fileName);
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        } else {
+          console.error('Failed to download the file:', response.status);
+          alert('Failed to download the file.');
+        }
+      } catch (error) {
+        console.error('Error downloading the file:', error);
+        alert('Error downloading the file.');
+      }
     } else {
+      console.error('No file submitted or deliverable URL is invalid.');
       alert('No file submitted');
     }
   };
