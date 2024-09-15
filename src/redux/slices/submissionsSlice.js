@@ -17,11 +17,11 @@ export const fetchSubmissionsByAssignment = createAsyncThunk(
 );
 
 
-export const gradeSubmission = createAsyncThunk(
-  'submissions/grade',
-  async ({ submissionId, gradeData }, { rejectWithValue }) => {
+export const markSubmission = createAsyncThunk(
+  'submissions/mark',
+  async ({ submissionId, markData }, { rejectWithValue }) => {
     try {
-      const response = await api.post(`/submissions/${submissionId}/grade`, gradeData);
+      const response = await api.post(`/submissions/${submissionId}/mark`, markData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -90,10 +90,10 @@ const submissionsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(gradeSubmission.pending, (state) => {
+      .addCase(markSubmission.pending, (state) => {
         state.loading = true;
       })
-      .addCase(gradeSubmission.fulfilled, (state, action) => {
+      .addCase(markSubmission.fulfilled, (state, action) => {
         const updatedSubmissionIndex = state.submissions.findIndex(
           (submission) => submission.id === action.payload.id
         );
@@ -102,7 +102,7 @@ const submissionsSlice = createSlice({
         }
         state.loading = false;
       })
-      .addCase(gradeSubmission.rejected, (state, action) => {
+      .addCase(markSubmission.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
