@@ -7,7 +7,7 @@ import TabBar from "../../../components/TabBar/TabBar";
 import AddInsightPopup from "../../../components/AddInsightPopup/AddInsightPopup";
 
 const Insights = () => {
-  const { userId } = useOutletContext();
+  const { userId, teacherId } = useOutletContext();
   const [activeTab, setActiveTab] = useState("Summary");
   const [showPopup, setShowPopup] = useState(false);
   const [insightData, setInsightData] = useState({});
@@ -64,7 +64,7 @@ const Insights = () => {
 
       <div className="insights-content">{renderContent()}</div>
 
-      {showPopup && <AddInsightPopup onClose={togglePopup} />}
+      {showPopup && <AddInsightPopup onClose={togglePopup} userId={userId} teacherId={teacherId} />}
     </div>
   );
 };

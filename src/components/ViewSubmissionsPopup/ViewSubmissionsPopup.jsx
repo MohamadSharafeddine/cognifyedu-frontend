@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './ViewSubmissionsPopup.css';
 import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSubmissionsByAssignment, gradeSubmission } from '../../redux/slices/submissionsSlice';
+import { fetchSubmissionsByAssignment, markSubmission } from '../../redux/slices/submissionsSlice';
 import axios from '../../utils/axios';
 
 const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
@@ -50,9 +50,9 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
     } else {
       setValidationError('');
 
-      dispatch(gradeSubmission({
+      dispatch(markSubmission({
         submissionId: selectedSubmission.id,
-        gradeData: {
+        markData: {
           mark: markValue,
           teacher_comment: comment,
         },
@@ -150,7 +150,7 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
                       className={selectedSubmission && selectedSubmission.id === submission.id ? 'active' : ''}
                     >
                       <td>{submission.student.name}</td>
-                      <td>{submission.mark ? 'Graded' : 'Submitted'}</td>
+                      <td>{submission.mark ? 'Marked' : 'Submitted'}</td>
                     </tr>
                   ))}
                 </tbody>

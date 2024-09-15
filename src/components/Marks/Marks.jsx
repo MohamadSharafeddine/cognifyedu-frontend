@@ -49,11 +49,11 @@ const Marks = () => {
         <thead>
           <tr>
             <th>Student</th>
-            <th>Grade 1</th>
-            <th>Grade 2</th>
-            <th>Grade 3</th>
-            <th>Grade 4</th>
-            <th>Grade 5</th>
+            <th>mark 1</th>
+            <th>mark 2</th>
+            <th>mark 3</th>
+            <th>mark 4</th>
+            <th>mark 5</th>
           </tr>
         </thead>
         <tbody>
@@ -70,8 +70,8 @@ const Marks = () => {
                 />
                 {student.name}
               </td>
-              {student.Marks.map((grade, i) => (
-                <td key={i}>{grade}</td>
+              {student.Marks.map((mark, i) => (
+                <td key={i}>{mark}</td>
               ))}
             </tr>
           ))}
