@@ -7,7 +7,6 @@ import axios from '../../utils/axios';
 
 const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
   const dispatch = useDispatch();
-
   const { submissions, loading, error } = useSelector((state) => state.submissions);
 
   const [selectedSubmission, setSelectedSubmission] = useState(null);
@@ -18,7 +17,14 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
 
   useEffect(() => {
     if (assignmentId) {
-      dispatch(fetchSubmissionsByAssignment(assignmentId));
+      dispatch(fetchSubmissionsByAssignment(assignmentId)).then((action) => {
+        if (action.payload && action.payload.length > 0) {
+          const firstSubmission = action.payload[0];
+          setSelectedSubmission(firstSubmission);
+          setComment(firstSubmission.teacher_comment || '');
+          setMark(firstSubmission.mark || '');
+        }
+      });
     }
 
     const handleClickOutside = (event) => {
