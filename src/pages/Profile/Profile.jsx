@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from '../../utils/axios';
 import Button from "../../components/Button/Button";
@@ -7,6 +7,7 @@ import AddInsightPopup from "../../components/AddInsightPopup/AddInsightPopup";
 
 const Profile = () => {
   const { userId } = useParams();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const [profileUser, setProfileUser] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -16,16 +17,21 @@ const Profile = () => {
       try {
         const response = await axios.get(`/users/${userId}`);
         setProfileUser(response.data);
+        
+        if (user.id === parseInt(userId, 10) && response.data.type !== "student") {
+          navigate(`/profile/${userId}/edit`);
+        }
       } catch (error) {
         console.error('Error fetching user:', error);
       }
     };
     fetchUser();
-  }, [userId]);
+  }, [userId, navigate, user.id]);
 
   const togglePopup = () => setShowPopup(!showPopup);
 
   const isTeacherProfile = profileUser?.type === "teacher";
+
   return (
     <div>
       {profileUser ? (
