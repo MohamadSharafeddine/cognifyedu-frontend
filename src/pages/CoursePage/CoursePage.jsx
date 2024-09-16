@@ -7,8 +7,8 @@ import AddStudentPopup from "../../components/AddStudentPopup/AddStudentPopup";
 import TabBar from "../../components/TabBar/TabBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAssignmentsByCourse } from "../../redux/slices/assignmentsSlice";
-import { fetchMarks } from "../../redux/slices/marksSlice"; // Import fetchMarks
-import { fetchStudentsByCourse } from "../../redux/slices/studentsSlice"; // Import fetchStudentsByCourse
+import { fetchMarks } from "../../redux/slices/marksSlice";
+import { fetchStudentsByCourse } from "../../redux/slices/studentsSlice";
 
 const CoursePage = () => {
   const { courseId } = useParams();
@@ -28,7 +28,6 @@ const CoursePage = () => {
   const { user } = useSelector((state) => state.auth);
   const userType = user?.type;
 
-  // Fetch marks and students data
   const { marksData, loading: marksLoading } = useSelector((state) => state.marks);
   const { students } = useSelector((state) => state.students);
 

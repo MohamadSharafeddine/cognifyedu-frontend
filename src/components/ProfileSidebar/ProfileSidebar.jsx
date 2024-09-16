@@ -17,6 +17,7 @@ const ProfileSidebar = () => {
   };
 
   const isOwnProfile = user.id === parseInt(userId, 10);
+  const isStudentProfile = user.type === "student" || !isOwnProfile;
 
   return (
     <div className="sidebar">
@@ -27,32 +28,36 @@ const ProfileSidebar = () => {
         onClick={() => navigate("/courses")}
       />
       <ul>
-        <li>
-          <button
-            className={
-              location.pathname.includes("/analysis") ? "active" : ""
-            }
-            onClick={() => handleMenuSelect("analysis/cognitive")}
-          >
-            <div className="icon">
-              <FontAwesomeIcon icon={faChartLine} />
-            </div>
-            <div className="title">Analysis</div>
-          </button>
-        </li>
-        <li>
-          <button
-            className={
-              location.pathname.includes("/insights") ? "active" : ""
-            }
-            onClick={() => handleMenuSelect("insights")}
-          >
-            <div className="icon">
-              <FontAwesomeIcon icon={faUser} />
-            </div>
-            <div className="title">Insights</div>
-          </button>
-        </li>
+        {isStudentProfile && (
+          <>
+            <li>
+              <button
+                className={
+                  location.pathname.includes("/analysis") ? "active" : ""
+                }
+                onClick={() => handleMenuSelect("analysis/cognitive")}
+              >
+                <div className="icon">
+                  <FontAwesomeIcon icon={faChartLine} />
+                </div>
+                <div className="title">Analysis</div>
+              </button>
+            </li>
+            <li>
+              <button
+                className={
+                  location.pathname.includes("/insights") ? "active" : ""
+                }
+                onClick={() => handleMenuSelect("insights")}
+              >
+                <div className="icon">
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
+                <div className="title">Insights</div>
+              </button>
+            </li>
+          </>
+        )}
         {isOwnProfile && (
           <li>
             <button
