@@ -9,6 +9,29 @@
   margin: 20px 0;
 }
 
+.students-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.students-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.students-list::-webkit-scrollbar-thumb {
+  background: #25738b;
+  border-radius: 10px;
+}
+
+.students-list::-webkit-scrollbar-thumb:hover {
+  background: #1e5c6f;
+}
+
+.students-list {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
+}
+
 .students-list table {
   width: 100%;
   border-collapse: collapse;
