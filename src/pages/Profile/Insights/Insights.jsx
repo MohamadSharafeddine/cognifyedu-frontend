@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from '../../../utils/axios';
 import { useOutletContext } from "react-router-dom";
 import "./Insights.css";
-import Button from "../../../components/Button/Button";
 import TabBar from "../../../components/TabBar/TabBar";
-import AddInsightPopup from "../../../components/AddInsightPopup/AddInsightPopup";
 
 const Insights = () => {
-  const { userId, teacherId } = useOutletContext();
+  const { userId } = useOutletContext();
   const [activeTab, setActiveTab] = useState("Summary");
-  const [showPopup, setShowPopup] = useState(false);
   const [insightData, setInsightData] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -28,8 +25,6 @@ const Insights = () => {
     };
     fetchInsights();
   }, [userId]);
-
-  const togglePopup = () => setShowPopup(!showPopup);
 
   const renderContent = () => {
     if (loading) return <p>Loading...</p>;
@@ -50,21 +45,8 @@ const Insights = () => {
 
   return (
     <div className="insights-page">
-      <div className="insights-header">
-        <h2>Insights</h2>
-        <Button
-          text="Add Insight"
-          color="#25738b"
-          size="small"
-          onClick={togglePopup}
-        />
-      </div>
-
       <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-
       <div className="insights-content">{renderContent()}</div>
-
-      {showPopup && <AddInsightPopup onClose={togglePopup} userId={userId} teacherId={teacherId} />}
     </div>
   );
 };
