@@ -77,7 +77,9 @@ const Cognitive = () => {
     cognitiveData.attention_to_detail,
   ];
 
-  const progressLabels = progressDataArray.map((_, index) => `Day ${index + 1}`);
+  const progressLabels = progressDataArray.map((entry) =>
+    new Date(entry.created_at).toLocaleDateString()
+  );
 
   const progressData = {
     labels: progressLabels,
