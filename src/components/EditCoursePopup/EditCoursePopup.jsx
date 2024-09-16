@@ -50,16 +50,16 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
         </div>
         <div className="button-group">
           <Button
-            color="#25738b"
-            text="Save"
-            size="medium"
-            onClick={handleSaveCourse}
-          />
-          <Button
             color="#e74c3c"
             text="Cancel"
             size="medium"
             onClick={onClose}
+          />
+          <Button
+            color="#25738b"
+            text="Save"
+            size="medium"
+            onClick={handleSaveCourse}
           />
         </div>
       </div>

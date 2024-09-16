@@ -114,8 +114,8 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
             </div>
 
             <div className="edit-assignment-button-group">
-              <Button color="#25738b" text="Save" size="medium" onClick={handleSave} />
               <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
+              <Button color="#25738b" text="Save" size="medium" onClick={handleSave} />
             </div>
           </div>
         </div>

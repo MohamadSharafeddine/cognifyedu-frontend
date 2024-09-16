@@ -9,18 +9,18 @@ const DeleteConfirmationPopup = ({ onClose, onDelete }) => {
         <h2>Are you sure?</h2>
         <div className="delete-button-group">
           <Button
-            className="delete-btn"
-            color="#e74c3c"
-            text="Yes, Delete"
-            size="medium"
-            onClick={onDelete}
-          />
-          <Button
             className="cancel-btn"
             color="#ddd"
             text="Cancel"
             size="medium"
             onClick={onClose}
+          />
+          <Button
+            className="delete-btn"
+            color="#e74c3c"
+            text="Yes, Delete"
+            size="medium"
+            onClick={onDelete}
           />
         </div>
       </div>

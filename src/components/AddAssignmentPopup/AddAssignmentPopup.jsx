@@ -204,8 +204,8 @@ const AddAssignmentPopup = ({ onClose }) => {
             </div>
 
             <div className="add-assignment-button-group">
-              <Button color="#25738b" text="Add" size="medium" onClick={handleAddAssignment} />
               <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
+              <Button color="#25738b" text="Add" size="medium" onClick={handleAddAssignment} />
             </div>
           </div>
         </div>

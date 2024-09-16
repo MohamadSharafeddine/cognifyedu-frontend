@@ -44,8 +44,8 @@ const AddStudentPopup = ({ onClose, courseId }) => {
           {error && <p className="error-message">{error}</p>}
         </div>
         <div className="button-group">
-          <Button color="#25738b" text="Add" size="medium" onClick={handleAddStudent} />
           <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
+          <Button color="#25738b" text="Add" size="medium" onClick={handleAddStudent} />
         </div>
       </div>
     </div>
