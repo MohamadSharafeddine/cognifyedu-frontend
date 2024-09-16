@@ -25,6 +25,7 @@ export const createCourse = createAsyncThunk(
   async (courseData, { rejectWithValue }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const teacherId = storedUser?.id;
+    const teacherName = storedUser?.name;
 
     if (!teacherId) {
       return rejectWithValue("Teacher ID is missing");
@@ -37,12 +38,16 @@ export const createCourse = createAsyncThunk(
 
     try {
       const response = await api.post("/courses", newCourse);
-      return response.data;
+      return {
+        ...response.data,
+        teacher: { id: teacherId, name: teacherName }
+      };
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
+
 
 export const updateCourse = createAsyncThunk(
   "courses/updateCourse",

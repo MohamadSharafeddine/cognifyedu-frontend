@@ -49,7 +49,7 @@ const CoursePage = () => {
   return (
     <div className="coursepage-container">
       <div className="coursepage-header">
-        <h2 className="coursepage-title">Course ID: {courseId}</h2>
+        {/* <h2 className="coursepage-title">Course ID: {courseId}</h2> */}
         <TabBar
           tabs={tabs}
           activeTab={activeTab}
