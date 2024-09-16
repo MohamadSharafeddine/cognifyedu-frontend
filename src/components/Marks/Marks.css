@@ -9,6 +9,29 @@
   margin: 20px 0px;
 }
 
+.Marks-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.Marks-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.Marks-list::-webkit-scrollbar-thumb {
+  background: #25738b;
+  border-radius: 10px;
+}
+
+.Marks-list::-webkit-scrollbar-thumb:hover {
+  background: #1e5c6f;
+}
+
+.Marks-list {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
+}
+
 .Marks-list table {
   width: 100%;
   border-collapse: collapse;
@@ -53,4 +76,15 @@
   border-radius: 50%;
   margin-right: 10px;
   vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .Marks-list {
+    padding: 10px;
+  }
+
+  .Marks-list th,
+  .Marks-list td {
+    padding: 10px;
+  }
 }
