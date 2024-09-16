@@ -7,6 +7,8 @@ import AddStudentPopup from "../../components/AddStudentPopup/AddStudentPopup";
 import TabBar from "../../components/TabBar/TabBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAssignmentsByCourse } from "../../redux/slices/assignmentsSlice";
+import { fetchMarks } from "../../redux/slices/marksSlice"; // Import fetchMarks
+import { fetchStudentsByCourse } from "../../redux/slices/studentsSlice"; // Import fetchStudentsByCourse
 
 const CoursePage = () => {
   const { courseId } = useParams();
@@ -24,10 +26,17 @@ const CoursePage = () => {
   } = useSelector((state) => state.assignments || {});
 
   const { user } = useSelector((state) => state.auth);
+  const userType = user?.type;
+
+  // Fetch marks and students data
+  const { marksData, loading: marksLoading } = useSelector((state) => state.marks);
+  const { students } = useSelector((state) => state.students);
 
   useEffect(() => {
     if (courseId) {
       dispatch(fetchAssignmentsByCourse(courseId));
+      dispatch(fetchMarks(courseId));
+      dispatch(fetchStudentsByCourse(courseId));
     }
   }, [courseId, dispatch]);
 
@@ -44,12 +53,14 @@ const CoursePage = () => {
     navigate(`/course/${courseId}/${tab.toLowerCase()}`);
   };
 
-  const tabs = ["Assignments", "Students", "Marks"];
+  const tabs = ["Assignments", "Students"];
+  if (userType === "teacher") {
+    tabs.push("Marks");
+  }
 
   return (
     <div className="coursepage-container">
       <div className="coursepage-header">
-        {/* <h2 className="coursepage-title">Course ID: {courseId}</h2> */}
         <TabBar
           tabs={tabs}
           activeTab={activeTab}
@@ -64,7 +75,7 @@ const CoursePage = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          {(activeTab === "Assignments" || activeTab === "Students") && (
+          {userType === "teacher" && (activeTab === "Assignments" || activeTab === "Students") && (
             <Button
               color="#25738b"
               text="Add"
@@ -83,6 +94,8 @@ const CoursePage = () => {
             context={{
               searchTerm,
               assignments,
+              marksData,
+              students,
               user,
             }}
           />
