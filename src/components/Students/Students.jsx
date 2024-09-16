@@ -13,6 +13,7 @@ const Students = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { students, loading, error } = useSelector((state) => state.students);
+  const userType = useSelector((state) => state.auth.user?.type);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
@@ -44,7 +45,9 @@ const Students = () => {
   };
 
   const handleStudentClick = (studentId) => {
-    navigate(`/profile/${studentId}/analysis/cognitive`);
+    if (userType === "teacher") {
+      navigate(`/profile/${studentId}/analysis/cognitive`);
+    }
   };
 
   return (
@@ -57,13 +60,13 @@ const Students = () => {
             <thead>
               <tr>
                 <th>Student</th>
-                <th>Action</th>
+                {userType === "teacher" && <th>Action</th>}
               </tr>
             </thead>
             <tbody>
               {filteredStudents.map((student, index) => (
                 <tr key={index}>
-                  <td onClick={() => handleStudentClick(student.id)}>
+                  <td onClick={() => handleStudentClick(student.id)} style={{ cursor: userType === "teacher" ? "pointer" : "default" }}>
                     <img
                       src={getProfileImageUrl(student)}
                       alt="avatar"
@@ -71,14 +74,16 @@ const Students = () => {
                     />
                     {student.name}
                   </td>
-                  <td>
-                    <Button
-                      color="#e74c3c"
-                      text="Remove"
-                      size="small"
-                      onClick={() => handleDeleteClick(student)}
-                    />
-                  </td>
+                  {userType === "teacher" && (
+                    <td>
+                      <Button
+                        color="#e74c3c"
+                        text="Remove"
+                        size="small"
+                        onClick={() => handleDeleteClick(student)}
+                      />
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
