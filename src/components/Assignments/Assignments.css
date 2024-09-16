@@ -6,7 +6,30 @@
   max-height: 530px;
   overflow-y: auto;
   padding: 0 40px;
-  margin: 20px 0;
+  /* margin: 20px 0; */
+}
+
+.assignments-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.assignments-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.assignments-list::-webkit-scrollbar-thumb {
+  background: #25738b;
+  border-radius: 10px;
+}
+
+.assignments-list::-webkit-scrollbar-thumb:hover {
+  background: #1e5c6f;
+}
+
+.assignments-list {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }
 
 .assignments-list table {
@@ -21,7 +44,8 @@
   z-index: 1;
 }
 
-.assignments-list th, .assignments-list td {
+.assignments-list th,
+.assignments-list td {
   padding: 15px;
   border-left: none;
   border-right: none;
@@ -71,7 +95,6 @@
   transition: background-color 0.3s ease;
 }
 
-
 .assignments-list td button:active {
   transform: scale(0.99);
 }
@@ -81,7 +104,8 @@
     padding: 10px;
   }
 
-  .assignments-list th, .assignments-list td {
+  .assignments-list th,
+  .assignments-list td {
     padding: 10px;
   }
 }
