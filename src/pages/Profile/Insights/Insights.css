@@ -1,22 +1,3 @@
-.insights-page {
-  padding: 20px;
-}
-
-.insights-header {
-  width: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  /* justify-content: space-between; */
-  /* align-items: end; */
-  margin-bottom: 20px;
-}
-
-.insights-header h2 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-}
-
 .insights-content {
   margin-top: 20px;
 }
