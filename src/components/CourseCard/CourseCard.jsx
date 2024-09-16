@@ -5,7 +5,7 @@ import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import DeleteConfirmationPopup from "../DeleteConfirmationPopup/DeleteConfirmationPopup";
 import EditCoursePopup from "../EditCoursePopup/EditCoursePopup";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCourse } from "../../redux/slices/uiSlice";
 
 const CourseCard = ({
@@ -20,6 +20,8 @@ const CourseCard = ({
   const [showEditPopup, setShowEditPopup] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
+  const { userType } = useSelector((state) => state.auth.user) || {};
 
   const handleCardClick = () => {
     dispatch(selectCourse({ courseId, courseName }));
@@ -52,14 +54,16 @@ const CourseCard = ({
       <div className="coursecard-header">
         <div className="coursecard-header-top">
           <span className="coursecard-coursename">{courseName}</span>
-          <div className="coursecard-icon-group">
-            <span className="coursecard-delete-icon" onClick={handleDeleteClick}>
-              <FontAwesomeIcon icon={faTrash} />
-            </span>
-            <span className="coursecard-edit-icon" onClick={handleEditClick}>
-              <FontAwesomeIcon icon={faEdit} />
-            </span>
-          </div>
+          {userType === "teacher" && (
+            <div className="coursecard-icon-group">
+              <span className="coursecard-delete-icon" onClick={handleDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span className="coursecard-edit-icon" onClick={handleEditClick}>
+                <FontAwesomeIcon icon={faEdit} />
+              </span>
+            </div>
+          )}
         </div>
         <div className="coursecard-header-bottom">
           <span className="coursecard-teacher">{teacherName}</span>
