@@ -18,10 +18,10 @@ const Students = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   useEffect(() => {
-    if (courseId) {
+    if (courseId && students.length === 0) {
       dispatch(fetchStudentsByCourse(courseId));
     }
-  }, [dispatch, courseId]);
+  }, [dispatch, courseId, students.length]);
 
   const filteredStudents = students.filter((student) => {
     const studentName = student?.name ? student.name.toLowerCase() : "";

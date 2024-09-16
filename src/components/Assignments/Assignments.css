@@ -56,14 +56,12 @@
   transform: none;
 }
 
-/* Add spacing between Edit and Remove buttons */
 .assignments-list td .button-group {
   display: flex;
-  gap: 10px; /* Adjust the gap size as needed */
-  justify-content: flex-start; /* Align buttons to the left */
+  gap: 10px;
+  justify-content: flex-start;
 }
 
-/* Ensure that buttons are aligned correctly in the action column */
 .assignments-list td button {
   color: white;
   padding: 5px 10px;
