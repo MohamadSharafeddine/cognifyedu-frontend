@@ -9,7 +9,7 @@ import AddCoursePopupTeacher from "../../components/AddCoursePopupTeacher/AddCou
 const Courses = () => {
   const dispatch = useDispatch();
   const coursesData = useSelector((state) => state.courses.courses);
-  const userId = useSelector((state) => state.auth.user?.id);
+  const { id: userId, type: userType } = useSelector((state) => state.auth.user) || {};
   const [isAddCourseOpen, setIsAddCourseOpen] = useState(false);
 
   useEffect(() => {
@@ -37,14 +37,16 @@ const Courses = () => {
 
   return (
     <div className="courses-container">
-      <div className="courses-addbutton">
-        <Button
-          color="#25738b"
-          text="Add"
-          size="medium"
-          onClick={handleAddClick}
-        />
-      </div>
+      {userType === "teacher" && (
+        <div className="courses-addbutton">
+          <Button
+            color="#25738b"
+            text="Add"
+            size="medium"
+            onClick={handleAddClick}
+          />
+        </div>
+      )}
       <div className="courses-cardscontainer">
         {coursesData.map((courseItem) => (
           <CourseCard
