@@ -23,7 +23,11 @@ const Assignments = () => {
     console.log("Assignments data:", assignments);
   }, [user, assignments]);
 
-  const filteredAssignments = assignments.filter((assignment) =>
+  const sortedAssignments = assignments.slice().sort((a, b) => {
+    return moment(a.due_date).diff(moment(b.due_date));
+  });
+
+  const filteredAssignments = sortedAssignments.filter((assignment) =>
     assignment.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
