@@ -1,6 +1,7 @@
 .tabbar-container {
-  display: flex;
+  display: inline-flex;
   border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
 }
 
 .tabbar-button {
