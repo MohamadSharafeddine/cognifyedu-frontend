@@ -18,7 +18,7 @@ const Insights = () => {
   useEffect(() => {
     const fetchInsights = async () => {
       try {
-        const response = await axios.get(`/insights/user/${userId}`);
+        const response = await axios.get(`/insights/user/${userId}/latest`);
         setInsightData(response.data);
       } catch (error) {
         console.error("Error fetching insights:", error);
