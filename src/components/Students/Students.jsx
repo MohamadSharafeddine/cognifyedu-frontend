@@ -23,7 +23,9 @@ const Students = () => {
     }
   }, [dispatch, courseId, students.length]);
 
-  const filteredStudents = students.filter((student) => {
+  const sortedStudents = [...students].sort((a, b) => a.name.localeCompare(b.name));
+
+  const filteredStudents = sortedStudents.filter((student) => {
     const studentName = student?.name ? student.name.toLowerCase() : "";
     return searchTerm ? studentName.includes(searchTerm.toLowerCase()) : true;
   });
