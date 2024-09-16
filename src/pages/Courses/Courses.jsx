@@ -51,7 +51,7 @@ const Courses = () => {
             key={courseItem.id}
             courseId={courseItem.id}
             courseName={courseItem.name}
-            teacherName={courseItem.teacherName || "Teacher Name"}
+            teacherName={courseItem.teacher?.name || "Teacher Name"}
             description={courseItem.description || "No description available"}
             onDelete={() => handleDeleteCourse(courseItem.id)}
             onEdit={handleEditCourse}

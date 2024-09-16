@@ -9,7 +9,7 @@ const Profile = () => {
   const { userId } = useParams();
   const teacherId = useSelector((state) => state.auth.user?.id);
   const [user, setUser] = useState(null);
-  const [showPopup, setShowPopup] = useState(false); // State for popup
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -23,7 +23,7 @@ const Profile = () => {
     fetchUser();
   }, [userId]);
 
-  const togglePopup = () => setShowPopup(!showPopup); // Toggle popup
+  const togglePopup = () => setShowPopup(!showPopup);
 
   return (
     <div>
