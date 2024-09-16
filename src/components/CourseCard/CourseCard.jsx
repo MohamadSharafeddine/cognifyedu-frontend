@@ -21,7 +21,7 @@ const CourseCard = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-  const { userType } = useSelector((state) => state.auth.user) || {};
+  const userType = useSelector((state) => state.auth.user?.type);
 
   const handleCardClick = () => {
     dispatch(selectCourse({ courseId, courseName }));
