@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './Analysis.css';
 import TabBar from '../../../components/TabBar/TabBar';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 
 const Analysis = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Cognitive');
+
+  const { userId, teacherId } = useOutletContext();
 
   const tabs = ['Cognitive', 'Behavioral'];
 
@@ -18,7 +20,7 @@ const Analysis = () => {
     <div className="analysis-page">
       <TabBar tabs={tabs} activeTab={activeTab} setActiveTab={handleTabChange} />
       <div className="analysis-content">
-        <Outlet />
+        <Outlet context={{ userId, teacherId }} />
       </div>
     </div>
   );
