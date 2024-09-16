@@ -1,5 +1,5 @@
 .courses-container {
-  padding: 0 20px;
+  padding: 3px 20px;
   flex-grow: 1;
   overflow-y: auto;
 }
