@@ -26,11 +26,17 @@
   padding: 15px;
   border-left: none;
   border-right: none;
+  width: 150px;
 }
 
 .Marks-list th {
   text-align: left;
   background-color: white;
+  font-weight: 600;
+}
+
+.Marks-list td {
+  text-align: left;
 }
 
 .Marks-list tr {

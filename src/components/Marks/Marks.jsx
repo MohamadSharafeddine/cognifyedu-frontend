@@ -3,45 +3,39 @@ import { useOutletContext } from 'react-router-dom';
 import './Marks.css';
 import defaultAvatar from '../../assets/profile.png';
 
-const studentsData = [
-  {
-    name: 'Miriam Wilderman',
-    avatar: 'path_to_avatar1.png',
-    Marks: [85, 90, 88, 92, 87],
-  },
-  {
-    name: 'Betsy Zboncak',
-    avatar: 'path_to_avatar2.png',
-    Marks: [78, 85, 83, 79, 82],
-  },
-  {
-    name: 'Dean Senger',
-    avatar: 'path_to_avatar3.png',
-    Marks: [92, 93, 91, 95, 94],
-  },
-  {
-    name: 'Katie Hackett',
-    avatar: 'path_to_avatar4.png',
-    Marks: [70, 72, 68, 74, 71],
-  },
-  {
-    name: 'Seth Erdman',
-    avatar: 'path_to_avatar5.png',
-    Marks: [88, 90, 85, 87, 89],
-  },
-  {
-    name: 'Priscilla Bradtke',
-    avatar: 'path_to_avatar6.png',
-    Marks: [82, 85, 80, 84, 83],
-  },
-];
-
 const Marks = () => {
-  const { searchTerm } = useOutletContext();
+  const { searchTerm, marksData, students } = useOutletContext();
+
+  const studentsData = marksData.reduce((acc, assignment) => {
+    assignment.submissions.forEach((submission) => {
+      const studentIndex = acc.findIndex((student) => student.id === submission.student.id);
+      if (studentIndex > -1) {
+        acc[studentIndex].marks.push(submission.mark);
+      } else {
+        const studentInfo = students.find((student) => student.id === submission.student.id);
+        acc.push({
+          id: submission.student.id,
+          name: submission.student.name,
+          avatar: studentInfo?.profile_picture
+            ? `${process.env.REACT_APP_API_URL}${studentInfo.profile_picture}`
+            : defaultAvatar,
+          marks: [submission.mark],
+        });
+      }
+    });
+    return acc;
+  }, []);
 
   const filteredStudents = studentsData.filter((student) =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return title.substring(0, maxLength) + '...';
+    }
+    return title;
+  };
 
   return (
     <div className="Marks-list">
@@ -49,11 +43,9 @@ const Marks = () => {
         <thead>
           <tr>
             <th>Student</th>
-            <th>mark 1</th>
-            <th>mark 2</th>
-            <th>mark 3</th>
-            <th>mark 4</th>
-            <th>mark 5</th>
+            {marksData.slice(0, 5).map((assignment, index) => (
+              <th key={index}>{truncateTitle(assignment.title, 15)}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -61,7 +53,7 @@ const Marks = () => {
             <tr key={index}>
               <td>
                 <img
-                  src={student.avatar || defaultAvatar}
+                  src={student.avatar}
                   onError={(e) => {
                     e.target.src = defaultAvatar;
                   }}
@@ -70,8 +62,8 @@ const Marks = () => {
                 />
                 {student.name}
               </td>
-              {student.Marks.map((mark, i) => (
-                <td key={i}>{mark}</td>
+              {student.marks.slice(0, 5).map((mark, i) => (
+                <td key={i}>{mark !== null ? mark : 'N/A'}</td>
               ))}
             </tr>
           ))}
