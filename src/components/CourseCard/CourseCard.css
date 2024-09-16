@@ -81,6 +81,29 @@
   overflow-y: auto;
 }
 
+.coursecard-description-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.coursecard-description-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.coursecard-description-container::-webkit-scrollbar-thumb {
+  background: #25738b;
+  border-radius: 10px;
+}
+
+.coursecard-description-container::-webkit-scrollbar-thumb:hover {
+  background: #1e5c6f;
+}
+
+.coursecard-description-container {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
+}
+
 .coursecard-description {
   margin: 0;
   font-size: 0.9em;
