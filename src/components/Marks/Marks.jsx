@@ -26,7 +26,9 @@ const Marks = () => {
     return acc;
   }, []);
 
-  const filteredStudents = studentsData.filter((student) =>
+  const sortedStudentsData = [...studentsData].sort((a, b) => a.name.localeCompare(b.name));
+
+  const filteredStudents = sortedStudentsData.filter((student) =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -43,7 +45,7 @@ const Marks = () => {
         <thead>
           <tr>
             <th>Student</th>
-            {marksData.slice(0, 5).map((assignment, index) => (
+            {marksData.slice(0, 5).reverse().map((assignment, index) => (
               <th key={index}>{truncateTitle(assignment.title, 15)}</th>
             ))}
           </tr>
