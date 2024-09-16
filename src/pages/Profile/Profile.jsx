@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import axios from '../../utils/axios';
 import Button from "../../components/Button/Button";
 import AddInsightPopup from "../../components/AddInsightPopup/AddInsightPopup";
+import "./Profile.css";
 
 const Profile = () => {
   const { userId } = useParams();
@@ -31,12 +32,13 @@ const Profile = () => {
   const togglePopup = () => setShowPopup(!showPopup);
 
   const isTeacherProfile = profileUser?.type === "teacher";
+  const isOwnProfile = user.id === profileUser?.id;
 
   return (
     <div>
       {profileUser ? (
         <>
-          <h1>{profileUser.name}</h1>
+          {!isOwnProfile && <h1>{profileUser.name}</h1>}
           {!isTeacherProfile && user.type === "teacher" && (
             <Button
               text="Add Insight"
