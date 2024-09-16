@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from '../../utils/axios';
 import Button from "../../components/Button/Button";
@@ -7,15 +7,18 @@ import AddInsightPopup from "../../components/AddInsightPopup/AddInsightPopup";
 
 const Profile = () => {
   const { userId } = useParams();
-  const teacherId = useSelector((state) => state.auth.user?.id);
-  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const [profileUser, setProfileUser] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+
+  const isOwnProfile = user.id === parseInt(userId, 10);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(`/users/${userId}`);
-        setUser(response.data);
+        setProfileUser(response.data);
       } catch (error) {
         console.error('Error fetching user:', error);
       }
@@ -27,17 +30,19 @@ const Profile = () => {
 
   return (
     <div>
-      {user ? (
+      {profileUser ? (
         <>
-          <h1>{user.name}</h1>
-          <Button
-            text="Add Insight"
-            color="#25738b"
-            size="medium"
-            onClick={togglePopup}
-          />
-          {showPopup && <AddInsightPopup onClose={togglePopup} userId={userId} teacherId={teacherId} />}
-          <Outlet context={{ userId, teacherId }} />
+          <h1>{profileUser.name}</h1>
+          {isOwnProfile && (
+            <Button
+              text="Add Insight"
+              color="#25738b"
+              size="medium"
+              onClick={togglePopup}
+            />
+          )}
+          {showPopup && <AddInsightPopup onClose={togglePopup} userId={userId} teacherId={user.id} />}
+          <Outlet context={{ userId, teacherId: user.id }} />
         </>
       ) : (
         <p>Loading user data...</p>
