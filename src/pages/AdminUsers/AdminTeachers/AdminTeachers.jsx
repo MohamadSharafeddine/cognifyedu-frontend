@@ -31,14 +31,16 @@ const AdminTeachers = () => {
 
   const confirmDelete = () => {
     if (selectedTeacher) {
-      dispatch(deleteUser(selectedTeacher.id));
-      setShowDeletePopup(false);
+      dispatch(deleteUser(selectedTeacher.id))
+        .unwrap()
+        .then(() => setShowDeletePopup(false))
+        .catch((err) => console.error(err));
     }
   };
 
   return (
     <div className="adminteachers-list">
-      <table>
+      <table className="adminteachers-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -52,12 +54,14 @@ const AdminTeachers = () => {
               <td>{teacher.id}</td>
               <td>{teacher.name}</td>
               <td>
-                <Button
-                  color="#e74c3c"
-                  text="Delete"
-                  size="small"
-                  onClick={() => handleDeleteClick(teacher)}
-                />
+                <div className="button-group">
+                  <Button
+                    color="#e74c3c"
+                    text="Delete"
+                    size="small"
+                    onClick={() => handleDeleteClick(teacher)}
+                  />
+                </div>
               </td>
             </tr>
           ))}
