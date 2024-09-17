@@ -16,19 +16,9 @@ const AddAssignmentPopup = ({ onClose }) => {
   const [dragging, setDragging] = useState(false);
   const dispatch = useDispatch();
 
-  const logFormData = (formData) => {
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-  };
-
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-        console.log(`Selected file: ${file.name}`);
-        console.log(`File type: ${file.type}`);
-        console.log(`File size: ${file.size}`);
-
         if (![
             'text/plain',
             'application/pdf',
@@ -43,28 +33,26 @@ const AddAssignmentPopup = ({ onClose }) => {
             setAttachment(null);
             return;
         }
-
         setAttachment(file);
         setError('');
     }
-};
-
+  };
 
   const handleDrop = (e) => {
     e.preventDefault();
     setDragging(false);
     const file = e.dataTransfer.files[0];
     if (file) {
-      console.log(`Dropped file: ${file.name}`);
-      console.log(`File type: ${file.type}`);
-      console.log(`File size: ${file.size}`);
-
-      if (!['text/plain', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
+      if (![
+          'text/plain',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ].includes(file.type)) {
         setError('Invalid file type. Please upload a txt, pdf, doc, or docx file.');
         setAttachment(null);
         return;
       }
-
       setAttachment(file);
       setError('');
     }
@@ -102,8 +90,6 @@ const AddAssignmentPopup = ({ onClose }) => {
       attachment,
     };
 
-    console.log("Data being sent to slice:", assignmentData);
-
     dispatch(addAssignment(assignmentData))
       .unwrap()
       .then(() => {
@@ -111,7 +97,6 @@ const AddAssignmentPopup = ({ onClose }) => {
         onClose();
       })
       .catch((err) => {
-        console.error("Error adding assignment:", err);
         setError(err?.message || "Failed to add assignment.");
       });
   };
@@ -138,9 +123,7 @@ const AddAssignmentPopup = ({ onClose }) => {
         <div className="add-assignment-popup-body">
           <div className="add-assignment-left-section">
             <div className="add-assignment-form-group">
-              <label>
-                Title <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Title</label>
               <input
                 type="text"
                 value={title}
@@ -154,9 +137,7 @@ const AddAssignmentPopup = ({ onClose }) => {
             </div>
 
             <div className="add-assignment-form-group">
-              <label>
-                Description <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Description</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -168,7 +149,7 @@ const AddAssignmentPopup = ({ onClose }) => {
             <div className="add-assignment-form-group">
               <label>Attach</label>
               <div
-                className={`file-upload ${dragging ? "dragging" : ""} ${attachment ? "file-present" : "file-empty"}`}
+                className={`add-file-upload ${dragging ? "dragging" : ""} ${attachment ? "file-present" : "file-empty"}`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -176,14 +157,14 @@ const AddAssignmentPopup = ({ onClose }) => {
                 <input
                   type="file"
                   onChange={handleFileChange}
-                  id="attachment-upload"
+                  id="add-attachment-upload"
                   style={{ display: "none" }}
                 />
-                <label htmlFor="attachment-upload" className="upload-label">
+                <label htmlFor="add-attachment-upload" className="add-upload-label">
                   {attachment ? (
-                    <span className="file-name">{attachment.name}</span>
+                    <span className="add-file-name">{attachment.name}</span>
                   ) : (
-                    <span className="upload-icon">+</span>
+                    <span className="add-upload-icon">+</span>
                   )}
                 </label>
               </div>
@@ -192,9 +173,7 @@ const AddAssignmentPopup = ({ onClose }) => {
 
           <div className="add-assignment-right-section">
             <div className="add-assignment-form-group due-date">
-              <label>
-                Due Date <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Due Date</label>
               <input
                 type="date"
                 value={dueDate}
