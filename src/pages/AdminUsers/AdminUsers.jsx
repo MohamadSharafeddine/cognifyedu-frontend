@@ -15,8 +15,13 @@ const AdminUsers = () => {
   const { users, loading, error } = useSelector((state) => state.users || {});
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers())
+      .then((action) => {
+        console.log("Fetched Users:", action.payload);
+      })
+      .catch((err) => console.error("Error fetching users:", err));
   }, [dispatch]);
+  
 
   useEffect(() => {
     if (location.pathname === "/admin/users") {
