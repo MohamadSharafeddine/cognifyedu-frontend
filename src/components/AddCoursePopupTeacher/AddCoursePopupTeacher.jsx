@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import "./AddCoursePopupTeacher.css";
 import Button from "../Button/Button";
@@ -7,19 +7,20 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
+  const modalRef = useRef(null);
 
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (event.target.classList.contains('modal')) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
         onClose();
       }
     };
 
-    window.addEventListener('click', handleClickOutside);
+    window.addEventListener('mousedown', handleClickOutside);
     return () => {
-      window.removeEventListener('click', handleClickOutside);
+      window.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose]);
 
@@ -45,10 +46,10 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="add-course-popup-teacher-modal">
+      <div className="add-course-popup-teacher-modal-content" ref={modalRef}>
         <h2>Add Course</h2>
-        <div className="form-group">
+        <div className="add-course-popup-teacher-form-group">
           <label>
             Name <span style={{ color: "red" }}>*</span>
           </label>
@@ -62,9 +63,9 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
             placeholder="Enter Name"
             required
           />
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="add-course-popup-teacher-error-message">{error}</p>}
         </div>
-        <div className="form-group">
+        <div className="add-course-popup-teacher-form-group">
           <label>Description</label>
           <textarea
             value={description}
@@ -72,7 +73,7 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
             placeholder="Enter Description"
           />
         </div>
-        <div className="button-group">
+        <div className="add-course-popup-teacher-button-group">
           <Button
             color="#e74c3c"
             text="Cancel"
