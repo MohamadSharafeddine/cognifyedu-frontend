@@ -63,52 +63,59 @@
   font-size: 18px;
 }
 
-.file-upload {
+.submit-file-upload {
+  border: 2px dashed #25738b;
+  padding: 20px;
+  margin: 20px 0;
+  cursor: default;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  background-color: #f9f9f9;
+}
+
+.submit-upload-label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.submit-upload-icon {
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-file-name {
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.submit-file-upload.dragging {
+  background-color: #e0f7fa;
+}
+
+.submit-assignment-attachment {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  margin: 20px 0;
-  border: 2px dashed #25738b;
-  padding: 40px;
-  border-radius: 12px;
-  transition: background-color 0.3s ease;
 }
 
-.file-upload.dragging {
-  background-color: #e0f7fa;
-}
-
-.upload-label {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  background-color: #f1f1f1;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.download-attachment-button {
+  background-color: #25738b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
-  border: 2px solid #25738b;
 }
 
-.upload-icon {
-  font-size: 48px;
+.no-attachment {
   color: #999;
-}
-
-.file-present .upload-label {
-  background-color: #e0f7fa;
-}
-
-.file-empty .upload-label {
-  background-color: #f1f1f1;
-}
-
-.file-name {
-  font-size: 14px;
-  color: #25738b;
 }
 
 .error-message {
@@ -120,3 +127,9 @@ button {
   float: right;
 }
 
+.submit-assignment-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}

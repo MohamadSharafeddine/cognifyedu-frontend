@@ -30,17 +30,15 @@ const ParentChildren = () => {
 
   return (
     <div className="parent-children-container">
-      <table>
+      <table className="parent-children-table">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
           </tr>
         </thead>
         <tbody>
           {children.map((child) => (
             <tr key={child.id} onClick={() => handleChildClick(child.id)}>
-              <td>{child.id}</td>
               <td>{child.name}</td>
             </tr>
           ))}

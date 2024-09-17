@@ -1,4 +1,4 @@
-.modal {
+.delete-popup-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     cursor: default;
 }
 
-.modal-content {
+.delete-popup-content {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -23,7 +23,7 @@
     cursor: default;
 }
 
-.delete-button-group {
+.delete-popup-button-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,8 +35,8 @@ h2 {
     margin-bottom: 20px;
 }
 
-.delete-btn,
-.cancel-btn {
+.delete-popup-delete-btn,
+.delete-popup-cancel-btn {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
@@ -44,12 +44,12 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-.delete-btn {
+.delete-popup-delete-btn {
     background-color: #e74c3c;
     color: white;
 }
 
-.cancel-btn {
+.delete-popup-cancel-btn {
     background-color: #ddd;
     color: black;
 }

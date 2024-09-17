@@ -6,7 +6,7 @@
   max-height: 530px;
   overflow-y: auto;
   padding: 0 40px;
-  /* margin: 20px 0; */
+  margin: 20px 0;
 }
 
 .assignments-list::-webkit-scrollbar {
@@ -107,5 +107,11 @@
   .assignments-list th,
   .assignments-list td {
     padding: 10px;
+    font-size: 14px;
+  }
+
+  .assignments-list td .button-group {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

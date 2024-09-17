@@ -9,40 +9,53 @@
   margin: 20px 0;
 }
 
-.adminstudents-list table {
+.adminstudents-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.adminstudents-list thead {
+.adminstudents-table thead {
   position: sticky;
   top: 0;
   background-color: white;
   z-index: 1;
 }
 
-.adminstudents-list th,
-.adminstudents-list td {
+.adminstudents-table th,
+.adminstudents-table td {
   padding: 15px;
-  border-left: none;
-  border-right: none;
 }
 
-.adminstudents-list th {
+.adminstudents-table th:nth-child(1),
+.adminstudents-table td:nth-child(1) {
+  width: 20%;
+}
+
+.adminstudents-table th:nth-child(2),
+.adminstudents-table td:nth-child(2) {
+  width: 60%;
+}
+
+.adminstudents-table th:nth-child(3),
+.adminstudents-table td:nth-child(3) {
+  width: 20%;
+}
+
+.adminstudents-table th {
   text-align: left;
   background-color: white;
   font-weight: 600;
 }
 
-.adminstudents-list tr {
+.adminstudents-table tr {
   border-bottom: 1px solid #ddd;
 }
 
-.adminstudents-list tr:last-child {
+.adminstudents-table tr:last-child {
   border-bottom: none;
 }
 
-.adminstudents-list tbody tr:hover {
+.adminstudents-table tbody tr:hover {
   background-color: #f9f9f9;
 }
 
@@ -51,19 +64,13 @@
   gap: 10px;
 }
 
-.button-group {
-  display: flex;
-  gap: 10px;
-}
-
-
 @media (max-width: 768px) {
   .adminstudents-list {
     padding: 10px;
   }
 
-  .adminstudents-list th,
-  .adminstudents-list td {
+  .adminstudents-table th,
+  .adminstudents-table td {
     padding: 10px;
   }
 }

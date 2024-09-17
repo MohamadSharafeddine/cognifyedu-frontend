@@ -96,4 +96,13 @@
   .students-list td {
     padding: 10px;
   }
+
+  .students-list td {
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 20px;
+    height: 20px;
+  }
 }

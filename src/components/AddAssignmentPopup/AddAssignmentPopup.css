@@ -65,21 +65,28 @@ h2 {
   min-height: 100px;
 }
 
-.add-assignment-dropzone {
+.add-file-upload {
   border: 2px dashed #25738b;
   padding: 20px;
-  text-align: center;
-  cursor: pointer;
+  cursor: default;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
 }
 
-.add-assignment-dropzone p {
-  margin: 0;
-}
-
-.add-assignment-attach-icon {
+.add-upload-icon {
   font-size: 2em;
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-file-name {
+  display: inline-block;
+  cursor: pointer;
 }
 
 .add-assignment-button-group {
@@ -89,13 +96,13 @@ h2 {
   margin-top: 20px;
 }
 
+.due-date {
+  width: 100%;
+  text-align: center;
+}
+
 .add-assignment-error-message {
   color: red;
   margin-top: -10px;
   margin-bottom: 10px;
-}
-
-.due-date {
-  width: 100%;
-  text-align: center;
 }
