@@ -27,8 +27,10 @@ const AdminCourses = () => {
 
   const confirmDelete = () => {
     if (selectedCourse) {
-      dispatch(deleteCourse(selectedCourse.id));
-      setShowDeletePopup(false);
+      dispatch(deleteCourse(selectedCourse.id))
+        .unwrap()
+        .then(() => setShowDeletePopup(false))
+        .catch((err) => console.error(err));
     }
   };
 
@@ -47,7 +49,7 @@ const AdminCourses = () => {
         {loading && <p>Loading courses...</p>}
         {error && <p>Error fetching courses: {error}</p>}
         {!loading && !error && (
-          <table>
+          <table className="admincourses-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -63,12 +65,14 @@ const AdminCourses = () => {
                   <td>{course.name}</td>
                   <td>{course.teacher?.name || 'Unknown'}</td>
                   <td>
-                    <Button
-                      color="#e74c3c"
-                      text="Delete"
-                      size="small"
-                      onClick={() => handleDeleteClick(course)}
-                    />
+                    <div className="button-group">
+                      <Button
+                        color="#e74c3c"
+                        text="Delete"
+                        size="small"
+                        onClick={() => handleDeleteClick(course)}
+                      />
+                    </div>
                   </td>
                 </tr>
               ))}
