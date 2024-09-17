@@ -10,16 +10,16 @@ const Footer = () => {
       <div className="left">
         <img src={Logo} alt="CognifyEdu Logo" />
         <div className="social-icons">
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/i/flow/login" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faXTwitter} className="social-icon" />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faInstagram} className="social-icon" />
           </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.youtube.com/signin" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faYoutube} className="social-icon" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
           </a>
         </div>
