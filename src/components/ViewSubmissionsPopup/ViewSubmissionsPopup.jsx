@@ -186,7 +186,7 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
             <span role="img" aria-label="file">
               📄
             </span>
-            <p>Click to view the submitted file</p>
+            <p>Click to download the submitted file</p>
           </div>
 
           <div className="feedback-section">
