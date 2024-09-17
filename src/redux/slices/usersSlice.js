@@ -27,15 +27,16 @@ export const deleteUser = createAsyncThunk(
 
 export const addParentToStudent = createAsyncThunk(
   "users/addParentToStudent",
-  async ({ studentId, email }, { rejectWithValue }) => {
+  async ({ studentId, parentId }, { rejectWithValue }) => {
     try {
-      const response = await api.post(`/users/${studentId}/add-parent`, { email });
+      const response = await api.post(`/users/${studentId}/add-parent`, { parent_id: parentId });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      return rejectWithValue(error.response?.data.message || "Failed to add parent to student");
     }
   }
 );
+
 
 export const fetchChildren = createAsyncThunk(
   "users/fetchChildren",
