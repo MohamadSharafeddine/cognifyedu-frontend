@@ -10,12 +10,21 @@ const ProtectedRoute = ({ children, type }) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (user && user.type !== type) {  
-    return <Navigate to={`/dashboard/${user.type}`} replace />;
-  }
-
   if (!user) {
     return <div>Loading...</div>;
+  }
+
+  if (location.pathname === '/dashboard') {
+    if (user.type === 'admin') {
+      return <Navigate to="/admin/users" replace />;
+    }
+    if (user.type === 'parent') {
+      return <Navigate to="/parent/children" replace />;
+    }
+  }
+
+  if (user.type !== type) {  
+    return <Navigate to={`/dashboard/${user.type}`} replace />;
   }
 
   return children;
