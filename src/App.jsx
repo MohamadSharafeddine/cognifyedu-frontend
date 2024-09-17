@@ -18,11 +18,17 @@ import Assignments from "./components/Assignments/Assignments";
 import Students from "./components/Students/Students";
 import Marks from "./components/Marks/Marks";
 import ViewSubmissionsPopup from "./components/ViewSubmissionsPopup/ViewSubmissionsPopup";
+import AdminUsers from "./pages/AdminUsers/AdminUsers";
+import AdminCourses from "./pages/AdminCourses/AdminCourses";
+import AdminTeachers from "./pages/AdminUsers/AdminTeachers/AdminTeachers";
+import AdminStudents from "./pages/AdminUsers/AdminStudents/AdminStudents";
+import AdminParents from "./pages/AdminUsers/AdminParents/AdminParents";
+import ParentChildren from "./pages/ParentChildren/ParentChildren";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import DashboardAdmin from "./pages/Dashboard/DashboardAdmin";
 import DashboardTeacher from "./pages/Dashboard/DashboardTeacher";
 import DashboardStudent from "./pages/Dashboard/DashboardStudent";
 import DashboardParent from "./pages/Dashboard/DashboardParent";
-import DashboardAdmin from "./pages/Dashboard/DashboardAdmin";
-import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   return (
@@ -41,7 +47,10 @@ function App() {
             <Route path="assignments" element={<Assignments />} />
             <Route path="students" element={<Students />} />
             <Route path="marks" element={<Marks />} />
-            <Route path="assignments/:assignmentTitle" element={<ViewSubmissionsPopup />} />
+            <Route
+              path="assignments/:assignmentTitle"
+              element={<ViewSubmissionsPopup />}
+            />
           </Route>
 
           <Route path="/profile/:userId/*" element={<Profile />}>
@@ -53,10 +62,27 @@ function App() {
             <Route path="edit" element={<EditProfile />} />
           </Route>
 
+          <Route path="/admin/users" element={<AdminUsers />}>
+            <Route index element={<Navigate to="teachers" />} />
+            <Route path="teachers" element={<AdminTeachers />} />
+            <Route path="students" element={<AdminStudents />} />
+            <Route path="parents" element={<AdminParents />} />
+          </Route>
+          <Route path="/admin/courses" element={<AdminCourses />} />
+
+          <Route
+            path="/parent/children"
+            element={
+              <ProtectedRoute type="parent">
+                <ParentChildren />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/dashboard/teacher"
             element={
-              <ProtectedRoute type="teacher">  
+              <ProtectedRoute type="teacher">
                 <DashboardTeacher />
               </ProtectedRoute>
             }
@@ -64,7 +90,7 @@ function App() {
           <Route
             path="/dashboard/student"
             element={
-              <ProtectedRoute type="student">  
+              <ProtectedRoute type="student">
                 <DashboardStudent />
               </ProtectedRoute>
             }
@@ -72,7 +98,7 @@ function App() {
           <Route
             path="/dashboard/parent"
             element={
-              <ProtectedRoute type="parent">  
+              <ProtectedRoute type="parent">
                 <DashboardParent />
               </ProtectedRoute>
             }
@@ -80,7 +106,7 @@ function App() {
           <Route
             path="/dashboard/admin"
             element={
-              <ProtectedRoute type="admin">  
+              <ProtectedRoute type="admin">
                 <DashboardAdmin />
               </ProtectedRoute>
             }
