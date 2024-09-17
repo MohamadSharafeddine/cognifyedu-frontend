@@ -1,24 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-// import "./DashboardParent.css";
-import Button from "../../components/Button/Button";
+import { useSelector } from "react-redux";
+import "./DashboardParent.css";
 
 const DashboardParent = () => {
-  const navigate = useNavigate();
-
-  const handleViewChildren = () => {
-    navigate("/parent/children");
-  };
+  const { user } = useSelector((state) => state.auth);
 
   return (
-    <div className="dashboardparent-container">
-      <h1>Parent Dashboard</h1>
-      <Button 
-        text="View Children" 
-        onClick={handleViewChildren} 
-        size="large"
-        color="#25738b"
-      />
+    <div className="dashboard-parent">
+      <h1>Welcome, {user.name}!</h1>
+      <div className="parent-welcome-card">
+        <p>
+          Dive into your child's educational journey! Here, you can explore their progress, gain insights, and celebrate their achievements. Use the menu to access detailed analysis and support their learning every step of the way.
+        </p>
+      </div>
     </div>
   );
 };
