@@ -19,41 +19,47 @@ const ProfileSidebar = () => {
   const isOwnProfile = user.id === parseInt(userId, 10);
   const isStudentProfile = user.type === "student" || !isOwnProfile;
 
+  const isActive = (path) => location.pathname.includes(path);
+
   return (
-    <div className="sidebar">
+    <div className="profilesidebar-container">
       <img
         src={Logo}
         alt="CognifyEdu Logo"
-        className="sidebar-logo"
+        className="profilesidebar-logo"
         onClick={() => navigate("/courses")}
       />
-      <ul>
+      <ul className="profilesidebar-list">
         {isStudentProfile && (
           <>
             <li>
               <button
                 className={
-                  location.pathname.includes("/analysis") ? "active" : ""
+                  isActive("/analysis")
+                    ? "profilesidebar-item active"
+                    : "profilesidebar-item"
                 }
                 onClick={() => handleMenuSelect("analysis/cognitive")}
               >
-                <div className="icon">
+                <div className="profilesidebar-icon">
                   <FontAwesomeIcon icon={faChartLine} />
                 </div>
-                <div className="title">Analysis</div>
+                <div className="profilesidebar-title">Analysis</div>
               </button>
             </li>
             <li>
               <button
                 className={
-                  location.pathname.includes("/insights") ? "active" : ""
+                  isActive("/insights")
+                    ? "profilesidebar-item active"
+                    : "profilesidebar-item"
                 }
                 onClick={() => handleMenuSelect("insights")}
               >
-                <div className="icon">
+                <div className="profilesidebar-icon">
                   <FontAwesomeIcon icon={faUser} />
                 </div>
-                <div className="title">Insights</div>
+                <div className="profilesidebar-title">Insights</div>
               </button>
             </li>
           </>
@@ -62,14 +68,16 @@ const ProfileSidebar = () => {
           <li>
             <button
               className={
-                location.pathname.includes("/edit") ? "active" : ""
+                isActive("/edit")
+                  ? "profilesidebar-item active"
+                  : "profilesidebar-item"
               }
               onClick={() => handleMenuSelect("edit")}
             >
-              <div className="icon">
+              <div className="profilesidebar-icon">
                 <FontAwesomeIcon icon={faEdit} />
               </div>
-              <div className="title">Edit Profile</div>
+              <div className="profilesidebar-title">Edit Profile</div>
             </button>
           </li>
         )}

@@ -18,7 +18,7 @@ const CoursesSidebar = () => {
     if (!selectedCourseId) {
       handleCoursesSelect();
     }
-  }, [selectedCourseId, navigate]);
+  }, [selectedCourseId]);
 
   useEffect(() => {
     if (location.pathname === "/courses") {
@@ -41,35 +41,43 @@ const CoursesSidebar = () => {
   };
 
   return (
-    <div className="sidebar">
+    <div className="coursessidebar-sidebar">
       <img
         src={Logo}
         alt="CognifyEdu Logo"
-        className="sidebar-logo"
+        className="coursessidebar-logo"
         onClick={handleLogoClick}
       />
-      <ul>
+      <ul className="coursessidebar-list">
         <li>
           <button
-            className={selectedCourseId === "Courses" || location.pathname === "/courses" ? "active" : ""}
+            className={
+              selectedCourseId === "Courses" || location.pathname === "/courses"
+                ? "coursessidebar-item active"
+                : "coursessidebar-item"
+            }
             onClick={handleCoursesSelect}
           >
-            <div className="icon">
+            <div className="coursessidebar-icon">
               <FontAwesomeIcon icon={faThList} />
             </div>
-            <div className="title">Courses</div>
+            <div className="coursessidebar-title">Courses</div>
           </button>
         </li>
         {coursesData.map((courseItem) => (
           <li key={courseItem.id}>
             <button
-              className={selectedCourseId === courseItem.id ? "active" : ""}
+              className={
+                selectedCourseId === courseItem.id
+                  ? "coursessidebar-item active"
+                  : "coursessidebar-item"
+              }
               onClick={() => handleCourseSelect(courseItem.id, courseItem.name)}
             >
-              <div className="icon">
+              <div className="coursessidebar-icon">
                 <FontAwesomeIcon icon={faThList} />
               </div>
-              <div className="title">{courseItem.name}</div>
+              <div className="coursessidebar-title">{courseItem.name}</div>
             </button>
           </li>
         ))}
