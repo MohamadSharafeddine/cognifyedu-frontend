@@ -1,7 +1,7 @@
 import React from "react";
 import "./AdminSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBook } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faBook, faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo-bar.png";
 
@@ -21,9 +21,24 @@ const AdminSidebar = () => {
         src={Logo}
         alt="CognifyEdu Logo"
         className="adminsidebar-logo"
-        onClick={() => navigate("/admin/users")}
+        onClick={() => handleNavigation("/dashboard/admin")}
       />
       <ul className="adminsidebar-list">
+        <li>
+          <button
+            className={
+              isActive("/dashboard/admin")
+                ? "adminsidebar-item active"
+                : "adminsidebar-item"
+            }
+            onClick={() => handleNavigation("/dashboard/admin")}
+          >
+            <div className="adminsidebar-icon">
+              <FontAwesomeIcon icon={faHome} />
+            </div>
+            <div className="adminsidebar-title">Home</div>
+          </button>
+        </li>
         <li>
           <button
             className={
