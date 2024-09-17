@@ -1,7 +1,7 @@
 import React from "react";
 import "./ParentSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChild } from "@fortawesome/free-solid-svg-icons";
+import { faChild, faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo-bar.png";
 
@@ -21,9 +21,24 @@ const ParentSidebar = () => {
         src={Logo}
         alt="CognifyEdu Logo"
         className="parentsidebar-logo"
-        onClick={() => handleNavigation("/parent/children")}
+        onClick={() => handleNavigation("/dashboard/parent")}
       />
       <ul className="parentsidebar-list">
+        <li>
+          <button
+            className={
+              isActive("/dashboard/parent")
+                ? "parentsidebar-item active"
+                : "parentsidebar-item"
+            }
+            onClick={() => handleNavigation("/dashboard/parent")}
+          >
+            <div className="parentsidebar-icon">
+              <FontAwesomeIcon icon={faHome} />
+            </div>
+            <div className="parentsidebar-title">Home</div>
+          </button>
+        </li>
         <li>
           <button
             className={
