@@ -1,0 +1,91 @@
+.adminteachers-list {
+  background-color: white;
+  border: 0.5px solid rgb(237, 237, 237);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 530px;
+  overflow-y: auto;
+  padding: 0 40px;
+  margin: 20px 0;
+}
+
+.adminteachers-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.adminteachers-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.adminteachers-list::-webkit-scrollbar-thumb {
+  background: #25738b;
+  border-radius: 10px;
+}
+
+.adminteachers-list::-webkit-scrollbar-thumb:hover {
+  background: #1e5c6f;
+}
+
+.adminteachers-list {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
+}
+
+.adminteachers-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.adminteachers-list thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.adminteachers-list th,
+.adminteachers-list td {
+  padding: 15px;
+  border-left: none;
+  border-right: none;
+}
+
+.adminteachers-list th {
+  text-align: left;
+  background-color: white;
+  font-weight: 600;
+}
+
+.adminteachers-list tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.adminteachers-list tr:last-child {
+  border-bottom: none;
+}
+
+.adminteachers-list tbody tr {
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.1s ease;
+}
+
+.adminteachers-list tbody tr:hover {
+  color: #25738b;
+  transform: scale(1.01);
+}
+
+.adminteachers-list td:nth-child(3) {
+  width: 100px;
+}
+
+@media (max-width: 768px) {
+  .adminteachers-list {
+    padding: 10px;
+  }
+
+  .adminteachers-list th,
+  .adminteachers-list td {
+    padding: 10px;
+  }
+}
