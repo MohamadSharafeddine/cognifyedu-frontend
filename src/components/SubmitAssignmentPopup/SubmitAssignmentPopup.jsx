@@ -11,12 +11,6 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
   const [error, setError] = useState('');
   const [dragging, setDragging] = useState(false);
 
-  const logFormData = (formData) => {
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-  };
-
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -60,8 +54,6 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
     formData.append('assignment_id', assignment.id);
     formData.append('deliverable', deliverable);
 
-    logFormData(formData);
-
     dispatch(submitAssignment({ assignmentId: assignment.id, deliverable }))
       .unwrap()
       .then(() => {
@@ -74,17 +66,17 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
       });
   };
 
-  const handleDownload = async (assignmentId) => {
+  const handleDownloadFile = async (assignmentId) => {
     try {
       const token = localStorage.getItem('token');
-  
+
       const response = await axios.get(`http://127.0.0.1:8000/api/assignments/${assignmentId}/download`, {
         responseType: 'blob',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       if (response.status === 200) {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
@@ -95,15 +87,14 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
         link.click();
         link.remove();
       } else {
-        console.error("Failed to download the file.", response.status);
+        console.error('Failed to download the file.', response.status);
         alert('Failed to download the file.');
       }
     } catch (error) {
       console.error('Error downloading the file:', error);
+      alert('Error downloading the file.');
     }
   };
-  
-  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -131,8 +122,8 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
           <div className="submit-assignment-attachment centered-attachment">
             <h4>Attachments</h4>
             {assignment.attachment ? (
-              <button onClick={() => handleDownload(assignment.id)}>
-                <img src="/assets/file-icon.svg" alt="Attachment" />
+              <button onClick={() => handleDownloadFile(assignment.id)} className="download-attachment-button">
+                Download Attachment
               </button>
             ) : (
               <div className="no-attachment">No file attached</div>
@@ -145,7 +136,7 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
         <div className="my-work">
           <h3>My Work</h3>
           <div
-            className={`file-upload ${dragging ? 'dragging' : ''} ${deliverable ? 'file-present' : 'file-empty'}`}
+            className={`submit-file-upload ${dragging ? 'dragging' : ''} ${deliverable ? 'file-present' : 'file-empty'}`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
@@ -156,18 +147,21 @@ const SubmitAssignmentPopup = ({ assignment, onClose }) => {
               id="deliverable-upload"
               style={{ display: 'none' }}
             />
-            <label htmlFor="deliverable-upload" className="upload-label">
+            <label htmlFor="deliverable-upload" className="submit-upload-label">
               {deliverable ? (
-                <span className="file-name">{deliverable.name}</span>
+                <span className="submit-file-name">{deliverable.name}</span>
               ) : (
-                <span className="upload-icon">+</span>
+                <span className="submit-upload-icon">+</span>
               )}
             </label>
           </div>
 
           {error && <p className="error-message">{error}</p>}
 
-          <Button color="#25738b" text="Submit" size="medium" onClick={handleSubmit} />
+          <div className="submit-assignment-buttons">
+            <Button color="#e74c3c" text="Close" size="medium" onClick={onClose} />
+            <Button color="#25738b" text="Submit" size="medium" onClick={handleSubmit} />
+          </div>
         </div>
       </div>
     </div>
