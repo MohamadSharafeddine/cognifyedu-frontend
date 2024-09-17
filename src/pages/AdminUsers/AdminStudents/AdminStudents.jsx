@@ -38,14 +38,16 @@ const AdminStudents = () => {
 
   const confirmDelete = () => {
     if (selectedStudent) {
-      dispatch(deleteUser(selectedStudent.id));
-      setShowDeletePopup(false);
+      dispatch(deleteUser(selectedStudent.id))
+        .unwrap()
+        .then(() => setShowDeletePopup(false))
+        .catch((err) => console.error(err));
     }
   };
 
   return (
     <div className="adminstudents-list">
-      <table>
+      <table className="adminstudents-table">
         <thead>
           <tr>
             <th>ID</th>
