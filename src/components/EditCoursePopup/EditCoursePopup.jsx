@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./EditCoursePopup.css";
 import Button from "../Button/Button";
 
@@ -6,6 +6,20 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
   const [title, setTitle] = useState(courseName);
   const [desc, setDesc] = useState(description);
   const [error, setError] = useState("");
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
 
   const handleSaveCourse = () => {
     if (!title.trim()) {
@@ -21,10 +35,10 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="edit-course-popup-modal">
+      <div className="edit-course-popup-modal-content" ref={modalRef}>
         <h2>Edit Course</h2>
-        <div className="form-group">
+        <div className="edit-course-popup-form-group">
           <label>
             Title <span style={{ color: "red" }}>*</span>
           </label>
@@ -38,9 +52,9 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
             placeholder="Enter Title"
             required
           />
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="edit-course-popup-error-message">{error}</p>}
         </div>
-        <div className="form-group">
+        <div className="edit-course-popup-form-group">
           <label>Description</label>
           <textarea
             value={desc}
@@ -48,7 +62,7 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
             placeholder="Enter Description"
           />
         </div>
-        <div className="button-group">
+        <div className="edit-course-popup-button-group">
           <Button
             color="#e74c3c"
             text="Cancel"

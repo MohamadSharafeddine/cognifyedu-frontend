@@ -1,51 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addParentToStudent } from "../../redux/slices/usersSlice";
 import "./AddParentPopup.css";
 import Button from "../Button/Button";
 
 const AddParentPopup = ({ onClose, student }) => {
-  const [email, setEmail] = useState("");
+  const [parentId, setParentId] = useState("");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   const handleAddParent = () => {
-    if (!email.trim()) {
-      setError("Email is required");
+    if (!parentId.trim()) {
+      setError("Parent ID is required");
       return;
     }
 
-    dispatch(addParentToStudent({ studentId: student.id, email }))
+    dispatch(addParentToStudent({ studentId: student.id, parentId }))
       .unwrap()
       .then((updatedStudent) => {
         onClose(updatedStudent);
       })
       .catch((err) => {
-        setError(err.message || "Failed to add parent");
+        setError(err.message || "Parent ID not found or failed to add parent");
       });
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.classList.contains("add-parent-modal")) {
+        onClose();
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="add-parent-modal">
+      <div className="add-parent-modal-content">
         <h2>Add Parent</h2>
-        <div className="form-group">
+        <div className="add-parent-form-group">
           <label>
-            Email <span style={{ color: "red" }}>*</span>
+            Parent ID <span style={{ color: "red" }}>*</span>
           </label>
           <input
-            type="email"
-            value={email}
+            type="text"
+            value={parentId}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setParentId(e.target.value);
               setError("");
             }}
-            placeholder="Enter Parent Email"
+            placeholder="Enter Parent ID"
             required
           />
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="add-parent-error-message">{error}</p>}
         </div>
-        <div className="button-group">
+        <div className="add-parent-button-group">
           <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
           <Button color="#25738b" text="Add" size="medium" onClick={handleAddParent} />
         </div>
