@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./EditAssignmentPopup.css";
 import Button from "../Button/Button";
-import { useDropzone } from "react-dropzone";
 import { useDispatch } from "react-redux";
 import { updateAssignment } from "../../redux/slices/assignmentsSlice";
 import moment from "moment";
@@ -12,17 +11,9 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
   const [description, setDescription] = useState(assignment.description);
   const [dueDate, setDueDate] = useState(assignment.due_date);
   const [attachment, setAttachment] = useState(null);
+  const [existingAttachment, setExistingAttachment] = useState(assignment.attachment || null);
   const [error, setError] = useState("");
-
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: {
-      "image/*": [".jpeg", ".png", ".jpg"],
-      "text/*": [".txt"],
-    },
-    onDrop: (acceptedFiles) => {
-      setAttachment(acceptedFiles[0]);
-    },
-  });
+  const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     if (assignment.due_date) {
@@ -31,27 +22,93 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
     }
   }, [assignment.due_date]);
 
-  const handleSave = async () => {
-    if (title && dueDate) {
-      const updatedAssignment = {
-        id: assignment.id,
-        title,
-        description,
-        due_date: dueDate,
-        course_id: assignment.course_id,
-        attachment,
-      };
-
-      try {
-        await dispatch(updateAssignment(updatedAssignment)).unwrap();
-        onSave(updatedAssignment);
-        onClose();
-      } catch (err) {
-        console.error("Error updating assignment:", err);
-        setError("Failed to update assignment. Please try again.");
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (![
+          'text/plain',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'image/jpeg',
+          'image/png',
+          'image/jpg',
+          'image/gif'
+      ].includes(file.type)) {
+          setError('Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file.');
+          setAttachment(null);
+          return;
       }
-    } else {
-      setError("Please fill in the required fields");
+      setAttachment(file);
+      setExistingAttachment(null);
+      setError('');
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      if (![
+          'text/plain',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'image/jpeg',
+          'image/png',
+          'image/jpg',
+          'image/gif'
+      ].includes(file.type)) {
+          setError('Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file.');
+          setAttachment(null);
+          return;
+      }
+      setAttachment(file);
+      setExistingAttachment(null);
+      setError('');
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setDragging(false);
+  };
+
+  const handleRemoveAttachment = () => {
+    setAttachment(null);
+    setExistingAttachment(null);
+  };
+
+  const handleSave = async () => {
+    if (!title.trim() || !description.trim() || !dueDate) {
+      setError("Title, Description, and Due Date are required.");
+      return;
+    }
+
+    const formattedDueDate = moment(dueDate).format("YYYY-MM-DD");
+
+    const updatedAssignment = {
+      id: assignment.id,
+      title,
+      description,
+      due_date: formattedDueDate,
+      course_id: assignment.course_id,
+      attachment,
+    };
+
+    try {
+      await dispatch(updateAssignment(updatedAssignment)).unwrap();
+      onSave(updatedAssignment);
+      onClose();
+    } catch (err) {
+      console.error("Error updating assignment:", err);
+      setError("Failed to update assignment. Please try again.");
     }
   };
 
@@ -62,9 +119,7 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
         <div className="edit-assignment-popup-body">
           <div className="edit-assignment-left-section">
             <div className="edit-assignment-form-group">
-              <label>
-                Title <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Title</label>
               <input
                 type="text"
                 value={title}
@@ -75,9 +130,7 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
             </div>
 
             <div className="edit-assignment-form-group">
-              <label>
-                Description <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Description</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -88,23 +141,38 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
 
             <div className="edit-assignment-form-group">
               <label>Attach</label>
-              <div {...getRootProps({ className: "edit-assignment-dropzone" })}>
-                <input {...getInputProps()} />
-                <p>
-                  {attachment
-                    ? attachment.name
-                    : "Drag and drop a file here, or click to select a file"}
-                </p>
-                <div className="edit-assignment-attach-icon">📁</div>
+              <div
+                className={`edit-file-upload ${dragging ? "edit-dragging" : ""} ${attachment || existingAttachment ? "edit-file-present" : "edit-file-empty"}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                  id="edit-attachment-upload"
+                  style={{ display: "none" }}
+                />
+                <label htmlFor="edit-attachment-upload" className="edit-upload-label">
+                  {attachment ? (
+                    <span className="edit-file-name">
+                      {attachment.name} <button className="edit-remove-button" onClick={handleRemoveAttachment}>Remove</button>
+                    </span>
+                  ) : existingAttachment ? (
+                    <span className="edit-file-name">
+                      {existingAttachment.name} <button className="edit-remove-button" onClick={handleRemoveAttachment}>Remove</button>
+                    </span>
+                  ) : (
+                    <span className="edit-upload-icon">+</span>
+                  )}
+                </label>
               </div>
             </div>
           </div>
 
           <div className="edit-assignment-right-section">
             <div className="edit-assignment-form-group due-date">
-              <label>
-                Due Date <span style={{ color: "red" }}>*</span>
-              </label>
+              <label>Due Date</label>
               <input
                 type="date"
                 value={dueDate}
