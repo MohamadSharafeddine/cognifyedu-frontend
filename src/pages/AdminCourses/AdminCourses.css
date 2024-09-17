@@ -1,0 +1,76 @@
+.admincourses-container {
+    padding: 20px;
+  }
+  
+  .admincourses-header {
+    margin-bottom: 20px;
+  }
+  
+  .admincourses-header input {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admincourses-list {
+    background-color: white;
+    border: 0.5px solid rgb(237, 237, 237);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 530px;
+    overflow-y: auto;
+  }
+  
+  .admincourses-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admincourses-list thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .admincourses-list th,
+  .admincourses-list td {
+    padding: 15px;
+  }
+  
+  .admincourses-list th {
+    text-align: left;
+    background-color: white;
+    font-weight: 600;
+  }
+  
+  .admincourses-list tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admincourses-list tr:last-child {
+    border-bottom: none;
+  }
+  
+  .admincourses-list tbody tr:hover {
+    color: #25738b;
+    transform: scale(1.01);
+  }
+  
+  @media (max-width: 768px) {
+    .admincourses-container {
+      padding: 10px;
+    }
+  
+    .admincourses-header input {
+      width: 100%;
+    }
+  
+    .admincourses-list th,
+    .admincourses-list td {
+      padding: 10px;
+    }
+  }
+  
