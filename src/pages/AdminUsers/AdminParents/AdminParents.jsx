@@ -6,20 +6,14 @@ import Button from "../../../components/Button/Button";
 import DeleteConfirmationPopup from "../../../components/DeleteConfirmationPopup/DeleteConfirmationPopup";
 import { deleteUser } from "../../../redux/slices/usersSlice";
 
+
 const AdminParents = () => {
   const { searchTerm, users } = useOutletContext();
   const dispatch = useDispatch();
-  const [parents, setParents] = useState([]);
   const [selectedParent, setSelectedParent] = useState(null);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
-  useEffect(() => {
-    if (users) {
-      const filteredParents = users.filter((user) => user.type === "parent");
-      setParents(filteredParents);
-    }
-  }, [users]);
-
+  const parents = users.filter((user) => user.type === "parent");
   const filteredParents = parents.filter((parent) =>
     parent.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -31,14 +25,16 @@ const AdminParents = () => {
 
   const confirmDelete = () => {
     if (selectedParent) {
-      dispatch(deleteUser(selectedParent.id));
-      setShowDeletePopup(false);
+      dispatch(deleteUser(selectedParent.id))
+        .unwrap()
+        .then(() => setShowDeletePopup(false))
+        .catch((err) => console.error(err));
     }
   };
 
   return (
     <div className="adminparents-list">
-      <table>
+      <table className="adminparents-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -52,12 +48,14 @@ const AdminParents = () => {
               <td>{parent.id}</td>
               <td>{parent.name}</td>
               <td>
-                <Button
-                  color="#e74c3c"
-                  text="Delete"
-                  size="small"
-                  onClick={() => handleDeleteClick(parent)}
-                />
+                <div className="button-group">
+                  <Button
+                    color="#e74c3c"
+                    text="Delete"
+                    size="small"
+                    onClick={() => handleDeleteClick(parent)}
+                  />
+                </div>
               </td>
             </tr>
           ))}
