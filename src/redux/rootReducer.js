@@ -7,6 +7,8 @@ import assignmentsReducer from "./slices/assignmentsSlice";
 import submissionsReducer from "./slices/submissionsSlice";
 import profileReducer from "./slices/profileSlice";
 import marksSlice from "./slices/marksSlice";
+import usersReducer from "./slices/usersSlice";
+import childrenSlice from "./slices/childrenSlice";
 
 const rootReducer = combineReducers({
   courses: coursesReducer,
@@ -16,7 +18,9 @@ const rootReducer = combineReducers({
   assignments: assignmentsReducer,
   submissions: submissionsReducer,
   marks: marksSlice,
-  profile: profileReducer
+  profile: profileReducer,
+  users: usersReducer,
+  children: childrenSlice
 });
 
 export default rootReducer;
