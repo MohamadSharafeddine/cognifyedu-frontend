@@ -26,11 +26,11 @@ const AddStudentPopup = ({ onClose, courseId }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="add-student-modal">
+      <div className="add-student-modal-content">
         <h2>Add Student</h2>
-        <div className="form-group">
-          <label>Email <span style={{ color: 'red' }}>*</span></label>
+        <div className="add-student-form-group">
+          <label>Email</label>
           <input
             type="email"
             value={email}
@@ -41,9 +41,9 @@ const AddStudentPopup = ({ onClose, courseId }) => {
             placeholder="Enter Student Email"
             required
           />
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="add-student-error-message">{error}</p>}
         </div>
-        <div className="button-group">
+        <div className="add-student-button-group">
           <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
           <Button color="#25738b" text="Add" size="medium" onClick={handleAddStudent} />
         </div>
