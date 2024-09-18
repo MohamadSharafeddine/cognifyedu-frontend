@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
@@ -29,6 +34,8 @@ import DashboardAdmin from "./pages/Dashboard/DashboardAdmin";
 import DashboardTeacher from "./pages/Dashboard/DashboardTeacher";
 import DashboardStudent from "./pages/Dashboard/DashboardStudent";
 import DashboardParent from "./pages/Dashboard/DashboardParent";
+import Faq from "./pages/Faq/Faq";
+import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 
 function App() {
   return (
@@ -38,6 +45,8 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
         </Route>
 
         <Route element={<MainLayout />}>
