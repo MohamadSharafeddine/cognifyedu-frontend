@@ -1,0 +1,108 @@
+.students-list {
+  background-color: white;
+  border: 0.5px solid rgb(237, 237, 237);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 530px;
+  overflow-y: auto;
+  padding: 0 40px;
+  margin: 20px 0;
+}
+
+.students-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.students-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.students-list::-webkit-scrollbar-thumb {
+  background: #25738b;
+  border-radius: 10px;
+}
+
+.students-list::-webkit-scrollbar-thumb:hover {
+  background: #1e5c6f;
+}
+
+.students-list {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
+}
+
+.students-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.students-list thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.students-list th,
+.students-list td {
+  padding: 15px;
+  border-left: none;
+  border-right: none;
+}
+
+.students-list th {
+  text-align: left;
+  background-color: white;
+  font-weight: 600;
+}
+
+.students-list tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.students-list tr:last-child {
+  border-bottom: none;
+}
+
+.students-list tbody tr {
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.1s ease;
+}
+
+.students-list tbody tr:hover {
+  color: #25738b;
+  transform: scale(1.01);
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.students-list td:nth-child(2) {
+  width: 100px;
+}
+
+@media (max-width: 768px) {
+  .students-list {
+    padding: 10px;
+  }
+
+  .students-list th,
+  .students-list td {
+    padding: 10px;
+  }
+
+  .students-list td {
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 20px;
+    height: 20px;
+  }
+}

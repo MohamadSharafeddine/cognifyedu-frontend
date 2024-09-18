@@ -1,0 +1,26 @@
+.dashboard-parent {
+    padding: 30px;
+  }
+  
+  .dashboard-parent h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #25738b;
+  }
+  
+  .parent-welcome-card {
+    background-color: white;
+    border: 0.5px solid rgb(237, 237, 237);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .parent-welcome-card p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.8;
+  }
+  

@@ -1,0 +1,44 @@
+.coursepage-container {
+  padding: 0 20px;
+}
+
+.coursepage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.coursepage-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.coursepage-search-and-add {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coursepage-search-bar input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.coursepage-content {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .coursepage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .coursepage-search-and-add {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

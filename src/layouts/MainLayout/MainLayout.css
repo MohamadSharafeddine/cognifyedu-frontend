@@ -1,0 +1,36 @@
+.mainlayout-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.mainlayout-rightcontent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.mainlayout-maincontent {
+  flex-grow: 1;
+  margin: 20px 80px;
+  overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+  .mainlayout-maincontent {
+    margin: 10px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainlayout-maincontent {
+    margin: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainlayout-maincontent {
+    margin: 10px;
+  }
+}

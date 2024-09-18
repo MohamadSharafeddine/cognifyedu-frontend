@@ -1,0 +1,135 @@
+.submit-assignment-popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.submit-assignment-popup {
+  background-color: white;
+  border-radius: 8px;
+  padding: 40px;
+  width: 800px;
+  max-width: 100%;
+  position: relative;
+  z-index: 1001;
+}
+
+.submit-assignment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.submit-assignment-title {
+  flex: 1;
+}
+
+.submit-assignment-title h2 {
+  font-size: 28px;
+  text-align: left;
+}
+
+.submit-assignment-title h3 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.submit-assignment-title p {
+  margin: 10px 0;
+  font-size: 16px;
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+.divider {
+  height: 2px;
+  background-color: #f1f1f1;
+  margin: 20px 0;
+}
+
+.my-work {
+  text-align: left;
+}
+
+.my-work h3 {
+  font-size: 18px;
+}
+
+.submit-file-upload {
+  border: 2px dashed #25738b;
+  padding: 20px;
+  margin: 20px 0;
+  cursor: default;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  background-color: #f9f9f9;
+}
+
+.submit-upload-label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.submit-upload-icon {
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-file-name {
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.submit-file-upload.dragging {
+  background-color: #e0f7fa;
+}
+
+.submit-assignment-attachment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.download-attachment-button {
+  background-color: #25738b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.no-attachment {
+  color: #999;
+}
+
+.error-message {
+  color: red;
+  margin: 10px 0;
+}
+
+button {
+  float: right;
+}
+
+.submit-assignment-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}

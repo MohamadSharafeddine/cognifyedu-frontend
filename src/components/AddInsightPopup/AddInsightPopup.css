@@ -1,0 +1,178 @@
+.add-insight-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.add-insight-popup-content {
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 40px;
+  width: 600px;
+  position: relative;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: popupAnimation 0.3s ease-out;
+}
+
+@keyframes popupAnimation {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.add-insight-popup-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.add-insight-popup-header h2 {
+  margin: 0 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #25738b;
+}
+
+.ai-icon {
+  font-size: 40px;
+  color: #25738b;
+  margin-right: 10px;
+}
+
+.add-insight-popup-help-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  color: #25738b;
+  cursor: pointer;
+}
+
+.add-insight-popup-help-popup {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  z-index: 1010;
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+}
+
+.add-insight-popup-help-popup ul {
+  padding-left: 20px;
+  margin: 10px 0 0;
+}
+
+.add-insight-popup-help-popup li {
+  margin-bottom: 8px;
+}
+
+.add-insight-popup-subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.add-insight-popup-form-group {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.add-insight-popup-form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.add-insight-popup-form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  resize: none;
+  height: 150px;
+}
+
+.add-insight-popup-form-group textarea::placeholder {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.add-insight-popup-submit-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.ai-loading {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ai-loading-icon {
+  font-size: 30px;
+  color: #25738b;
+  margin-bottom: 10px;
+}
+
+.add-insight-error-message {
+  color: red;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.add-insight-popup-form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  resize: none;
+  height: 150px;
+  overflow-y: auto;
+}
+
+.add-insight-popup-form-group textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+.add-insight-popup-form-group textarea::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.add-insight-popup-form-group textarea::-webkit-scrollbar-thumb {
+  background-color: #25738B;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.add-insight-popup-form-group textarea {
+  scrollbar-width: thin;
+  scrollbar-color: #25738B #f1f1f1;
+}

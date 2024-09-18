@@ -1,0 +1,122 @@
+.coursecard-container {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+.coursecard-container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.coursecard-header {
+  background-color: #25738b;
+  color: white;
+  padding: 15px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.coursecard-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coursecard-header-bottom {
+  margin-top: 5px;
+}
+
+.coursecard-coursename {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.coursecard-teacher {
+  font-size: 0.9em;
+}
+
+.coursecard-icon-group {
+  display: flex;
+  gap: 10px;
+  display: none;
+}
+
+.coursecard-container:hover .coursecard-icon-group {
+  display: flex;
+}
+
+.coursecard-delete-icon {
+  font-size: 1.2em;
+  color: #e74c3c;
+  cursor: pointer;
+}
+
+.coursecard-edit-icon {
+  font-size: 1.2em;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.coursecard-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.coursecard-body h3 {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.coursecard-description-container {
+  flex-grow: 1;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.coursecard-description-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.coursecard-description-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.coursecard-description-container::-webkit-scrollbar-thumb {
+  background: #25738b;
+  border-radius: 10px;
+}
+
+.coursecard-description-container::-webkit-scrollbar-thumb:hover {
+  background: #1e5c6f;
+}
+
+.coursecard-description-container {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
+}
+
+.coursecard-description {
+  margin: 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .coursecard-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .coursecard-body {
+    padding: 10px;
+  }
+}

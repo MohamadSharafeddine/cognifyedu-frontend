@@ -1,0 +1,30 @@
+.courses-container {
+  padding: 3px 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.courses-cardscontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 54px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.courses-addbutton {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .courses-cardscontainer {
+    gap: 20px 30px;
+    justify-content: center;
+  }
+
+  .courses-addbutton {
+    justify-content: center;
+  }
+}

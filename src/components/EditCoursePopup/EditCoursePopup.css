@@ -1,0 +1,57 @@
+.edit-course-popup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-course-popup-modal-content {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-course-popup-form-group {
+  margin-bottom: 20px;
+}
+
+.edit-course-popup-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-course-popup-form-group input,
+.edit-course-popup-form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  resize: none;
+}
+
+.edit-course-popup-form-group textarea {
+  min-height: 100px;
+}
+
+.edit-course-popup-button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.edit-course-popup-error-message {
+  color: red;
+  margin-top: 5px;
+}

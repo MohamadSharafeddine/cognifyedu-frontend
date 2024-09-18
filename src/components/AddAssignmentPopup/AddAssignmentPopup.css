@@ -1,0 +1,108 @@
+.add-assignment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.add-assignment-modal-content {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  width: 800px;
+  height: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-assignment-popup-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.add-assignment-left-section {
+  flex: 2;
+}
+
+.add-assignment-right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-assignment-form-group {
+  margin-bottom: 20px;
+}
+
+.add-assignment-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.add-assignment-form-group input,
+.add-assignment-form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.add-assignment-form-group textarea {
+  min-height: 100px;
+}
+
+.add-file-upload {
+  border: 2px dashed #25738b;
+  padding: 20px;
+  cursor: default;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
+
+.add-upload-icon {
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-file-name {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.add-assignment-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.due-date {
+  width: 100%;
+  text-align: center;
+}
+
+.add-assignment-error-message {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}

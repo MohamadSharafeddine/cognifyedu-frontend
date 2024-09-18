@@ -1,0 +1,154 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.view-submissions-popup {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  padding: 30px;
+  width: 900px;
+  height: 600px;
+}
+
+.left-section {
+  width: 45%;
+  border-right: 1px solid #ddd;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.assignment-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.submissions-table-wrapper {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.submissions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.submissions-table th,
+.submissions-table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.submissions-table tr:hover td {
+  color: #25738b;
+  font-size: 16px;
+}
+
+.submissions-table .active td {
+  color: #25738b;
+  font-size: 16px;
+}
+
+.submissions-table-wrapper::-webkit-scrollbar {
+  width: 8px;
+  size: thin;
+  color: #25738b;
+}
+
+.right-section {
+  width: 55%;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-display {
+  font-size: 40px;
+  text-align: center;
+  cursor: pointer;
+  margin: 20px 0;
+  color: #666;
+}
+
+.file-display p {
+  font-size: 14px;
+  color: #666;
+}
+
+.feedback-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.comment {
+  width: 80%;
+}
+
+.comment textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+}
+
+.mark {
+  width: 20%;
+}
+
+.mark-input {
+  display: flex;
+  align-items: center;
+}
+
+.mark-input input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  width: 60px;
+  height: 100%;
+}
+
+.mark-input span {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.feedback-messages {
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.feedback {
+  color: green;
+  font-size: 12px;
+}
