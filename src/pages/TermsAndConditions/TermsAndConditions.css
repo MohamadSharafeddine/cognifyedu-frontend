@@ -1,0 +1,27 @@
+.terms-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .terms-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #25738b;
+  }
+  
+  .terms-page h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .terms-page p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
