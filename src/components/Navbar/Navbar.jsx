@@ -70,6 +70,15 @@ const Navbar = () => {
           <li>
             <Link
               smooth
+              to="/#users"
+              className={`navbar-item ${activeSection === "users" ? "active-link" : ""}`}
+            >
+              Our Users
+            </Link>
+          </li>
+          <li>
+            <Link
+              smooth
               to="/#contact"
               className={`navbar-item ${activeSection === "contact" ? "active-link" : ""}`}
             >
