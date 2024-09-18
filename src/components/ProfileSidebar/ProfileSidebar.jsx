@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProfileSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartLine, faUser, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faChartLine, faLightbulb, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Logo from "../../assets/logo-bar.png";
@@ -57,7 +57,7 @@ const ProfileSidebar = () => {
                 onClick={() => handleMenuSelect("insights")}
               >
                 <div className="profilesidebar-icon">
-                  <FontAwesomeIcon icon={faUser} />
+                  <FontAwesomeIcon icon={faLightbulb} />
                 </div>
                 <div className="profilesidebar-title">Insights</div>
               </button>
