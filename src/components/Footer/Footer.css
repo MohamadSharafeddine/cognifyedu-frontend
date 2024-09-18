@@ -4,61 +4,56 @@
   align-items: center;
   padding: 20px 50px;
   background-color: #f9f9f9;
-  border-top: rgb(221, 221, 221) 0.5px solid;
+  border-top: 0.5px solid rgb(221, 221, 221);
 }
 
-.footer .left,
-.footer .center,
-.footer .right {
+.footer-left, .footer-center, .footer-right {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.footer .left img {
+.footer-logo {
   width: 50px;
-  height: 50px;
+  height: auto;
 }
 
-.footer .left .social-icons {
+.social-icons {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
-.footer .social-icon {
+.social-icon {
   font-size: 24px;
   color: #000;
   transition: color 0.3s ease;
 }
 
-.footer .social-icon:hover {
+.social-icon:hover {
   color: #25738b;
 }
 
-.footer .left .location {
+.location {
   margin-top: 10px;
   color: #666;
 }
 
-.footer .center,
-.footer .right {
+.footer-center, .footer-right {
   text-align: center;
 }
 
-.footer .center a,
-.footer .right a {
+.footer-link {
   color: #666;
   text-decoration: none;
   margin-top: 5px;
 }
 
-.footer .center a:hover,
-.footer .right a:hover {
+.footer-link:hover {
   text-decoration: underline;
 }
 
-.footer .center .copyright {
+.copyright {
   margin-top: 20px;
   color: #666;
 }
@@ -69,17 +64,15 @@
     text-align: center;
   }
 
-  .footer .left,
-  .footer .center,
-  .footer .right {
+  .footer-left, .footer-center, .footer-right {
     margin-bottom: 20px;
   }
 
-  .footer .left img {
+  .footer-logo {
     margin-bottom: 10px;
   }
 
-  .footer .left .social-icons {
+  .social-icons {
     margin-bottom: 10px;
   }
 }
