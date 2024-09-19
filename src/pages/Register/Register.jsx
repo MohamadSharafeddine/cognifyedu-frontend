@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../redux/slices/authSlice';
-import { useNavigate, Link } from 'react-router-dom';
 import './Register.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../components/Button/Button';
-import logoTitle from '../../assets/logo-title.png';
+import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const Register = ({ onSwitchToLogin, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,7 +15,8 @@ const Register = () => {
     confirmPassword: '',
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [localError, setLocalError] = useState('');
   const dispatch = useDispatch();
   const { token, user, error, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -48,11 +48,12 @@ const Register = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setLocalError('');
   };
 
   const handleRegister = () => {
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match'); 
+      setLocalError('Passwords do not match');
       return;
     }
     const newUser = {
@@ -60,6 +61,12 @@ const Register = () => {
       type: determineUserTypeByEmail(formData.email),
     };
     dispatch(registerUser(newUser));
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleRegister();
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -82,16 +89,34 @@ const Register = () => {
     }
   };
 
+  const handleOutsideClick = (e) => {
+    if (e.target.classList.contains('register-modal')) {
+      onClose();
+    }
+  };
+
+  const getErrorMessage = () => {
+    if (localError) {
+      return localError;
+    }
+    if (error) {
+      if (typeof error === 'string') {
+        return error;
+      } else if (error.message) {
+        return error.message;
+      } else if (error.errors) {
+        return Object.values(error.errors).flat().join(', ');
+      }
+    }
+    return '';
+  };
+
   return (
-    <div className="register-container">
-      <div className="hero-section">
-        <img src={logoTitle} alt="CognifyEdu Logo" />
-        <p>Unlocking Potential, One Insight at a Time.</p>
-      </div>
-      <div className="register-form-container">
+    <div className="register-modal" onClick={handleOutsideClick}>
+      <div className="register-modal-content">
         <h2>Register</h2>
-        {error && <p className="error-message">{error}</p>}
-        <div className="form-group">
+        {getErrorMessage() && <p className="register-error-message">{getErrorMessage()}</p>}
+        <div className="register-form-group">
           <label>Full Name</label>
           <input
             type="text"
@@ -99,9 +124,10 @@ const Register = () => {
             placeholder="Enter your Full Name"
             value={formData.name}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
-        <div className="form-group">
+        <div className="register-form-group">
           <label>Email</label>
           <input
             type="email"
@@ -109,45 +135,48 @@ const Register = () => {
             placeholder="Enter your Email"
             value={formData.email}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
-        <div className="form-group password-group">
+        <div className="register-form-group register-password-group">
           <label>Password</label>
-          <div className="password-wrapper">
+          <div className="register-password-wrapper">
             <input
               type={showPassword ? 'text' : 'password'}
               name="password"
               placeholder="Enter your Password"
               value={formData.password}
               onChange={handleChange}
+              onKeyDown={handleKeyDown}
             />
             <FontAwesomeIcon
               icon={showPassword ? faEyeSlash : faEye}
-              className="password-icon"
+              className="register-password-icon"
               onClick={togglePasswordVisibility}
               style={{ color: '#25738b' }}
             />
           </div>
         </div>
-        <div className="form-group password-group">
+        <div className="register-form-group register-password-group">
           <label>Confirm Password</label>
-          <div className="password-wrapper">
+          <div className="register-password-wrapper">
             <input
               type={showConfirmPassword ? 'text' : 'password'}
               name="confirmPassword"
               placeholder="Confirm your Password"
               value={formData.confirmPassword}
               onChange={handleChange}
+              onKeyDown={handleKeyDown}
             />
             <FontAwesomeIcon
               icon={showConfirmPassword ? faEyeSlash : faEye}
-              className="password-icon"
+              className="register-password-icon"
               onClick={toggleConfirmPasswordVisibility}
               style={{ color: '#25738b' }}
             />
           </div>
         </div>
-        <div className="form-actions">
+        <div className="register-form-actions">
           <Button
             text={loading ? 'Registering...' : 'Register'}
             onClick={handleRegister}
@@ -155,8 +184,8 @@ const Register = () => {
             size="medium"
           />
         </div>
-        <p className="login-link">
-          Already have an account? <Link to="/login">Login</Link>
+        <p className="register-login-link">
+          Already have an account? <span onClick={onSwitchToLogin}>Login</span>
         </p>
       </div>
     </div>

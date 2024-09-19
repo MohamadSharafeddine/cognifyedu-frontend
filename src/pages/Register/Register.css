@@ -1,108 +1,124 @@
-.register-container {
+.register-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  z-index: 1000;
 }
 
-.hero-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-right: 50px;
-}
-
-.hero-section img {
-  width: 150px;
-  margin-bottom: 20px;
-}
-
-.hero-section p {
-  font-size: 20px;
-  color: #25738b;
-}
-
-.register-form-container {
-  flex: 1;
+.register-modal-content {
   background-color: white;
-  padding: 40px;
+  padding: 20px 40px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 450px;
-  width: 100%;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
   box-sizing: border-box;
 }
 
+.register-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 h2 {
-  margin-bottom: 20px;
+  text-align: center;
   font-size: 28px;
+  margin-bottom: 20px;
   font-weight: bold;
 }
 
-.form-group {
+.register-form-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.register-form-group label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
   color: #333;
 }
 
-.form-group input {
+.register-form-group input {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
-.password-group .password-wrapper {
+.register-password-group .register-password-wrapper {
   position: relative;
 }
 
-.password-icon {
+.register-password-icon {
   position: absolute;
   right: 10px;
   top: 12px;
   cursor: pointer;
 }
 
-.form-actions {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.login-link {
+.register-form-actions {
   text-align: center;
   margin-top: 20px;
 }
 
-.login-link a {
+.register-form-actions Button {
+  width: 100%;
+  background-color: #25738b;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.register-form-actions Button:hover {
+  background-color: #1e5f6e;
+}
+
+.register-login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-login-link span {
   color: #25738b;
   font-weight: bold;
-  text-decoration: none;
+  cursor: pointer;
 }
 
-.login-link a:hover {
+.register-login-link span:hover {
   text-decoration: underline;
 }
 
+.register-error-message {
+  color: #c53030;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.register-error-message {
+  color: #c53030;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
 @media (max-width: 768px) {
-  .register-container {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .hero-section {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-
-  .register-form-container {
+  .register-modal-content {
     padding: 20px;
   }
 }
