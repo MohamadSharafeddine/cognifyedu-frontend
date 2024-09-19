@@ -53,7 +53,7 @@ const TopBar = () => {
 
   const handleLogoutClick = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate('/');
   };
 
   const userEmail = user?.email || 'User Email';

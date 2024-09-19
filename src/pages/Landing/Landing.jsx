@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./Landing.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -11,11 +10,31 @@ import aboutUsImage from "../../assets/about-us.png";
 import userTeacherImage from "../../assets/user-teacher.png";
 import userStudentImage from "../../assets/user-student.png";
 import userParentImage from "../../assets/user-parent.png";
+import Register from "../Register/Register";
+import Login from "../Login/Login";
 
 const Landing = () => {
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out" });
   }, []);
+
+  const toggleRegister = () => {
+    setShowRegister(!showRegister);
+    setShowLogin(false);
+  };
+
+  const toggleLogin = () => {
+    setShowLogin(!showLogin);
+    setShowRegister(false);
+  };
+
+  const closeModals = () => {
+    setShowRegister(false);
+    setShowLogin(false);
+  };
 
   return (
     <div className="landing-page">
@@ -24,9 +43,10 @@ const Landing = () => {
         <div className="landing-hero-overlay">
           <div className="landing-hero-text" data-aos="fade-up">
             <h1>Unlocking Potential, One Insight at a Time.</h1>
-            <Link to="/login">
-              <button className="hero-cta-button">Get Started</button>
-            </Link>
+            <p className="hero-subtext">Empowering education with AI-driven insights.</p>
+            <button className="hero-cta-button" onClick={toggleRegister}>
+              Get Started
+            </button>
           </div>
         </div>
       </section>
@@ -145,6 +165,9 @@ const Landing = () => {
       </section>
 
       <section id="contact" className="landing-contact-section"></section>
+
+      {showRegister && <Register onSwitchToLogin={toggleLogin} onClose={closeModals} />}
+      {showLogin && <Login onSwitchToRegister={toggleRegister} onClose={closeModals} />}
     </div>
   );
 };
