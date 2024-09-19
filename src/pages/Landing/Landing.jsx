@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./Landing.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import heroImage from "../../assets/hero-image.jpg"; 
-import servicesImage1 from "../../assets/service1.png";
-import servicesImage2 from "../../assets/service2.png";
-import servicesImage3 from "../../assets/service3.png";
-import aboutUsImage from "../../assets/about-us.png";
-import userTeacherImage from "../../assets/user-teacher.png";
-import userStudentImage from "../../assets/user-student.png";
-import userParentImage from "../../assets/user-parent.png";
+import heroImage from "../../assets/hero-image.jpg";
+import servicesImage1 from "../../assets/service1.jpg";
+import servicesImage2 from "../../assets/service2.jpg";
+import servicesImage3 from "../../assets/service3.jpg";
+import aboutUsImage from "../../assets/about-us.jpg";
+import userTeacherImage from "../../assets/user-teacher.jpg";
+import userStudentImage from "../../assets/user-student.jpg";
+import userParentImage from "../../assets/user-parent.jpg";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 
@@ -43,7 +43,9 @@ const Landing = () => {
         <div className="landing-hero-overlay">
           <div className="landing-hero-text" data-aos="fade-up">
             <h1>Unlocking Potential, One Insight at a Time.</h1>
-            <p className="hero-subtext">Empowering education with AI-driven insights.</p>
+            <p className="hero-subtext">
+              Empowering education with AI-driven insights.
+            </p>
             <button className="hero-cta-button" onClick={toggleRegister}>
               Get Started
             </button>
@@ -128,30 +130,22 @@ const Landing = () => {
             <h3>Teachers</h3>
             <div className="landing-user-description">
               <p>
-                Teachers can create and manage assignments, track student progress,
-                and gain insights to tailor their teaching strategies.
+                Teachers can create and manage assignments, track student
+                progress, and gain insights to tailor their teaching strategies.
               </p>
             </div>
           </div>
-          <div
-            className="landing-user"
-            data-aos="zoom-in"
-            data-aos-delay="100"
-          >
+          <div className="landing-user" data-aos="zoom-in" data-aos-delay="100">
             <img src={userStudentImage} alt="Students" />
             <h3>Students</h3>
             <div className="landing-user-description">
               <p>
-                Students can access assignments, view feedback, and monitor their
-                cognitive and behavioral development over time.
+                Students can access assignments, view feedback, and monitor
+                their cognitive and behavioral development over time.
               </p>
             </div>
           </div>
-          <div
-            className="landing-user"
-            data-aos="zoom-in"
-            data-aos-delay="200"
-          >
+          <div className="landing-user" data-aos="zoom-in" data-aos-delay="200">
             <img src={userParentImage} alt="Parents" />
             <h3>Parents</h3>
             <div className="landing-user-description">
@@ -166,8 +160,12 @@ const Landing = () => {
 
       <section id="contact" className="landing-contact-section"></section>
 
-      {showRegister && <Register onSwitchToLogin={toggleLogin} onClose={closeModals} />}
-      {showLogin && <Login onSwitchToRegister={toggleRegister} onClose={closeModals} />}
+      {showRegister && (
+        <Register onSwitchToLogin={toggleLogin} onClose={closeModals} />
+      )}
+      {showLogin && (
+        <Login onSwitchToRegister={toggleRegister} onClose={closeModals} />
+      )}
     </div>
   );
 };

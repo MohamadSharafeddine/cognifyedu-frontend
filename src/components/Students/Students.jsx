@@ -8,7 +8,7 @@ import {
 import "./Students.css";
 import Button from "../Button/Button";
 import DeleteConfirmationPopup from "../DeleteConfirmationPopup/DeleteConfirmationPopup";
-import defaultAvatar from "../../assets/profile.png";
+import defaultAvatar from "../../assets/profile.jpg";
 
 const Students = () => {
   const { searchTerm } = useOutletContext();

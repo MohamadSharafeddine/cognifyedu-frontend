@@ -5,7 +5,7 @@ import { faSchool, faBook } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCourse } from "../../redux/slices/uiSlice";
-import Logo from "../../assets/logo-bar.png";
+import Logo from "../../assets/logo-bar.jpg";
 
 const CoursesSidebar = () => {
   const dispatch = useDispatch();

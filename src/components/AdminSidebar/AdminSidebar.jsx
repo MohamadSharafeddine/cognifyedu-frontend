@@ -3,7 +3,7 @@ import "./AdminSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBook, faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation } from "react-router-dom";
-import Logo from "../../assets/logo-bar.png";
+import Logo from "../../assets/logo-bar.jpg";
 
 const AdminSidebar = () => {
   const navigate = useNavigate();

@@ -1,10 +1,14 @@
 import React from "react";
 import "./ProfileSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartLine, faLightbulb, faEdit } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChartLine,
+  faLightbulb,
+  faEdit,
+} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Logo from "../../assets/logo-bar.png";
+import Logo from "../../assets/logo-bar.jpg";
 
 const ProfileSidebar = () => {
   const navigate = useNavigate();

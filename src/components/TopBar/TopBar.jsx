@@ -1,11 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './TopBar.css';
-import defaultProfileImage from '../../assets/profile.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'; 
-import { logout } from '../../redux/slices/authSlice';
+import React, { useState, useRef, useEffect } from "react";
+import "./TopBar.css";
+import defaultProfileImage from "../../assets/profile.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCaretDown,
+  faUser,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
 
 const TopBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -18,14 +22,17 @@ const TopBar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setDropdownOpen(false);
         setDropdownLocked(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -53,12 +60,12 @@ const TopBar = () => {
 
   const handleLogoutClick = () => {
     dispatch(logout());
-    navigate('/');
+    navigate("/");
   };
 
-  const userEmail = user?.email || 'User Email';
+  const userEmail = user?.email || "User Email";
   const profileImage = user?.profile_picture
-    ? user.profile_picture.startsWith('http')
+    ? user.profile_picture.startsWith("http")
       ? user.profile_picture
       : `${process.env.REACT_APP_API_URL}${user.profile_picture}`
     : defaultProfileImage;
@@ -83,7 +90,10 @@ const TopBar = () => {
               Profile
             </button>
             <button className="dropdown-item" onClick={handleLogoutClick}>
-              <FontAwesomeIcon icon={faSignOutAlt} className="dropdown-item-icon" />
+              <FontAwesomeIcon
+                icon={faSignOutAlt}
+                className="dropdown-item-icon"
+              />
               Logout
             </button>
           </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../../assets/logo-bar.png";
+import logo from "../../assets/logo-bar.jpg";
 import Register from "../../pages/Register/Register";
 import Login from "../../pages/Login/Login";
 
@@ -73,7 +73,9 @@ const Navbar = () => {
               <Link
                 smooth
                 to="/#about"
-                className={`navbar-item ${activeSection === "about" ? "active-link" : ""}`}
+                className={`navbar-item ${
+                  activeSection === "about" ? "active-link" : ""
+                }`}
               >
                 About Us
               </Link>
@@ -82,7 +84,9 @@ const Navbar = () => {
               <Link
                 smooth
                 to="/#services"
-                className={`navbar-item ${activeSection === "services" ? "active-link" : ""}`}
+                className={`navbar-item ${
+                  activeSection === "services" ? "active-link" : ""
+                }`}
               >
                 Our Services
               </Link>
@@ -91,7 +95,9 @@ const Navbar = () => {
               <Link
                 smooth
                 to="/#users"
-                className={`navbar-item ${activeSection === "users" ? "active-link" : ""}`}
+                className={`navbar-item ${
+                  activeSection === "users" ? "active-link" : ""
+                }`}
               >
                 Our Users
               </Link>
@@ -100,13 +106,18 @@ const Navbar = () => {
               <Link
                 smooth
                 to="/#contact"
-                className={`navbar-item ${activeSection === "contact" ? "active-link" : ""}`}
+                className={`navbar-item ${
+                  activeSection === "contact" ? "active-link" : ""
+                }`}
               >
                 Contact Us
               </Link>
             </li>
             <li>
-              <button onClick={toggleRegister} className="navbar-item get-started">
+              <button
+                onClick={toggleRegister}
+                className="navbar-item get-started"
+              >
                 Get Started
               </button>
             </li>
@@ -114,8 +125,12 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {showRegister && <Register onSwitchToLogin={toggleLogin} onClose={closeModals} />}
-      {showLogin && <Login onSwitchToRegister={toggleRegister} onClose={closeModals} />}
+      {showRegister && (
+        <Register onSwitchToLogin={toggleLogin} onClose={closeModals} />
+      )}
+      {showLogin && (
+        <Login onSwitchToRegister={toggleRegister} onClose={closeModals} />
+      )}
     </>
   );
 };

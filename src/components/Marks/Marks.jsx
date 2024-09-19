@@ -1,18 +1,22 @@
-import React from 'react';
-import { useOutletContext } from 'react-router-dom';
-import './Marks.css';
-import defaultAvatar from '../../assets/profile.png';
+import React from "react";
+import { useOutletContext } from "react-router-dom";
+import "./Marks.css";
+import defaultAvatar from "../../assets/profile.jpg";
 
 const Marks = () => {
   const { searchTerm, marksData, students } = useOutletContext();
 
   const studentsData = marksData.reduce((acc, assignment) => {
     assignment.submissions.forEach((submission) => {
-      const studentIndex = acc.findIndex((student) => student.id === submission.student.id);
+      const studentIndex = acc.findIndex(
+        (student) => student.id === submission.student.id
+      );
       if (studentIndex > -1) {
         acc[studentIndex].marks.push(submission.mark);
       } else {
-        const studentInfo = students.find((student) => student.id === submission.student.id);
+        const studentInfo = students.find(
+          (student) => student.id === submission.student.id
+        );
         acc.push({
           id: submission.student.id,
           name: submission.student.name,
@@ -26,7 +30,9 @@ const Marks = () => {
     return acc;
   }, []);
 
-  const sortedStudentsData = [...studentsData].sort((a, b) => a.name.localeCompare(b.name));
+  const sortedStudentsData = [...studentsData].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   const filteredStudents = sortedStudentsData.filter((student) =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -34,7 +40,7 @@ const Marks = () => {
 
   const truncateTitle = (title, maxLength) => {
     if (title.length > maxLength) {
-      return title.substring(0, maxLength) + '...';
+      return title.substring(0, maxLength) + "...";
     }
     return title;
   };
@@ -45,9 +51,12 @@ const Marks = () => {
         <thead>
           <tr>
             <th>Student</th>
-            {marksData.slice(0, 5).reverse().map((assignment, index) => (
-              <th key={index}>{truncateTitle(assignment.title, 15)}</th>
-            ))}
+            {marksData
+              .slice(0, 5)
+              .reverse()
+              .map((assignment, index) => (
+                <th key={index}>{truncateTitle(assignment.title, 15)}</th>
+              ))}
           </tr>
         </thead>
         <tbody>
@@ -64,9 +73,12 @@ const Marks = () => {
                 />
                 {student.name}
               </td>
-              {student.marks.slice(0, 5).reverse().map((mark, i) => (
-                <td key={i}>{mark !== null ? mark : 'N/A'}</td>
-              ))}
+              {student.marks
+                .slice(0, 5)
+                .reverse()
+                .map((mark, i) => (
+                  <td key={i}>{mark !== null ? mark : "N/A"}</td>
+                ))}
             </tr>
           ))}
         </tbody>
