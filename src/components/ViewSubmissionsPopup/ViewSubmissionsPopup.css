@@ -1,4 +1,4 @@
-.modal-backdrop {
+.viewsubmissionspopup-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.view-submissions-popup {
+.viewsubmissionspopup-container {
   background-color: white;
   border-radius: 10px;
   display: flex;
@@ -20,7 +20,7 @@
   height: 600px;
 }
 
-.left-section {
+.viewsubmissionspopup-left-section {
   width: 45%;
   border-right: 1px solid #ddd;
   padding-right: 20px;
@@ -30,48 +30,45 @@
   gap: 20px;
 }
 
-.assignment-title {
+.viewsubmissionspopup-assignment-title {
   font-size: 18px;
   font-weight: bold;
   text-align: left;
   margin-bottom: 10px;
 }
 
-.submissions-table-wrapper {
+.viewsubmissionspopup-submissions-table-wrapper {
   max-height: 450px;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }
 
-.submissions-table {
+.viewsubmissionspopup-submissions-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.submissions-table th,
-.submissions-table td {
+.viewsubmissionspopup-submissions-table th,
+.viewsubmissionspopup-submissions-table td {
   text-align: left;
   padding: 12px;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
 }
 
-.submissions-table tr:hover td {
+.viewsubmissionspopup-submissions-table tr:hover td {
   color: #25738b;
   font-size: 16px;
 }
 
-.submissions-table .active td {
+.viewsubmissionspopup-submissions-table .active td {
   color: #25738b;
   font-size: 16px;
 }
 
-.submissions-table-wrapper::-webkit-scrollbar {
-  width: 8px;
-  size: thin;
-  color: #25738b;
-}
-
-.right-section {
+.viewsubmissionspopup-right-section {
   width: 55%;
   padding-left: 20px;
   display: flex;
@@ -79,13 +76,13 @@
   justify-content: space-between;
 }
 
-.header-right {
+.viewsubmissionspopup-header-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.file-display {
+.viewsubmissionspopup-file-display {
   font-size: 40px;
   text-align: center;
   cursor: pointer;
@@ -93,39 +90,41 @@
   color: #666;
 }
 
-.file-display p {
+.viewsubmissionspopup-file-display p {
   font-size: 14px;
   color: #666;
 }
 
-.feedback-section {
+.viewsubmissionspopup-feedback-section {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-.comment {
+.viewsubmissionspopup-comment {
   width: 80%;
 }
 
-.comment textarea {
+.viewsubmissionspopup-comment textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }
 
-.mark {
+.viewsubmissionspopup-mark {
   width: 20%;
 }
 
-.mark-input {
+.viewsubmissionspopup-mark-input {
   display: flex;
   align-items: center;
 }
 
-.mark-input input {
+.viewsubmissionspopup-mark-input input {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -134,21 +133,21 @@
   height: 100%;
 }
 
-.mark-input span {
+.viewsubmissionspopup-mark-input span {
   margin-left: 5px;
   font-size: 14px;
 }
 
-.feedback-messages {
+.viewsubmissionspopup-feedback-messages {
   margin-bottom: 10px;
 }
 
-.error {
-  color: red;
+.viewsubmissionspopup-error {
+  color: #c53030;
   font-size: 12px;
 }
 
-.feedback {
+.viewsubmissionspopup-feedback {
   color: green;
   font-size: 12px;
 }
