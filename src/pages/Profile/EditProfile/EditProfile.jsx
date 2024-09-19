@@ -4,12 +4,12 @@ import Button from '../../../components/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile } from '../../../redux/slices/authSlice';
+import { updateUserProfile, clearUpdateSuccess } from '../../../redux/slices/authSlice';
 import defaultProfileImage from '../../../assets/profile.png';
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const { user, updateSuccess } = useSelector((state) => state.auth);
+  const { user, updateSuccess, error } = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -21,6 +21,7 @@ const EditProfile = () => {
   });
 
   const [profileImage, setProfileImage] = useState(defaultProfileImage);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
 
   useEffect(() => {
     if (user?.profile_picture) {
@@ -32,14 +33,15 @@ const EditProfile = () => {
   }, [user?.profile_picture]);
 
   useEffect(() => {
-    if (updateSuccess && user?.profile_picture) {
+    if (updateSuccess) {
       const fullImageUrl = user.profile_picture.startsWith('http')
         ? user.profile_picture
         : `${process.env.REACT_APP_API_URL}${user.profile_picture}`;
       setProfileImage(fullImageUrl || defaultProfileImage);
-      alert('Profile updated successfully!');
+      setFeedbackMessage('Profile updated successfully!');
+      dispatch(clearUpdateSuccess());
     }
-  }, [updateSuccess, user?.profile_picture]);
+  }, [updateSuccess, user?.profile_picture, dispatch]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -47,6 +49,7 @@ const EditProfile = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFeedbackMessage('');
   };
 
   const handleImageChange = (event) => {
@@ -55,6 +58,7 @@ const EditProfile = () => {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
       setFormData({ ...formData, profile_picture: file });
+      setFeedbackMessage('');
     }
   };
 
@@ -80,7 +84,6 @@ const EditProfile = () => {
       data.append('profile_picture', formData.profile_picture);
     }
 
-    console.log('FormData being submitted:', [...data.entries()]);
     dispatch(updateUserProfile(data));
   };
 
@@ -170,6 +173,9 @@ const EditProfile = () => {
             placeholder="Address"
           />
         </div>
+
+        {feedbackMessage && <p className="feedback-message">{feedbackMessage}</p>}
+        {error && <p className="error-message">{error}</p>}
 
         <div className="save-button-container">
           <Button text="Save" onClick={handleSave} color="#25738b" size="medium" />
