@@ -16,6 +16,14 @@ const Login = ({ onSwitchToRegister, onClose }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const rememberedUser = JSON.parse(localStorage.getItem('rememberedUser'));
+    if (rememberedUser) {
+      setFormData(rememberedUser);
+      setRememberMe(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (token && user?.type) {
       if (rememberMe) {
         localStorage.setItem('rememberedUser', JSON.stringify(formData));
@@ -87,6 +95,14 @@ const Login = ({ onSwitchToRegister, onClose }) => {
               style={{ color: '#25738b' }}
             />
           </div>
+        </div>
+        <div className="login-remember-me-container">
+          <input
+            type="checkbox"
+            checked={rememberMe}
+            onChange={() => setRememberMe(!rememberMe)}
+          />
+          <label>Remember Me</label>
         </div>
         <div className="login-form-actions">
           <Button
