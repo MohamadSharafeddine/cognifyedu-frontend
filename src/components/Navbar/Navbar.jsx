@@ -115,10 +115,10 @@ const Navbar = () => {
             </li>
             <li>
               <button
-                onClick={toggleRegister}
+                onClick={toggleLogin}
                 className="navbar-item get-started"
               >
-                Get Started
+                Login
               </button>
             </li>
           </ul>
