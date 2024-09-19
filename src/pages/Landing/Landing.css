@@ -9,7 +9,7 @@
   overflow: hidden;
   border-radius: 20px;
   transition: transform 0.3s ease;
-  margin: 0px 20px;
+  margin: 0 20px;
 }
 
 .landing-hero-section:hover {
@@ -115,71 +115,13 @@
   padding-left: 20px;
 }
 
-.landing-services-section {
-  padding: 40px 20px;
-}
-
-.landing-services-section h2 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #25738b;
-}
-
-.landing-services-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-.landing-service {
-  text-align: center;
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.landing-service img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.landing-service h3 {
-  color: #333;
-  font-size: 20px;
-  margin-top: 10px;
-}
-
-.landing-service-description {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: white;
-  text-shadow: 2px 2px 10px rgba(216, 216, 216, 0.7);
-  text-align: center;
-  padding: 15px;
-  border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.landing-service:hover .landing-service-description {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-}
-
+.landing-services-section,
 .landing-users-section {
   padding: 40px 20px;
   margin-top: 40px;
 }
 
+.landing-services-section h2,
 .landing-users-section h2 {
   text-align: center;
   font-size: 28px;
@@ -187,12 +129,14 @@
   color: #25738b;
 }
 
+.landing-services-grid,
 .landing-users-grid {
   display: flex;
   justify-content: space-between;
   gap: 40px;
 }
 
+.landing-service,
 .landing-user {
   text-align: center;
   flex: 1;
@@ -202,6 +146,7 @@
   transition: transform 0.3s ease;
 }
 
+.landing-service img,
 .landing-user img {
   width: 100%;
   height: 250px;
@@ -209,12 +154,14 @@
   border-radius: 10px;
 }
 
+.landing-service h3,
 .landing-user h3 {
   color: #333;
   font-size: 20px;
   margin-top: 10px;
 }
 
+.landing-service-description,
 .landing-user-description {
   position: absolute;
   top: 50%;
@@ -231,6 +178,7 @@
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+.landing-service:hover .landing-service-description,
 .landing-user:hover .landing-user-description {
   opacity: 1;
   transform: translate(-50%, -50%);
@@ -238,11 +186,6 @@
 
 section {
   scroll-margin-top: 80px;
-}
-
-.landing-page.blur {
-  filter: blur(5px);
-  pointer-events: none;
 }
 
 @media (max-width: 768px) {

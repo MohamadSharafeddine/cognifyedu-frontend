@@ -71,9 +71,7 @@ const Landing = () => {
             student's unique cognitive and behavioral strengths. Our mission is
             to empower educators, students, and parents with the tools they need
             to support every learner's growth, ensuring they reach their full
-            potential. Whether it's through tailored learning paths, insightful
-            assessments, or seamless class management, CognifyEdu is here to
-            transform the educational experience for everyone involved.
+            potential.
           </p>
         </div>
       </section>
@@ -81,83 +79,78 @@ const Landing = () => {
       <section id="services" className="landing-services-section">
         <h2 data-aos="fade-up">Our Services</h2>
         <div className="landing-services-grid">
-          <div className="landing-service" data-aos="zoom-in">
-            <img src={servicesImage1} alt="Assignments" />
-            <h3>Assignments</h3>
-            <div className="landing-service-description">
-              <p>
-                Manage assignments with personalized feedback and AI-powered
-                analysis to track student progress.
-              </p>
+          {[
+            {
+              img: servicesImage1,
+              title: "Assignments",
+              description:
+                "Manage assignments with personalized feedback and AI-powered analysis to track student progress.",
+            },
+            {
+              img: servicesImage2,
+              title: "Analysis",
+              description:
+                "In-depth analysis of student performance, helping educators and parents understand strengths and areas for improvement.",
+            },
+            {
+              img: servicesImage3,
+              title: "Insights",
+              description:
+                "Gain actionable insights into student cognitive and behavioral data, driving better learning outcomes.",
+            },
+          ].map((service, index) => (
+            <div
+              className="landing-service"
+              data-aos="zoom-in"
+              data-aos-delay={`${index * 100}`}
+            >
+              <img src={service.img} alt={service.title} />
+              <h3>{service.title}</h3>
+              <div className="landing-service-description">
+                <p>{service.description}</p>
+              </div>
             </div>
-          </div>
-          <div
-            className="landing-service"
-            data-aos="zoom-in"
-            data-aos-delay="100"
-          >
-            <img src={servicesImage2} alt="Analysis" />
-            <h3>Analysis</h3>
-            <div className="landing-service-description">
-              <p>
-                In-depth analysis of student performance, helping educators and
-                parents understand strengths and areas for improvement.
-              </p>
-            </div>
-          </div>
-          <div
-            className="landing-service"
-            data-aos="zoom-in"
-            data-aos-delay="200"
-          >
-            <img src={servicesImage3} alt="Insights" />
-            <h3>Insights</h3>
-            <div className="landing-service-description">
-              <p>
-                Gain actionable insights into student cognitive and behavioral
-                data, driving better learning outcomes.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
       <section id="users" className="landing-users-section">
         <h2 data-aos="fade-up">Our Users</h2>
         <div className="landing-users-grid">
-          <div className="landing-user" data-aos="zoom-in">
-            <img src={userTeacherImage} alt="Teachers" />
-            <h3>Teachers</h3>
-            <div className="landing-user-description">
-              <p>
-                Teachers can create and manage assignments, track student
-                progress, and gain insights to tailor their teaching strategies.
-              </p>
+          {[
+            {
+              img: userTeacherImage,
+              title: "Teachers",
+              description:
+                "Teachers can create and manage assignments, track student progress, and gain insights to tailor their teaching strategies.",
+            },
+            {
+              img: userStudentImage,
+              title: "Students",
+              description:
+                "Students can access assignments, view feedback, and monitor their cognitive and behavioral development over time.",
+            },
+            {
+              img: userParentImage,
+              title: "Parents",
+              description:
+                "Parents can stay informed about their child's progress, viewing detailed insights and supporting their learning journey.",
+            },
+          ].map((user, index) => (
+            <div
+              className="landing-user"
+              data-aos="zoom-in"
+              data-aos-delay={`${index * 100}`}
+            >
+              <img src={user.img} alt={user.title} />
+              <h3>{user.title}</h3>
+              <div className="landing-user-description">
+                <p>{user.description}</p>
+              </div>
             </div>
-          </div>
-          <div className="landing-user" data-aos="zoom-in" data-aos-delay="100">
-            <img src={userStudentImage} alt="Students" />
-            <h3>Students</h3>
-            <div className="landing-user-description">
-              <p>
-                Students can access assignments, view feedback, and monitor
-                their cognitive and behavioral development over time.
-              </p>
-            </div>
-          </div>
-          <div className="landing-user" data-aos="zoom-in" data-aos-delay="200">
-            <img src={userParentImage} alt="Parents" />
-            <h3>Parents</h3>
-            <div className="landing-user-description">
-              <p>
-                Parents can stay informed about their child's progress, viewing
-                detailed insights and supporting their learning journey.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
-
       <section id="contact" className="landing-contact-section"></section>
 
       {showRegister && (
