@@ -28,19 +28,29 @@
   padding: 15px;
 }
 
+.adminteachers-table th {
+  padding-right: 28px;
+}
+
 .adminteachers-table th:nth-child(1),
 .adminteachers-table td:nth-child(1) {
-  width: 20%;
+  width: 10%;
 }
 
 .adminteachers-table th:nth-child(2),
 .adminteachers-table td:nth-child(2) {
-  width: 60%;
+  width: 30%;
 }
 
 .adminteachers-table th:nth-child(3),
 .adminteachers-table td:nth-child(3) {
+  width: 40%;
+}
+
+.adminteachers-table th:nth-child(4),
+.adminteachers-table td:nth-child(4) {
   width: 20%;
+  text-align: right; 
 }
 
 .adminteachers-table th {
@@ -60,11 +70,6 @@
 .adminteachers-table tbody tr:hover {
   color: #25738b;
   transform: scale(1.01);
-}
-
-.adminteachers-list .button-group {
-  display: flex;
-  gap: 10px;
 }
 
 @media (max-width: 768px) {

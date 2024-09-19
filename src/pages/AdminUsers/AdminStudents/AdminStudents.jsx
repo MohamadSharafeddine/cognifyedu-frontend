@@ -23,7 +23,8 @@ const AdminStudents = () => {
   }, [users]);
 
   const filteredStudents = students.filter((student) =>
-    student.name.toLowerCase().includes(searchTerm.toLowerCase())
+    student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    student.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleDeleteClick = (student) => {
@@ -52,6 +53,7 @@ const AdminStudents = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Email</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -60,8 +62,9 @@ const AdminStudents = () => {
             <tr key={index}>
               <td>{student.id}</td>
               <td>{student.name}</td>
+              <td>{student.email}</td>
               <td>
-                <div className="button-group">
+                <div className="adminstudents-button-group">
                   <Button
                     color="#25738b"
                     text="Add Parent"

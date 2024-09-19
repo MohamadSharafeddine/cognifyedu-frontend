@@ -21,7 +21,8 @@ const AdminTeachers = () => {
   }, [users]);
 
   const filteredTeachers = teachers.filter((teacher) =>
-    teacher.name.toLowerCase().includes(searchTerm.toLowerCase())
+    teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    teacher.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleDeleteClick = (teacher) => {
@@ -45,6 +46,7 @@ const AdminTeachers = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Email</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -53,15 +55,14 @@ const AdminTeachers = () => {
             <tr key={index}>
               <td>{teacher.id}</td>
               <td>{teacher.name}</td>
+              <td>{teacher.email}</td>
               <td>
-                <div className="button-group">
-                  <Button
-                    color="#C53030"
-                    text="Delete"
-                    size="small"
-                    onClick={() => handleDeleteClick(teacher)}
-                  />
-                </div>
+                <Button
+                  color="#C53030"
+                  text="Delete"
+                  size="small"
+                  onClick={() => handleDeleteClick(teacher)}
+                />
               </td>
             </tr>
           ))}

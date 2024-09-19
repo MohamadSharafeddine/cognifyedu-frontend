@@ -14,7 +14,8 @@ const AdminParents = () => {
 
   const parents = users.filter((user) => user.type === "parent");
   const filteredParents = parents.filter((parent) =>
-    parent.name.toLowerCase().includes(searchTerm.toLowerCase())
+    parent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    parent.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleDeleteClick = (parent) => {
@@ -38,6 +39,7 @@ const AdminParents = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Email</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -46,15 +48,14 @@ const AdminParents = () => {
             <tr key={index}>
               <td>{parent.id}</td>
               <td>{parent.name}</td>
+              <td>{parent.email}</td>
               <td>
-                <div className="button-group">
-                  <Button
-                    color="#C53030"
-                    text="Delete"
-                    size="small"
-                    onClick={() => handleDeleteClick(parent)}
-                  />
-                </div>
+                <Button
+                  color="#C53030"
+                  text="Delete"
+                  size="small"
+                  onClick={() => handleDeleteClick(parent)}
+                />
               </td>
             </tr>
           ))}

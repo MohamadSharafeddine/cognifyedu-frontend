@@ -37,12 +37,14 @@ const AdminCourses = () => {
   return (
     <div className="admincourses-container">
       <div className="admincourses-header">
-        <input
-          type="text"
-          placeholder="Search Courses"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <div className="admincourses-search-bar">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="admincourses-list">
