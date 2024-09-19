@@ -17,10 +17,6 @@ const Faq = () => {
         <h2>Can parents access their child's progress?</h2>
         <p>Yes, parents can access detailed insights into their child's progress, including assignment feedback, cognitive and behavioral analysis, and tailored recommendations.</p>
       </div>
-      <div className="faq-item">
-        <h2>Is my data secure on CognifyEdu?</h2>
-        <p>Yes, we prioritize data privacy and ensure that all personal information is securely stored and used only for enhancing your educational experience.</p>
-      </div>
     </div>
   );
 };
