@@ -55,7 +55,7 @@ const logoutUser = (state) => {
   state.token = null;
   localStorage.removeItem("user");
   localStorage.removeItem("token");
-  window.location.href = "/login";
+  window.location.href = "/";
 };
 
 const authSlice = createSlice({
