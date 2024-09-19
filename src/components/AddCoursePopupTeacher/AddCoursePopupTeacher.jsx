@@ -18,9 +18,9 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
       }
     };
 
-    window.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener("mousedown", handleClickOutside);
     return () => {
-      window.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
 
@@ -63,7 +63,9 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
             placeholder="Enter Name"
             required
           />
-          {error && <p className="add-course-popup-teacher-error-message">{error}</p>}
+          {error && (
+            <p className="add-course-popup-teacher-error-message">{error}</p>
+          )}
         </div>
         <div className="add-course-popup-teacher-form-group">
           <label>Description</label>
@@ -75,7 +77,7 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
         </div>
         <div className="add-course-popup-teacher-button-group">
           <Button
-            color="#e74c3c"
+            color="#C53030"
             text="Cancel"
             size="medium"
             onClick={onClose}

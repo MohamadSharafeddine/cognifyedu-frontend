@@ -16,6 +16,7 @@ const Assignments = () => {
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,15 +43,24 @@ const Assignments = () => {
   };
 
   const confirmDelete = () => {
-    dispatch(deleteAssignment(selectedAssignment.id));
-    setShowDeletePopup(false);
+    dispatch(deleteAssignment(selectedAssignment.id))
+      .unwrap()
+      .then(() => {
+        setShowDeletePopup(false);
+      })
+      .catch((err) => {
+        setError(err?.message || "Failed to delete assignment.");
+      });
   };
 
   const handleRowClick = (assignment) => {
     setSelectedAssignment(assignment);
     const currentDate = moment().format("YYYY-MM-DD");
-    if (user?.type === "student" && moment(assignment.due_date).isBefore(currentDate)) {
-      alert("You cannot submit assignments past the due date.");
+    if (
+      user?.type === "student" &&
+      moment(assignment.due_date).isBefore(currentDate)
+    ) {
+      setError("You cannot submit assignments past the due date.");
       return;
     }
     setShowPopup(true);
@@ -62,6 +72,7 @@ const Assignments = () => {
 
   return (
     <div className="assignments-list">
+      {error && <p className="assignments-error-message">{error}</p>}
       <table>
         <thead>
           <tr>
@@ -76,7 +87,9 @@ const Assignments = () => {
               key={index}
               onClick={() => handleRowClick(assignment)}
               className="assignment-row"
-              style={{ color: isPastDue(assignment.due_date) ? "#aaa" : "#000" }}
+              style={{
+                color: isPastDue(assignment.due_date) ? "#aaa" : "#000",
+              }}
             >
               <td>{assignment.title}</td>
               <td>{moment(assignment.due_date).format("MMMM Do YYYY")}</td>
@@ -94,7 +107,7 @@ const Assignments = () => {
                       onClick={() => handleEditClick(assignment)}
                     />
                     <Button
-                      color="#e74c3c"
+                      color="#C53030"
                       text="Remove"
                       size="small"
                       onClick={() => handleDeleteClick(assignment)}

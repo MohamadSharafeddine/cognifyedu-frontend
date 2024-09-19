@@ -11,7 +11,9 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
   const [description, setDescription] = useState(assignment.description);
   const [dueDate, setDueDate] = useState(assignment.due_date);
   const [attachment, setAttachment] = useState(null);
-  const [existingAttachment, setExistingAttachment] = useState(assignment.attachment || null);
+  const [existingAttachment, setExistingAttachment] = useState(
+    assignment.attachment || null
+  );
   const [error, setError] = useState("");
   const [dragging, setDragging] = useState(false);
 
@@ -25,23 +27,27 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (![
-          'text/plain',
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'image/jpeg',
-          'image/png',
-          'image/jpg',
-          'image/gif'
-      ].includes(file.type)) {
-          setError('Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file.');
-          setAttachment(null);
-          return;
+      if (
+        ![
+          "text/plain",
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "image/jpeg",
+          "image/png",
+          "image/jpg",
+          "image/gif",
+        ].includes(file.type)
+      ) {
+        setError(
+          "Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file."
+        );
+        setAttachment(null);
+        return;
       }
       setAttachment(file);
       setExistingAttachment(null);
-      setError('');
+      setError("");
     }
   };
 
@@ -50,23 +56,27 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
     setDragging(false);
     const file = e.dataTransfer.files[0];
     if (file) {
-      if (![
-          'text/plain',
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'image/jpeg',
-          'image/png',
-          'image/jpg',
-          'image/gif'
-      ].includes(file.type)) {
-          setError('Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file.');
-          setAttachment(null);
-          return;
+      if (
+        ![
+          "text/plain",
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "image/jpeg",
+          "image/png",
+          "image/jpg",
+          "image/gif",
+        ].includes(file.type)
+      ) {
+        setError(
+          "Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file."
+        );
+        setAttachment(null);
+        return;
       }
       setAttachment(file);
       setExistingAttachment(null);
-      setError('');
+      setError("");
     }
   };
 
@@ -142,7 +152,13 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
             <div className="edit-assignment-form-group">
               <label>Attach</label>
               <div
-                className={`edit-file-upload ${dragging ? "edit-dragging" : ""} ${attachment || existingAttachment ? "edit-file-present" : "edit-file-empty"}`}
+                className={`edit-file-upload ${
+                  dragging ? "edit-dragging" : ""
+                } ${
+                  attachment || existingAttachment
+                    ? "edit-file-present"
+                    : "edit-file-empty"
+                }`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -153,14 +169,29 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
                   id="edit-attachment-upload"
                   style={{ display: "none" }}
                 />
-                <label htmlFor="edit-attachment-upload" className="edit-upload-label">
+                <label
+                  htmlFor="edit-attachment-upload"
+                  className="edit-upload-label"
+                >
                   {attachment ? (
                     <span className="edit-file-name">
-                      {attachment.name} <button className="edit-remove-button" onClick={handleRemoveAttachment}>Remove</button>
+                      {attachment.name}{" "}
+                      <button
+                        className="edit-remove-button"
+                        onClick={handleRemoveAttachment}
+                      >
+                        Remove
+                      </button>
                     </span>
                   ) : existingAttachment ? (
                     <span className="edit-file-name">
-                      {existingAttachment.name} <button className="edit-remove-button" onClick={handleRemoveAttachment}>Remove</button>
+                      {existingAttachment.name}{" "}
+                      <button
+                        className="edit-remove-button"
+                        onClick={handleRemoveAttachment}
+                      >
+                        Remove
+                      </button>
                     </span>
                   ) : (
                     <span className="edit-upload-icon">+</span>
@@ -182,8 +213,18 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
             </div>
 
             <div className="edit-assignment-button-group">
-              <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
-              <Button color="#25738b" text="Save" size="medium" onClick={handleSave} />
+              <Button
+                color="#C53030"
+                text="Cancel"
+                size="medium"
+                onClick={onClose}
+              />
+              <Button
+                color="#25738b"
+                text="Save"
+                size="medium"
+                onClick={handleSave}
+              />
             </div>
           </div>
         </div>

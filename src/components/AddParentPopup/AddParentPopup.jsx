@@ -59,8 +59,18 @@ const AddParentPopup = ({ onClose, student }) => {
           {error && <p className="add-parent-error-message">{error}</p>}
         </div>
         <div className="add-parent-button-group">
-          <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
-          <Button color="#25738b" text="Add" size="medium" onClick={handleAddParent} />
+          <Button
+            color="#C53030"
+            text="Cancel"
+            size="medium"
+            onClick={onClose}
+          />
+          <Button
+            color="#25738b"
+            text="Add"
+            size="medium"
+            onClick={handleAddParent}
+          />
         </div>
       </div>
     </div>

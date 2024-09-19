@@ -15,9 +15,9 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
       }
     };
 
-    window.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener("mousedown", handleClickOutside);
     return () => {
-      window.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
 
@@ -64,7 +64,7 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
         </div>
         <div className="edit-course-popup-button-group">
           <Button
-            color="#e74c3c"
+            color="#C53030"
             text="Cancel"
             size="medium"
             onClick={onClose}

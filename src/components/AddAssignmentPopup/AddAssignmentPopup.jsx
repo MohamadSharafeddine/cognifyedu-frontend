@@ -19,22 +19,26 @@ const AddAssignmentPopup = ({ onClose }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-        if (![
-            'text/plain',
-            'application/pdf',
-            'application/msword',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'image/jpeg',
-            'image/png',
-            'image/jpg',
-            'image/gif'
-        ].includes(file.type)) {
-            setError('Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file.');
-            setAttachment(null);
-            return;
-        }
-        setAttachment(file);
-        setError('');
+      if (
+        ![
+          "text/plain",
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "image/jpeg",
+          "image/png",
+          "image/jpg",
+          "image/gif",
+        ].includes(file.type)
+      ) {
+        setError(
+          "Invalid file type. Please upload a txt, pdf, doc, docx, jpeg, png, jpg, or gif file."
+        );
+        setAttachment(null);
+        return;
+      }
+      setAttachment(file);
+      setError("");
     }
   };
 
@@ -43,18 +47,22 @@ const AddAssignmentPopup = ({ onClose }) => {
     setDragging(false);
     const file = e.dataTransfer.files[0];
     if (file) {
-      if (![
-          'text/plain',
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-      ].includes(file.type)) {
-        setError('Invalid file type. Please upload a txt, pdf, doc, or docx file.');
+      if (
+        ![
+          "text/plain",
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ].includes(file.type)
+      ) {
+        setError(
+          "Invalid file type. Please upload a txt, pdf, doc, or docx file."
+        );
         setAttachment(null);
         return;
       }
       setAttachment(file);
-      setError('');
+      setError("");
     }
   };
 
@@ -93,7 +101,7 @@ const AddAssignmentPopup = ({ onClose }) => {
     dispatch(addAssignment(assignmentData))
       .unwrap()
       .then(() => {
-        alert("Assignment added successfully!");
+        setError("");
         onClose();
       })
       .catch((err) => {
@@ -149,7 +157,9 @@ const AddAssignmentPopup = ({ onClose }) => {
             <div className="add-assignment-form-group">
               <label>Attach</label>
               <div
-                className={`add-file-upload ${dragging ? "dragging" : ""} ${attachment ? "file-present" : "file-empty"}`}
+                className={`add-file-upload ${dragging ? "dragging" : ""} ${
+                  attachment ? "file-present" : "file-empty"
+                }`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -160,7 +170,10 @@ const AddAssignmentPopup = ({ onClose }) => {
                   id="add-attachment-upload"
                   style={{ display: "none" }}
                 />
-                <label htmlFor="add-attachment-upload" className="add-upload-label">
+                <label
+                  htmlFor="add-attachment-upload"
+                  className="add-upload-label"
+                >
                   {attachment ? (
                     <span className="add-file-name">{attachment.name}</span>
                   ) : (
@@ -183,8 +196,18 @@ const AddAssignmentPopup = ({ onClose }) => {
             </div>
 
             <div className="add-assignment-button-group">
-              <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
-              <Button color="#25738b" text="Add" size="medium" onClick={handleAddAssignment} />
+              <Button
+                color="#C53030"
+                text="Cancel"
+                size="medium"
+                onClick={onClose}
+              />
+              <Button
+                color="#25738b"
+                text="Add"
+                size="medium"
+                onClick={handleAddAssignment}
+              />
             </div>
           </div>
         </div>

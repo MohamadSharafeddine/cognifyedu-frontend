@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addStudentToCourse } from '../../redux/slices/studentsSlice';
-import './AddStudentPopup.css';
-import Button from '../Button/Button';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addStudentToCourse } from "../../redux/slices/studentsSlice";
+import "./AddStudentPopup.css";
+import Button from "../Button/Button";
 
 const AddStudentPopup = ({ onClose, courseId }) => {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   const handleAddStudent = () => {
     if (!email.trim()) {
-      setError('Email is required');
+      setError("Email is required");
       return;
     }
 
@@ -21,7 +21,7 @@ const AddStudentPopup = ({ onClose, courseId }) => {
         onClose(newStudent);
       })
       .catch((err) => {
-        setError(err.message || 'Failed to add student');
+        setError(err.message || "Failed to add student");
       });
   };
 
@@ -36,7 +36,7 @@ const AddStudentPopup = ({ onClose, courseId }) => {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              setError('');
+              setError("");
             }}
             placeholder="Enter Student Email"
             required
@@ -44,8 +44,18 @@ const AddStudentPopup = ({ onClose, courseId }) => {
           {error && <p className="add-student-error-message">{error}</p>}
         </div>
         <div className="add-student-button-group">
-          <Button color="#e74c3c" text="Cancel" size="medium" onClick={onClose} />
-          <Button color="#25738b" text="Add" size="medium" onClick={handleAddStudent} />
+          <Button
+            color="#C53030"
+            text="Cancel"
+            size="medium"
+            onClick={onClose}
+          />
+          <Button
+            color="#25738b"
+            text="Add"
+            size="medium"
+            onClick={handleAddStudent}
+          />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import './DeleteConfirmationPopup.css';
-import Button from '../Button/Button';
+import React, { useEffect, useRef } from "react";
+import "./DeleteConfirmationPopup.css";
+import Button from "../Button/Button";
 
 const DeleteConfirmationPopup = ({ onClose, onDelete }) => {
   const modalRef = useRef(null);
@@ -12,9 +12,9 @@ const DeleteConfirmationPopup = ({ onClose, onDelete }) => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
 
@@ -32,7 +32,7 @@ const DeleteConfirmationPopup = ({ onClose, onDelete }) => {
           />
           <Button
             className="delete-popup-delete-btn"
-            color="#e74c3c"
+            color="#C53030"
             text="Yes, Delete"
             size="medium"
             onClick={onDelete}
