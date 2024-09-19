@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStudentsByCourse, deleteStudentFromCourse } from "../../redux/slices/studentsSlice";
+import {
+  fetchStudentsByCourse,
+  deleteStudentFromCourse,
+} from "../../redux/slices/studentsSlice";
 import "./Students.css";
 import Button from "../Button/Button";
 import DeleteConfirmationPopup from "../DeleteConfirmationPopup/DeleteConfirmationPopup";
@@ -23,7 +26,9 @@ const Students = () => {
     }
   }, [dispatch, courseId, students.length]);
 
-  const sortedStudents = [...students].sort((a, b) => a.name.localeCompare(b.name));
+  const sortedStudents = [...students].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   const filteredStudents = sortedStudents.filter((student) => {
     const studentName = student?.name ? student.name.toLowerCase() : "";
@@ -36,7 +41,9 @@ const Students = () => {
   };
 
   const confirmDelete = () => {
-    dispatch(deleteStudentFromCourse({ courseId, studentId: selectedStudent.id }));
+    dispatch(
+      deleteStudentFromCourse({ courseId, studentId: selectedStudent.id })
+    );
     setShowDeletePopup(false);
   };
 
@@ -68,7 +75,12 @@ const Students = () => {
             <tbody>
               {filteredStudents.map((student, index) => (
                 <tr key={index}>
-                  <td onClick={() => handleStudentClick(student.id)} style={{ cursor: userType === "teacher" ? "pointer" : "default" }}>
+                  <td
+                    onClick={() => handleStudentClick(student.id)}
+                    style={{
+                      cursor: userType === "teacher" ? "pointer" : "default",
+                    }}
+                  >
                     <img
                       src={getProfileImageUrl(student)}
                       alt="avatar"
@@ -79,7 +91,7 @@ const Students = () => {
                   {userType === "teacher" && (
                     <td>
                       <Button
-                        color="#e74c3c"
+                        color="#C53030"
                         text="Remove"
                         size="small"
                         onClick={() => handleDeleteClick(student)}

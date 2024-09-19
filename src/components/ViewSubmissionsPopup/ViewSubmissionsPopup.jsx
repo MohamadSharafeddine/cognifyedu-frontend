@@ -28,7 +28,7 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
     }
 
     const handleClickOutside = (event) => {
-      if (event.target.className === 'modal-backdrop') {
+      if (event.target.className === 'viewsubmissionspopup-modal-backdrop') {
         onClose();
       }
     };
@@ -97,17 +97,14 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
       try {
         const token = localStorage.getItem('token');
         const submissionId = selectedSubmission.id;
-        console.log('Attempting to download submission file:', submissionId);
-  
+
         const response = await axios.get(`http://127.0.0.1:8000/api/submissions/${submissionId}/download`, {
           responseType: 'blob',
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-  
-        console.log('Download response:', response);
-  
+
         if (response.status === 200) {
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement('a');
@@ -118,30 +115,27 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
           link.click();
           link.remove();
         } else {
-          console.error('Failed to download the file:', response.status);
-          alert('Failed to download the file.');
+          setValidationError('Failed to download the file.');
         }
       } catch (error) {
-        console.error('Error downloading the file:', error);
-        alert('Error downloading the file.');
+        setValidationError('Error downloading the file.');
       }
     } else {
-      console.error('No file submitted or deliverable URL is invalid.');
-      alert('No file submitted');
+      setValidationError('No file submitted or deliverable URL is invalid.');
     }
   };
 
   return (
-    <div className="modal-backdrop">
-      <div className="view-submissions-popup">
-        <div className="left-section">
-          <h2 className="assignment-title">{assignmentTitle}</h2>
+    <div className="viewsubmissionspopup-modal-backdrop">
+      <div className="viewsubmissionspopup-container">
+        <div className="viewsubmissionspopup-left-section">
+          <h2 className="viewsubmissionspopup-assignment-title">{assignmentTitle}</h2>
 
-          <div className="submissions-table-wrapper">
+          <div className="viewsubmissionspopup-submissions-table-wrapper">
             {loading && <p>Loading submissions...</p>}
             {error && <p>Error fetching submissions: {error}</p>}
             {!loading && !error && (
-              <table className="submissions-table">
+              <table className="viewsubmissionspopup-submissions-table">
                 <thead>
                   <tr>
                     <th>Student</th>
@@ -165,8 +159,8 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
           </div>
         </div>
 
-        <div className="right-section">
-          <div className="header-right">
+        <div className="viewsubmissionspopup-right-section">
+          <div className="viewsubmissionspopup-header-right">
             <h4>{selectedSubmission ? selectedSubmission.student.name : 'Select a submission'}</h4>
             <Button
               color="#25738b"
@@ -177,20 +171,20 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
             />
           </div>
 
-          <div className="feedback-messages">
-            {validationError && <p className="error">{validationError}</p>}
-            {feedbackMessage && <p className="feedback">{feedbackMessage}</p>}
+          <div className="viewsubmissionspopup-feedback-messages">
+            {validationError && <p className="viewsubmissionspopup-error">{validationError}</p>}
+            {feedbackMessage && <p className="viewsubmissionspopup-feedback">{feedbackMessage}</p>}
           </div>
 
-          <div className="file-display" onClick={handleFileClick}>
+          <div className="viewsubmissionspopup-file-display" onClick={handleFileClick}>
             <span role="img" aria-label="file">
               📄
             </span>
             <p>Click to download the submitted file</p>
           </div>
 
-          <div className="feedback-section">
-            <div className="comment">
+          <div className="viewsubmissionspopup-feedback-section">
+            <div className="viewsubmissionspopup-comment">
               <label>Comment</label>
               <textarea
                 value={comment}
@@ -199,9 +193,9 @@ const ViewSubmissionsPopup = ({ onClose, assignmentTitle, assignmentId }) => {
                 rows="3"
               />
             </div>
-            <div className="mark">
+            <div className="viewsubmissionspopup-mark">
               <label>Mark</label>
-              <div className="mark-input">
+              <div className="viewsubmissionspopup-mark-input">
                 <input
                   type="number"
                   value={mark || ''}

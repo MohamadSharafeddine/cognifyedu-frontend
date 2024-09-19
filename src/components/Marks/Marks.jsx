@@ -64,7 +64,7 @@ const Marks = () => {
                 />
                 {student.name}
               </td>
-              {student.marks.slice(0, 5).map((mark, i) => (
+              {student.marks.slice(0, 5).reverse().map((mark, i) => (
                 <td key={i}>{mark !== null ? mark : 'N/A'}</td>
               ))}
             </tr>
