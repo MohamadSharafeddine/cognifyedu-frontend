@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./CoursesSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTh, faThList } from "@fortawesome/free-solid-svg-icons";
+import { faSchool, faBook } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCourse } from "../../redux/slices/uiSlice";
@@ -59,7 +59,7 @@ const CoursesSidebar = () => {
             onClick={handleCoursesSelect}
           >
             <div className="coursessidebar-icon">
-              <FontAwesomeIcon icon={faTh} />
+              <FontAwesomeIcon icon={faSchool} />
             </div>
             <div className="coursessidebar-title">Courses</div>
           </button>
@@ -75,7 +75,7 @@ const CoursesSidebar = () => {
               onClick={() => handleCourseSelect(courseItem.id, courseItem.name)}
             >
               <div className="coursessidebar-icon">
-                <FontAwesomeIcon icon={faThList} />
+                <FontAwesomeIcon icon={faBook} />
               </div>
               <div className="coursessidebar-title">{courseItem.name}</div>
             </button>
