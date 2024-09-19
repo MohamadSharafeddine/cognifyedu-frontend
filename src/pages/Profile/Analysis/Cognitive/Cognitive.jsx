@@ -41,7 +41,8 @@ const Cognitive = () => {
   });
 
   const [progressDataArray, setProgressDataArray] = useState([]);
-  const [selectedParameter, setSelectedParameter] = useState("Critical Thinking");
+  const [selectedParameter, setSelectedParameter] =
+    useState("Critical Thinking");
 
   const parameters = [
     "Critical Thinking",
@@ -55,19 +56,49 @@ const Cognitive = () => {
     const fetchCognitiveData = async () => {
       try {
         if (userId) {
-          const response = await axios.get(`/cognitive-scores/${userId}/average`);
+          const response = await axios.get(
+            `/cognitive-scores/${userId}/average`
+          );
           setCognitiveData(response.data);
 
-          const progressResponse = await axios.get(`/cognitive-scores/${userId}/progress`);
-          setProgressDataArray(progressResponse.data);
+          const progressResponse = await axios.get(
+            `/cognitive-scores/${userId}/progress`
+          );
+
+          const dataArray = Object.values(progressResponse.data).sort(
+            (a, b) => new Date(a.created_at) - new Date(b.created_at)
+          );
+
+          setProgressDataArray(dataArray);
+
+          console.log("Sorted Cognitive Progress Data:", dataArray);
         }
       } catch (error) {
         console.error("Error fetching cognitive data:", error);
+        setProgressDataArray([]);
       }
     };
 
     fetchCognitiveData();
   }, [userId]);
+
+  const progressLabels = progressDataArray.map((entry) =>
+    new Date(entry.created_at).toLocaleDateString("en-GB")
+  );
+
+  const progressData = {
+    labels: progressLabels,
+    datasets: [
+      {
+        label: `${selectedParameter} Progress`,
+        data: progressDataArray.map(
+          (entry) => entry[selectedParameter.toLowerCase().replace(/\s/g, "_")]
+        ),
+        borderColor: "#3498db",
+        fill: false,
+      },
+    ],
+  };
 
   const scores = [
     cognitiveData.critical_thinking,
@@ -77,22 +108,6 @@ const Cognitive = () => {
     cognitiveData.attention_to_detail,
   ];
 
-  const progressLabels = progressDataArray.map((entry) =>
-    new Date(entry.created_at).toLocaleDateString()
-  );
-
-  const progressData = {
-    labels: progressLabels,
-    datasets: [
-      {
-        label: `${selectedParameter} Progress`,
-        data: progressDataArray.map((entry) => entry[selectedParameter.toLowerCase().replace(/\s/g, "_")]),
-        borderColor: "#3498db",
-        fill: false,
-      },
-    ],
-  };
-
   const scoresData = {
     labels: parameters,
     datasets: [
@@ -100,7 +115,7 @@ const Cognitive = () => {
         label: "Scores",
         data: scores,
         backgroundColor: [
-          "#e74c3c",
+          "#C53030",
           "#3498db",
           "#1abc9c",
           "#f1c40f",
@@ -116,7 +131,7 @@ const Cognitive = () => {
       {
         data: scores,
         backgroundColor: [
-          "#e74c3c",
+          "#C53030",
           "#3498db",
           "#1abc9c",
           "#f1c40f",
@@ -160,14 +175,6 @@ const Cognitive = () => {
         },
       },
     },
-    scales: {
-      x: {
-        display: false,
-      },
-      y: {
-        display: false,
-      },
-    },
   };
 
   const lineChartOptions = {
@@ -197,25 +204,25 @@ const Cognitive = () => {
 
   return (
     <div className="cognitive-analysis">
-      <div className="charts-container">
-        <div className="chart-section chart-container">
+      <div className="cognitive-charts-row">
+        <div className="cognitive-chart-container">
           <h3>Scores</h3>
-          <div style={{ height: "200px" }}>
+          <div className="cognitive-chart-wrapper">
             <Bar data={scoresData} options={barChartOptions} />
           </div>
         </div>
-        <div className="chart-section chart-container">
+        <div className="cognitive-chart-container">
           <h3>Distribution</h3>
-          <div style={{ height: "200px" }}>
+          <div className="cognitive-chart-wrapper">
             <Pie data={distributionData} options={pieChartOptions} />
           </div>
         </div>
       </div>
 
-      <div className="progress-section chart-container">
-        <div className="progress-header">
+      <div className="cognitive-progress-section cognitive-chart-container">
+        <div className="cognitive-progress-header">
           <h3>Progress</h3>
-          <div className="progress-controls">
+          <div className="cognitive-progress-controls">
             <label htmlFor="parameter-select">Select Parameter: </label>
             <select
               id="parameter-select"
@@ -230,7 +237,7 @@ const Cognitive = () => {
             </select>
           </div>
         </div>
-        <div style={{ height: "200px" }}>
+        <div className="cognitive-chart-wrapper">
           <Line data={progressData} options={lineChartOptions} />
         </div>
       </div>
