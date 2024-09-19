@@ -52,10 +52,22 @@ const Register = ({ onSwitchToLogin, onClose }) => {
   };
 
   const handleRegister = () => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      setLocalError('Invalid email format');
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      setLocalError('Password must be at least 8 characters long');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setLocalError('Passwords do not match');
       return;
     }
+
     const newUser = {
       ...formData,
       type: determineUserTypeByEmail(formData.email),
@@ -157,25 +169,27 @@ const Register = ({ onSwitchToLogin, onClose }) => {
             />
           </div>
         </div>
-        <div className="register-form-group register-password-group">
-          <label>Confirm Password</label>
-          <div className="register-password-wrapper">
-            <input
-              type={showConfirmPassword ? 'text' : 'password'}
-              name="confirmPassword"
-              placeholder="Confirm your Password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-            <FontAwesomeIcon
-              icon={showConfirmPassword ? faEyeSlash : faEye}
-              className="register-password-icon"
-              onClick={toggleConfirmPasswordVisibility}
-              style={{ color: '#25738b' }}
-            />
+        {formData.password && (
+          <div className="register-form-group register-password-group">
+            <label>Confirm Password</label>
+            <div className="register-password-wrapper">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                placeholder="Confirm your Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+              />
+              <FontAwesomeIcon
+                icon={showConfirmPassword ? faEyeSlash : faEye}
+                className="register-password-icon"
+                onClick={toggleConfirmPasswordVisibility}
+                style={{ color: '#25738b' }}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="register-form-actions">
           <Button
             text={loading ? 'Registering...' : 'Register'}

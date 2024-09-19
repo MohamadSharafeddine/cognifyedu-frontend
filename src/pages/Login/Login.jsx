@@ -11,6 +11,7 @@ const Login = ({ onSwitchToRegister, onClose }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [localError, setLocalError] = useState('');
   const dispatch = useDispatch();
   const { token, user, error, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -39,9 +40,21 @@ const Login = ({ onSwitchToRegister, onClose }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setLocalError('');
   };
 
   const handleLogin = () => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      setLocalError('Invalid email format');
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      setLocalError('Password must be at least 8 characters long');
+      return;
+    }
+
     dispatch(loginUser(formData));
   };
 
@@ -65,6 +78,7 @@ const Login = ({ onSwitchToRegister, onClose }) => {
     <div className="login-modal" onClick={handleOutsideClick}>
       <div className="login-modal-content">
         <h2>Login</h2>
+        {localError && <p className="login-error-message">{localError}</p>}
         {error && <p className="login-error-message">{error}</p>}
         <div className="login-form-group">
           <label>Email</label>
