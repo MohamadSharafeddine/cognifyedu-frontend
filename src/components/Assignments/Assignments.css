@@ -9,6 +9,12 @@
   margin: 20px 0;
 }
 
+.assignments-error-message {
+  color: #c53030;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .assignments-list::-webkit-scrollbar {
   width: 8px;
 }

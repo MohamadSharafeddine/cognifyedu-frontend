@@ -56,7 +56,7 @@ const AdminTeachers = () => {
               <td>
                 <div className="button-group">
                   <Button
-                    color="#e74c3c"
+                    color="#C53030"
                     text="Delete"
                     size="small"
                     onClick={() => handleDeleteClick(teacher)}

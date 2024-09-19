@@ -5,7 +5,6 @@
   padding: 20px 80px;
   background-color: white;
   border-bottom: 0.5px solid rgb(221, 221, 221);
-  /* margin-bottom: 20px; */
 }
 
 .user-info-container {
@@ -74,8 +73,8 @@
 }
 
 .dropdown-item:hover {
-  background-color: rgba(37, 115, 139, 0.1);
   color: #25738b;
+  transform: scale(1.01);
 }
 
 .dropdown-menu {

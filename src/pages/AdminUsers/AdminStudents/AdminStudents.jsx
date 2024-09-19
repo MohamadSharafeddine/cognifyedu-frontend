@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./AdminStudents.css";
-import Button from "../../../components/Button/Button"; 
+import Button from "../../../components/Button/Button";
 import DeleteConfirmationPopup from "../../../components/DeleteConfirmationPopup/DeleteConfirmationPopup";
 import AddParentPopup from "../../../components/AddParentPopup/AddParentPopup";
 import { deleteUser } from "../../../redux/slices/usersSlice";
@@ -63,13 +63,13 @@ const AdminStudents = () => {
               <td>
                 <div className="button-group">
                   <Button
-                    color="#25738b" 
+                    color="#25738b"
                     text="Add Parent"
                     size="small"
                     onClick={() => handleAddParentClick(student)}
                   />
                   <Button
-                    color="#e74c3c"
+                    color="#C53030"
                     text="Delete"
                     size="small"
                     onClick={() => handleDeleteClick(student)}

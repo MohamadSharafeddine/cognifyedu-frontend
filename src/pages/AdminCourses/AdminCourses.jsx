@@ -63,11 +63,11 @@ const AdminCourses = () => {
                 <tr key={index}>
                   <td>{course.id}</td>
                   <td>{course.name}</td>
-                  <td>{course.teacher?.name || 'Unknown'}</td>
+                  <td>{course.teacher?.name || "Unknown"}</td>
                   <td>
                     <div className="button-group">
                       <Button
-                        color="#e74c3c"
+                        color="#C53030"
                         text="Delete"
                         size="small"
                         onClick={() => handleDeleteClick(course)}

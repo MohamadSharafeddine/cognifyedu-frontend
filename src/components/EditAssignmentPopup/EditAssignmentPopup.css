@@ -59,6 +59,8 @@ h2 {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }
 
 .edit-assignment-form-group textarea {
@@ -93,7 +95,7 @@ h2 {
 .edit-remove-button {
   background: none;
   border: none;
-  color: #e74c3c;
+  color: #c53030;
   cursor: pointer;
   margin-left: 10px;
   font-size: 0.9em;

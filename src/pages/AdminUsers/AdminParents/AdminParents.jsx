@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import "./AdminParents.css"; 
+import "./AdminParents.css";
 import Button from "../../../components/Button/Button";
 import DeleteConfirmationPopup from "../../../components/DeleteConfirmationPopup/DeleteConfirmationPopup";
 import { deleteUser } from "../../../redux/slices/usersSlice";
-
 
 const AdminParents = () => {
   const { searchTerm, users } = useOutletContext();
@@ -50,7 +49,7 @@ const AdminParents = () => {
               <td>
                 <div className="button-group">
                   <Button
-                    color="#e74c3c"
+                    color="#C53030"
                     text="Delete"
                     size="small"
                     onClick={() => handleDeleteClick(parent)}

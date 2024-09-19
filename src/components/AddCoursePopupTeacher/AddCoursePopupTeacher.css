@@ -39,6 +39,8 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }
 
 .add-course-popup-teacher-form-group textarea {
@@ -52,6 +54,11 @@
 }
 
 .add-course-popup-teacher-error-message {
-  color: red;
+  color: #c53030;
   margin-top: 5px;
+}
+
+textarea {
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }

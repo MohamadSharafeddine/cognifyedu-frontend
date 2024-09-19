@@ -1,101 +1,104 @@
 .admincourses-container {
-    padding: 20px;
-  }
-  
-  .admincourses-header {
-    margin-bottom: 20px;
-  }
-  
-  .admincourses-header input {
+  padding: 20px;
+}
+
+.admincourses-header {
+  margin-bottom: 20px;
+}
+
+.admincourses-header input {
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.admincourses-list {
+  background-color: white;
+  border: 0.5px solid rgb(237, 237, 237);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 530px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
+  overflow-x: hidden;
+}
+
+.admincourses-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.admincourses-table th,
+.admincourses-table td {
+  padding: 15px;
+  text-align: left;
+}
+
+.admincourses-table th {
+  background-color: white;
+  font-weight: 600;
+}
+
+.admincourses-table thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.admincourses-table th:nth-child(1),
+.admincourses-table td:nth-child(1) {
+  width: 25%;
+}
+
+.admincourses-table th:nth-child(2),
+.admincourses-table td:nth-child(2) {
+  width: 35%;
+}
+
+.admincourses-table th:nth-child(3),
+.admincourses-table td:nth-child(3) {
+  width: 30%;
+}
+
+.admincourses-table th:nth-child(4),
+.admincourses-table td:nth-child(4) {
+  width: 10%;
+}
+
+.admincourses-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.admincourses-table tr:last-child {
+  border-bottom: none;
+}
+
+.admincourses-table tbody tr:hover {
+    color: #25738b;
+  transform: scale(1.01);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .admincourses-container {
     padding: 10px;
+  }
+
+  .admincourses-header input {
     width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
   }
-  
-  .admincourses-list {
-    background-color: white;
-    border: 0.5px solid rgb(237, 237, 237);
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 530px;
-    overflow-y: auto;
-  }
-  
-  .admincourses-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: auto;
-  }
-  
+
   .admincourses-table th,
   .admincourses-table td {
-    padding: 15px;
-    text-align: left;
+    padding: 10px;
   }
-  
-  .admincourses-table th {
-    background-color: white;
-    font-weight: 600;
-  }
-  
-  .admincourses-table thead {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 1;
-  }
-  
-  .admincourses-table th:nth-child(1),
-  .admincourses-table td:nth-child(1) {
-    width: 25%;
-  }
-  
-  .admincourses-table th:nth-child(2),
-  .admincourses-table td:nth-child(2) {
-    width: 35%;
-  }
-  
-  .admincourses-table th:nth-child(3),
-  .admincourses-table td:nth-child(3) {
-    width: 30%;
-  }
-  
-  .admincourses-table th:nth-child(4),
-  .admincourses-table td:nth-child(4) {
-    width: 10%;
-  }
-  
-  .admincourses-table tr {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .admincourses-table tr:last-child {
-    border-bottom: none;
-  }
-  
-  .admincourses-table tbody tr:hover {
-    background-color: #f9f9f9;
-  }
-  
-  .button-group {
-    display: flex;
-    gap: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .admincourses-container {
-      padding: 10px;
-    }
-  
-    .admincourses-header input {
-      width: 100%;
-    }
-  
-    .admincourses-table th,
-    .admincourses-table td {
-      padding: 10px;
-    }
-  }
-  
+}

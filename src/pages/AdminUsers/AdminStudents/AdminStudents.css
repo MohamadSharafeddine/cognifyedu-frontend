@@ -7,6 +7,8 @@
   overflow-y: auto;
   padding: 0 40px;
   margin: 20px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }
 
 .adminstudents-table {
@@ -56,7 +58,8 @@
 }
 
 .adminstudents-table tbody tr:hover {
-  background-color: #f9f9f9;
+  color: #25738b;
+  transform: scale(1.01);
 }
 
 .adminstudents-list .button-group {

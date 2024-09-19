@@ -120,6 +120,8 @@
 .add-insight-popup-form-group textarea::placeholder {
   color: #aaa;
   font-size: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #25738b #f1f1f1;
 }
 
 .add-insight-popup-submit-button {
@@ -142,7 +144,7 @@
 }
 
 .add-insight-error-message {
-  color: red;
+  color: #c53030;
   margin-top: 8px;
   font-size: 14px;
 }
@@ -167,12 +169,12 @@
 }
 
 .add-insight-popup-form-group textarea::-webkit-scrollbar-thumb {
-  background-color: #25738B;
+  background-color: #25738b;
   border-radius: 10px;
   border: 2px solid #f1f1f1;
 }
 
 .add-insight-popup-form-group textarea {
   scrollbar-width: thin;
-  scrollbar-color: #25738B #f1f1f1;
+  scrollbar-color: #25738b #f1f1f1;
 }
