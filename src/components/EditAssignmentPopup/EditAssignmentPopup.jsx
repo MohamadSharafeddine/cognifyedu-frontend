@@ -150,7 +150,7 @@ const EditAssignmentPopup = ({ onClose, onSave, assignment }) => {
             </div>
 
             <div className="edit-assignment-form-group">
-              <label>Attach</label>
+              <label>Attachment</label>
               <div
                 className={`edit-file-upload ${
                   dragging ? "edit-dragging" : ""

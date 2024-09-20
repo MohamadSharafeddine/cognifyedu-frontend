@@ -155,7 +155,7 @@ const AddAssignmentPopup = ({ onClose }) => {
             </div>
 
             <div className="add-assignment-form-group">
-              <label>Attach</label>
+              <label>Attachment</label>
               <div
                 className={`add-file-upload ${dragging ? "dragging" : ""} ${
                   attachment ? "file-present" : "file-empty"
