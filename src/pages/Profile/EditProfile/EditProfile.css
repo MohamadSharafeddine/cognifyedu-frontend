@@ -1,10 +1,12 @@
-.edit-profile-page {
+.editprofile-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 600px;
+  min-height: 84vh;
   margin: auto;
   background-color: white;
   border: 0.5px solid rgb(237, 237, 237);
@@ -12,18 +14,18 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.profile-picture-section {
+.editprofile-profile-picture-section {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.profile-image-wrapper {
+.editprofile-profile-image-wrapper {
   position: relative;
   cursor: pointer;
 }
 
-.profile-picture {
+.editprofile-profile-picture {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -31,11 +33,11 @@
   transition: transform 0.3s ease;
 }
 
-.profile-picture:hover {
+.editprofile-profile-picture:hover {
   transform: scale(1.05);
 }
 
-.profile-edit-icon {
+.editprofile-profile-edit-icon {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -46,31 +48,31 @@
   display: none;
 }
 
-.profile-image-wrapper:hover .profile-edit-icon {
+.editprofile-profile-image-wrapper:hover .editprofile-profile-edit-icon {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.profile-form-section {
+.editprofile-profile-form-section {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.form-group {
+.editprofile-form-group {
   display: flex;
   flex-direction: column;
 }
 
-.form-group label {
+.editprofile-form-group label {
   margin-bottom: 5px;
   font-weight: bold;
   color: #333;
 }
 
-.form-group input {
+.editprofile-form-group input {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -78,46 +80,48 @@
   outline: none;
 }
 
-.password-group .password-wrapper {
+.editprofile-password-group .editprofile-password-wrapper {
   display: flex;
   align-items: center;
   position: relative;
 }
 
-.password-wrapper input {
+.editprofile-password-wrapper input {
   flex: 1;
 }
 
-.password-icon {
+.editprofile-password-icon {
   position: absolute;
   right: 10px;
   cursor: pointer;
   color: #25738b;
 }
 
-.feedback-message {
+.editprofile-feedback-message {
   color: green;
   text-align: center;
   margin-top: 10px;
 }
 
-.error-message {
+.editprofile-error-message {
   color: #c53030;
   text-align: center;
   margin-top: 10px;
 }
 
-.save-button-container {
+.editprofile-save-button-container {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
-  .edit-profile-page {
+  .editprofile-page {
     padding: 10px;
+    min-height: auto;
   }
 
-  .profile-picture {
+  .editprofile-profile-picture {
     width: 100px;
     height: 100px;
   }

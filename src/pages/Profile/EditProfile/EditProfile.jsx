@@ -15,10 +15,12 @@ const EditProfile = () => {
   const { user, updateSuccess, error } = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     fullName: user?.name || "",
     email: user?.email || "",
     password: "",
+    confirmPassword: "",
     dateOfBirth: user?.date_of_birth || "",
     address: user?.address || "",
   });
@@ -50,6 +52,10 @@ const EditProfile = () => {
     setShowPassword(!showPassword);
   };
 
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setFeedbackMessage("");
@@ -66,6 +72,11 @@ const EditProfile = () => {
   };
 
   const handleSave = () => {
+    if (formData.password !== formData.confirmPassword) {
+      setFeedbackMessage("Passwords do not match.");
+      return;
+    }
+
     const data = new FormData();
 
     if (formData.fullName) {
@@ -91,17 +102,17 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="edit-profile-page">
-      <div className="profile-picture-section">
-        <label htmlFor="profile-upload" className="profile-label">
-          <div className="profile-image-wrapper">
+    <div className="editprofile-page">
+      <div className="editprofile-profile-picture-section">
+        <label htmlFor="profile-upload" className="editprofile-profile-label">
+          <div className="editprofile-profile-image-wrapper">
             <img
               src={profileImage}
               alt="Profile"
-              className="profile-picture"
+              className="editprofile-profile-picture"
               title="Click to change picture"
             />
-            <div className="profile-edit-icon">
+            <div className="editprofile-profile-edit-icon">
               <FontAwesomeIcon icon={faEdit} />
             </div>
           </div>
@@ -115,8 +126,8 @@ const EditProfile = () => {
         />
       </div>
 
-      <div className="profile-form-section">
-        <div className="form-group">
+      <div className="editprofile-profile-form-section">
+        <div className="editprofile-form-group">
           <label>Full Name</label>
           <input
             type="text"
@@ -127,7 +138,7 @@ const EditProfile = () => {
           />
         </div>
 
-        <div className="form-group">
+        <div className="editprofile-form-group">
           <label>Email</label>
           <input
             type="email"
@@ -138,9 +149,9 @@ const EditProfile = () => {
           />
         </div>
 
-        <div className="form-group password-group">
+        <div className="editprofile-form-group editprofile-password-group">
           <label>Password</label>
-          <div className="password-wrapper">
+          <div className="editprofile-password-wrapper">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
@@ -150,13 +161,33 @@ const EditProfile = () => {
             />
             <FontAwesomeIcon
               icon={showPassword ? faEyeSlash : faEye}
-              className="password-icon"
+              className="editprofile-password-icon"
               onClick={togglePasswordVisibility}
             />
           </div>
         </div>
 
-        <div className="form-group">
+        {formData.password && (
+          <div className="editprofile-form-group editprofile-password-group">
+            <label>Confirm New Password</label>
+            <div className="editprofile-password-wrapper">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm Password"
+              />
+              <FontAwesomeIcon
+                icon={showConfirmPassword ? faEyeSlash : faEye}
+                className="editprofile-password-icon"
+                onClick={toggleConfirmPasswordVisibility}
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="editprofile-form-group">
           <label>Date of Birth</label>
           <input
             type="date"
@@ -166,7 +197,7 @@ const EditProfile = () => {
           />
         </div>
 
-        <div className="form-group">
+        <div className="editprofile-form-group">
           <label>Address</label>
           <input
             type="text"
@@ -178,11 +209,11 @@ const EditProfile = () => {
         </div>
 
         {feedbackMessage && (
-          <p className="feedback-message">{feedbackMessage}</p>
+          <p className="editprofile-feedback-message">{feedbackMessage}</p>
         )}
-        {error && <p className="error-message">{error}</p>}
+        {error && <p className="editprofile-error-message">{error}</p>}
 
-        <div className="save-button-container">
+        <div className="editprofile-save-button-container">
           <Button
             text="Save"
             onClick={handleSave}
