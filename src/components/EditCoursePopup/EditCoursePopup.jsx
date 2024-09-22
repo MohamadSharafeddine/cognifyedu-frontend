@@ -39,9 +39,6 @@ const EditCoursePopup = ({ courseName, description, onClose, onSave }) => {
       <div className="edit-course-popup-modal-content" ref={modalRef}>
         <h2>Edit Course</h2>
         <div className="edit-course-popup-form-group">
-          <label>
-            Title <span style={{ color: "red" }}>*</span>
-          </label>
           <input
             type="text"
             value={title}

@@ -1,7 +1,7 @@
 .courses-container {
   padding: 3px 20px;
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .courses-cardscontainer {
