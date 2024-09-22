@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -11,9 +12,12 @@ import {
   Legend,
   ArcElement,
   LineElement,
-  PointElement,
+  PointElement
 } from "chart.js";
-import axios from "../../../../utils/axios";
+import {
+  fetchBehavioralScores,
+  fetchBehavioralProgress
+} from "../../../../redux/slices/profileSlice";
 import "./Behavioral.css";
 
 ChartJS.register(
@@ -30,17 +34,13 @@ ChartJS.register(
 
 const Behavioral = () => {
   const outletContext = useOutletContext();
-  const userId = outletContext?.userId;
+  const { userId, refetchTrigger } = outletContext;
 
-  const [behavioralData, setBehavioralData] = useState({
-    engagement: 0,
-    time_management: 0,
-    adaptability: 0,
-    collaboration: 0,
-    focus: 0,
-  });
+  const dispatch = useDispatch();
+  const { behavioralScores, behavioralProgress, loading, error } = useSelector(
+    (state) => state.profile
+  );
 
-  const [progressDataArray, setProgressDataArray] = useState([]);
   const [selectedParameter, setSelectedParameter] = useState("Engagement");
 
   const parameters = [
@@ -48,40 +48,19 @@ const Behavioral = () => {
     "Time Management",
     "Adaptability",
     "Collaboration",
-    "Focus",
+    "Focus"
   ];
 
   useEffect(() => {
-    const fetchBehavioralData = async () => {
-      try {
-        if (userId) {
-          const response = await axios.get(
-            `/behavioral-scores/${userId}/average`
-          );
-          setBehavioralData(response.data);
+    if (userId) {
+      dispatch(fetchBehavioralScores(userId));
+      dispatch(fetchBehavioralProgress(userId));
+    }
+  }, [userId, refetchTrigger, dispatch]);
 
-          const progressResponse = await axios.get(
-            `/behavioral-scores/${userId}/progress`
-          );
+  const sortedProgressData = behavioralProgress.slice().sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
 
-          const dataArray = Object.values(progressResponse.data).sort(
-            (a, b) => new Date(a.created_at) - new Date(b.created_at)
-          );
-
-          setProgressDataArray(dataArray);
-
-          console.log("Sorted Behavioral Progress Data:", dataArray);
-        }
-      } catch (error) {
-        console.error("Error fetching behavioral data:", error);
-        setProgressDataArray([]);
-      }
-    };
-
-    fetchBehavioralData();
-  }, [userId]);
-
-  const progressLabels = progressDataArray.map((entry) =>
+  const progressLabels = sortedProgressData.map((entry) =>
     new Date(entry.created_at).toLocaleDateString("en-GB")
   );
 
@@ -90,21 +69,21 @@ const Behavioral = () => {
     datasets: [
       {
         label: `${selectedParameter} Progress`,
-        data: progressDataArray.map(
+        data: sortedProgressData.map(
           (entry) => entry[selectedParameter.toLowerCase().replace(/\s/g, "_")]
         ),
         borderColor: "#3498db",
-        fill: false,
-      },
-    ],
+        fill: false
+      }
+    ]
   };
 
   const scores = [
-    behavioralData.engagement,
-    behavioralData.time_management,
-    behavioralData.adaptability,
-    behavioralData.collaboration,
-    behavioralData.focus,
+    behavioralScores.engagement,
+    behavioralScores.time_management,
+    behavioralScores.adaptability,
+    behavioralScores.collaboration,
+    behavioralScores.focus
   ];
 
   const scoresData = {
@@ -118,10 +97,10 @@ const Behavioral = () => {
           "#3498db",
           "#1abc9c",
           "#f1c40f",
-          "#9b59b6",
-        ],
-      },
-    ],
+          "#9b59b6"
+        ]
+      }
+    ]
   };
 
   const distributionData = {
@@ -134,10 +113,10 @@ const Behavioral = () => {
           "#3498db",
           "#1abc9c",
           "#f1c40f",
-          "#9b59b6",
-        ],
-      },
-    ],
+          "#9b59b6"
+        ]
+      }
+    ]
   };
 
   const barChartOptions = {
@@ -146,20 +125,20 @@ const Behavioral = () => {
     scales: {
       x: {
         ticks: {
-          color: "#000",
-        },
+          color: "#000"
+        }
       },
       y: {
         ticks: {
-          color: "#000",
-        },
-      },
+          color: "#000"
+        }
+      }
     },
     plugins: {
       legend: {
-        display: false,
-      },
-    },
+        display: false
+      }
+    }
   };
 
   const pieChartOptions = {
@@ -170,10 +149,10 @@ const Behavioral = () => {
         position: "right",
         align: "center",
         labels: {
-          color: "#000",
-        },
-      },
-    },
+          color: "#000"
+        }
+      }
+    }
   };
 
   const lineChartOptions = {
@@ -182,23 +161,23 @@ const Behavioral = () => {
     scales: {
       x: {
         ticks: {
-          color: "#000",
-        },
+          color: "#000"
+        }
       },
       y: {
         min: 0,
         max: 100,
         ticks: {
           stepSize: 20,
-          color: "#000",
-        },
-      },
+          color: "#000"
+        }
+      }
     },
     plugins: {
       legend: {
-        display: false,
-      },
-    },
+        display: false
+      }
+    }
   };
 
   return (
@@ -206,13 +185,13 @@ const Behavioral = () => {
       <div className="behavioral-charts-row">
         <div className="behavioral-chart-container">
           <h3>Scores</h3>
-          <div className="behavioral-chart-wrapper">
+          <div key={refetchTrigger} className="behavioral-chart-wrapper">
             <Bar data={scoresData} options={barChartOptions} />
           </div>
         </div>
         <div className="behavioral-chart-container">
           <h3>Distribution</h3>
-          <div className="behavioral-chart-wrapper">
+          <div key={refetchTrigger} className="behavioral-chart-wrapper">
             <Pie data={distributionData} options={pieChartOptions} />
           </div>
         </div>
@@ -236,7 +215,7 @@ const Behavioral = () => {
             </select>
           </div>
         </div>
-        <div className="behavioral-chart-wrapper">
+        <div key={refetchTrigger} className="behavioral-chart-wrapper">
           <Line data={progressData} options={lineChartOptions} />
         </div>
       </div>
