@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrochip, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
-const AddInsightPopup = ({ onClose, userId, teacherId }) => {
+const AddInsightPopup = ({ onClose, userId, teacherId, triggerRefetch }) => {
   const [comment, setComment] = useState('');
   const [showHelp, setShowHelp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +25,7 @@ const AddInsightPopup = ({ onClose, userId, teacherId }) => {
         comment: comment,
       });
       console.log('Feedback Submitted:', userId, teacherId, comment);
+      triggerRefetch();
       onClose();
     } catch (error) {
       console.error('Error submitting feedback:', error);

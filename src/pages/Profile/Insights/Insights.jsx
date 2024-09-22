@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from '../../../utils/axios';
 import { useOutletContext } from "react-router-dom";
 import "./Insights.css";
 import TabBar from "../../../components/TabBar/TabBar";
 
 const Insights = () => {
-  const { userId } = useOutletContext();
+  const { userId, refetchTrigger } = useOutletContext();
   const [activeTab, setActiveTab] = useState("Summary");
   const [insightData, setInsightData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ const Insights = () => {
       }
     };
     fetchInsights();
-  }, [userId]);
+  }, [userId, refetchTrigger]);
 
   const renderContent = () => {
     if (loading) return <p>Loading...</p>;
