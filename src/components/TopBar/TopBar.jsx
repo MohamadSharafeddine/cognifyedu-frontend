@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
+import { FRONTEND_API_URL } from "../../../src/constants";
 
 const TopBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -65,9 +66,9 @@ const TopBar = () => {
 
   const userEmail = user?.email || "User Email";
   const profileImage = user?.profile_picture
-    ? user.profile_picture.startsWith("http")
+    ? user.profile_picture.startsWith('http')
       ? user.profile_picture
-      : `${process.env.REACT_APP_API_URL}${user.profile_picture}`
+      : `${FRONTEND_API_URL}${user.profile_picture}`
     : defaultProfileImage;
 
   return (
