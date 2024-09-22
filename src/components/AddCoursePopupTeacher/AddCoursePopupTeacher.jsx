@@ -50,9 +50,6 @@ const AddCoursePopupTeacher = ({ onClose, onAddCourse }) => {
       <div className="add-course-popup-teacher-modal-content" ref={modalRef}>
         <h2>Add Course</h2>
         <div className="add-course-popup-teacher-form-group">
-          <label>
-            Name <span style={{ color: "red" }}>*</span>
-          </label>
           <input
             type="text"
             value={name}

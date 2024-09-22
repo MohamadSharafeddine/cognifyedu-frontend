@@ -43,9 +43,6 @@ const AddParentPopup = ({ onClose, student }) => {
       <div className="add-parent-modal-content">
         <h2>Add Parent</h2>
         <div className="add-parent-form-group">
-          <label>
-            Parent ID <span style={{ color: "red" }}>*</span>
-          </label>
           <input
             type="text"
             value={parentId}
