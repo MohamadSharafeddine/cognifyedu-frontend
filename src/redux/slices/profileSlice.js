@@ -5,12 +5,9 @@ export const fetchCognitiveScores = createAsyncThunk(
   "profile/fetchCognitiveScores",
   async (userId, { rejectWithValue }) => {
     try {
-      console.log("Fetching cognitive scores for userId:", userId);
       const response = await axios.get(`/cognitive-scores/${userId}/average`);
-      console.log("Cognitive Scores Response:", response.data);
       return response.data;
     } catch (error) {
-      console.error("Error fetching cognitive scores:", error);
       return rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -20,12 +17,45 @@ export const fetchCognitiveProgress = createAsyncThunk(
   "profile/fetchCognitiveProgress",
   async (userId, { rejectWithValue }) => {
     try {
-      console.log("Fetching cognitive progress for userId:", userId);
       const response = await axios.get(`/cognitive-scores/${userId}/progress`);
-      console.log("Cognitive Progress Response:", response.data);
       return response.data;
     } catch (error) {
-      console.error("Error fetching cognitive progress:", error);
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const fetchBehavioralScores = createAsyncThunk(
+  "profile/fetchBehavioralScores",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/behavioral-scores/${userId}/average`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const fetchBehavioralProgress = createAsyncThunk(
+  "profile/fetchBehavioralProgress",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/behavioral-scores/${userId}/progress`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const fetchInsights = createAsyncThunk(
+  "profile/fetchInsights",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/insights/user/${userId}/latest`);
+      return response.data;
+    } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -37,6 +67,7 @@ const profileSlice = createSlice({
     cognitiveScores: {},
     cognitiveProgress: [],
     behavioralScores: {},
+    behavioralProgress: [],
     insights: {},
     loading: false,
     error: null,
@@ -56,6 +87,7 @@ const profileSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+
       .addCase(fetchCognitiveProgress.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -65,6 +97,45 @@ const profileSlice = createSlice({
         state.loading = false;
       })
       .addCase(fetchCognitiveProgress.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(fetchBehavioralScores.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchBehavioralScores.fulfilled, (state, action) => {
+        state.behavioralScores = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchBehavioralScores.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(fetchBehavioralProgress.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchBehavioralProgress.fulfilled, (state, action) => {
+        state.behavioralProgress = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchBehavioralProgress.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(fetchInsights.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchInsights.fulfilled, (state, action) => {
+        state.insights = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchInsights.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

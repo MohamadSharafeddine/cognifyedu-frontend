@@ -2,6 +2,7 @@ import React from "react";
 import { useOutletContext } from "react-router-dom";
 import "./Marks.css";
 import defaultAvatar from "../../assets/profile.jpg";
+import { FRONTEND_API_URL } from "../../../src/constants";
 
 const Marks = () => {
   const { searchTerm, marksData, students } = useOutletContext();
@@ -21,7 +22,7 @@ const Marks = () => {
           id: submission.student.id,
           name: submission.student.name,
           avatar: studentInfo?.profile_picture
-            ? `${process.env.REACT_APP_API_URL}${studentInfo.profile_picture}`
+            ? `${FRONTEND_API_URL}${studentInfo.profile_picture}`
             : defaultAvatar,
           marks: [submission.mark],
         });

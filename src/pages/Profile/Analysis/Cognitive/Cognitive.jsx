@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -13,7 +14,10 @@ import {
   LineElement,
   PointElement,
 } from "chart.js";
-import axios from "../../../../utils/axios";
+import {
+  fetchCognitiveScores,
+  fetchCognitiveProgress,
+} from "../../../../redux/slices/profileSlice";
 import "./Cognitive.css";
 
 ChartJS.register(
@@ -30,19 +34,14 @@ ChartJS.register(
 
 const Cognitive = () => {
   const outletContext = useOutletContext();
-  const userId = outletContext?.userId;
+  const { userId, refetchTrigger } = outletContext;
 
-  const [cognitiveData, setCognitiveData] = useState({
-    critical_thinking: 0,
-    logical_thinking: 0,
-    linguistic_ability: 0,
-    memory: 0,
-    attention_to_detail: 0,
-  });
+  const dispatch = useDispatch();
+  const { cognitiveScores, cognitiveProgress, loading, error } = useSelector(
+    (state) => state.profile
+  );
 
-  const [progressDataArray, setProgressDataArray] = useState([]);
-  const [selectedParameter, setSelectedParameter] =
-    useState("Critical Thinking");
+  const [selectedParameter, setSelectedParameter] = useState("Critical Thinking");
 
   const parameters = [
     "Critical Thinking",
@@ -53,36 +52,15 @@ const Cognitive = () => {
   ];
 
   useEffect(() => {
-    const fetchCognitiveData = async () => {
-      try {
-        if (userId) {
-          const response = await axios.get(
-            `/cognitive-scores/${userId}/average`
-          );
-          setCognitiveData(response.data);
+    if (userId) {
+      dispatch(fetchCognitiveScores(userId));
+      dispatch(fetchCognitiveProgress(userId));
+    }
+  }, [userId, refetchTrigger, dispatch]);
 
-          const progressResponse = await axios.get(
-            `/cognitive-scores/${userId}/progress`
-          );
+  const sortedProgressData = cognitiveProgress.slice().sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
 
-          const dataArray = Object.values(progressResponse.data).sort(
-            (a, b) => new Date(a.created_at) - new Date(b.created_at)
-          );
-
-          setProgressDataArray(dataArray);
-
-          console.log("Sorted Cognitive Progress Data:", dataArray);
-        }
-      } catch (error) {
-        console.error("Error fetching cognitive data:", error);
-        setProgressDataArray([]);
-      }
-    };
-
-    fetchCognitiveData();
-  }, [userId]);
-
-  const progressLabels = progressDataArray.map((entry) =>
+  const progressLabels = sortedProgressData.map((entry) =>
     new Date(entry.created_at).toLocaleDateString("en-GB")
   );
 
@@ -91,7 +69,7 @@ const Cognitive = () => {
     datasets: [
       {
         label: `${selectedParameter} Progress`,
-        data: progressDataArray.map(
+        data: sortedProgressData.map(
           (entry) => entry[selectedParameter.toLowerCase().replace(/\s/g, "_")]
         ),
         borderColor: "#3498db",
@@ -101,11 +79,11 @@ const Cognitive = () => {
   };
 
   const scores = [
-    cognitiveData.critical_thinking,
-    cognitiveData.logical_thinking,
-    cognitiveData.linguistic_ability,
-    cognitiveData.memory,
-    cognitiveData.attention_to_detail,
+    cognitiveScores.critical_thinking,
+    cognitiveScores.logical_thinking,
+    cognitiveScores.linguistic_ability,
+    cognitiveScores.memory,
+    cognitiveScores.attention_to_detail,
   ];
 
   const scoresData = {
@@ -207,13 +185,13 @@ const Cognitive = () => {
       <div className="cognitive-charts-row">
         <div className="cognitive-chart-container">
           <h3>Scores</h3>
-          <div className="cognitive-chart-wrapper">
+          <div key={refetchTrigger} className="cognitive-chart-wrapper">
             <Bar data={scoresData} options={barChartOptions} />
           </div>
         </div>
         <div className="cognitive-chart-container">
           <h3>Distribution</h3>
-          <div className="cognitive-chart-wrapper">
+          <div key={refetchTrigger} className="cognitive-chart-wrapper">
             <Pie data={distributionData} options={pieChartOptions} />
           </div>
         </div>
@@ -237,7 +215,7 @@ const Cognitive = () => {
             </select>
           </div>
         </div>
-        <div className="cognitive-chart-wrapper">
+        <div key={refetchTrigger} className="cognitive-chart-wrapper">
           <Line data={progressData} options={lineChartOptions} />
         </div>
       </div>

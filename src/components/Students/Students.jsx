@@ -9,6 +9,7 @@ import "./Students.css";
 import Button from "../Button/Button";
 import DeleteConfirmationPopup from "../DeleteConfirmationPopup/DeleteConfirmationPopup";
 import defaultAvatar from "../../assets/profile.jpg";
+import { FRONTEND_API_URL } from "../../../src/constants";
 
 const Students = () => {
   const { searchTerm } = useOutletContext();
@@ -49,7 +50,7 @@ const Students = () => {
 
   const getProfileImageUrl = (student) => {
     return student.profile_picture
-      ? `${process.env.REACT_APP_API_URL}${student.profile_picture}`
+      ? `${FRONTEND_API_URL}${student.profile_picture}`
       : defaultAvatar;
   };
 

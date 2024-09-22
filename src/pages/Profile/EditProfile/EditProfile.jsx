@@ -9,6 +9,7 @@ import {
   clearUpdateSuccess,
 } from "../../../redux/slices/authSlice";
 import defaultProfileImage from "../../../assets/profile.jpg";
+import { FRONTEND_API_URL } from "../../../../src/constants";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const EditProfile = () => {
     if (user?.profile_picture) {
       const fullImageUrl = user.profile_picture.startsWith("http")
         ? user.profile_picture
-        : `${process.env.REACT_APP_API_URL}${user.profile_picture}`;
+        : `${FRONTEND_API_URL}${user.profile_picture}`;
       setProfileImage(fullImageUrl || defaultProfileImage);
     }
   }, [user?.profile_picture]);
@@ -41,7 +42,7 @@ const EditProfile = () => {
     if (updateSuccess) {
       const fullImageUrl = user.profile_picture.startsWith("http")
         ? user.profile_picture
-        : `${process.env.REACT_APP_API_URL}${user.profile_picture}`;
+        : `${FRONTEND_API_URL}${user.profile_picture}`;
       setProfileImage(fullImageUrl || defaultProfileImage);
       setFeedbackMessage("Profile updated successfully!");
       dispatch(clearUpdateSuccess());
