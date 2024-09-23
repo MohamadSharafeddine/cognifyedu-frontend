@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo-bar.jpg";
 import Register from "../../pages/Register/Register";
 import Login from "../../pages/Login/Login";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const location = useLocation();
@@ -12,6 +14,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleScroll = () => {
     const sections = document.querySelectorAll("section");
@@ -61,6 +64,10 @@ const Navbar = () => {
     setShowLogin(false);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <>
       <nav className="navbar">
@@ -68,7 +75,12 @@ const Navbar = () => {
           <div onClick={handleLogoClick} className="navbar-logo">
             <img src={logo} alt="CognifyEdu Logo" />
           </div>
-          <ul className="navbar-menu">
+
+          <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+            <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
+          </div>
+
+          <ul className={`navbar-menu ${isMobileMenuOpen ? "active" : ""}`}>
             <li>
               <Link
                 smooth
